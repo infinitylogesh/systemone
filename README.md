@@ -7,7 +7,8 @@
 
 [Jev](https://typesafe.ai/blog/introducing-system-one-models-and-jev) and [Laya](https://github.com/NandhaKishorM/laya) are awesome but they don't yet support images or video. This project extends TypeSafe Jev's `/v1/systemone` typed-decision API (`noul` / `choice` / `score`, with
 probabilities) on **any LLM served by vLLM or SGLang or OpenRouter (Experimental)**.
-- **Multimodal understanding comes for free.** With vision enabled models like gemma 4 or qwen 3.5 - the typed decisions endpoint supports images / video / audio, Jev or Laya **doesn't** support images or video or audio. 
+- **Multimodal understanding comes for free.** With vision enabled models like gemma 4 or qwen 3.5 - the typed decisions endpoint supports images / video / audio, Jev or Laya **doesn't** support images or video yet.
+- **The latency is comparable to Jev and Laya** - and in some cases better on self hosted models.
 - This approach builds a zero-shot classification wrapper around existing decoder only models, enabling us to use them for typed-decision tasks. 
 - Therefore the existing world knowledge of these models is preserved, and we can use them for typed-decision tasks.
 - Experimental support for finetuning with RLCD objective to improve accuracy.
