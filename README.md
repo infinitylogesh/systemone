@@ -7,11 +7,14 @@ probabilities) on **any LLM served by vLLM or SGLang**.
 
 | model | typed acc | ECE (cal) | AG News | ms / case | req/s |
 |---|---|---|---|---|---|
-| **Gemma 4 31B** | **0.709** | 0.105 | 0.867 | 81 | 62 |
-| **Qwen3.5-35B-A3B** | 0.672 | 0.091 | 0.837 | 206¹ | 35 |
-| **gpt-oss-20b** | 0.597 | 0.055 | 0.583 | 42 | **189** |
-| gpt-oss-20b, `think: 64` | 0.626 | 0.077 | 0.860 | 304 | 40 |
-| DiffusionGemma 26B-A4B | 0.666 | 0.089 | 0.817 | 153 | 34 |
+| **Gemma 4 31B (zero-shot)** | 0.709 | 0.105 | 0.867 | 81 | 62 |
+| Gemma 4 31B + CE LoRA² | **0.791** | 0.154 | 0.840 | 164 | 56 |
+| Gemma 4 31B + RLCD LoRA² | 0.785 | 0.145 | 0.827 | 165 | 55 |
+| Gemma 4 31B (zero-shot) via OpenRouter³ | 0.697 | 0.093 | 0.827 | 1,820 | 15 |
+| **Qwen3.5-35B-A3B (zero-shot)** | 0.672 | 0.091 | 0.837 | 206¹ | 35 |
+| **gpt-oss-20b (zero-shot)** | 0.597 | 0.055 | 0.583 | 42 | **189** |
+| gpt-oss-20b (zero-shot) + `think: 64` | 0.626 | 0.077 | 0.860 | 304 | 40 |
+| DiffusionGemma 26B-A4B (zero-shot) | 0.666 | 0.089 | 0.817 | 153 | 34 |
 | Laya, zero-shot | 0.362 | **0.026** | **0.933** | **32** | – |
 | *Laya, fine-tuned (published)* | *0.766* | *0.213* | *0.953* | – | – |
 | *TypeSafe Jev 1.13 (published)* | *0.727* | *0.144* | *0.910* | *710* | – |
@@ -20,6 +23,16 @@ probabilities) on **any LLM served by vLLM or SGLang**.
 - **ECE (cal)**: calibration error after the per-model temperature fit (lower is better).
 - **ms / case**: p50 for a 5-question typed-decisions case.
 - **req/s**: 4-question requests per second with 32 in flight.
+
+² Fine-tuned on the typed-decisions train split with `systemone rlcd train` (LoRA,
+[RLCD.md](RLCD.md)), so like Laya fine-tuned they are not zero-shot. Measured on the same
+NVFP4 server as adapters; in that run the base model took 124 ms and 66 req/s, so LoRA
+costs about 40 ms per case and 15% throughput. Fine-tuning leaves the model nearly
+calibrated (fitted T ≈ 1), which is why the ECE stays around 0.15, and costs 3–4 points
+of AG News.
+
+³ Hosted, through OpenRouter's chat API with the default per-question read (see
+[OpenRouter](#openrouter)); latency is mostly the network hop and the provider's queue.
 
 Jev figures are third-party published, not measured here, so treat them as indicative.
 Laya's zero-shot 0.362 matches its own published 0.361 on the same split, which
@@ -39,6 +52,34 @@ systemone serve --upstream http://localhost:8000
 # or start both at once:
 systemone launch Qwen/Qwen3.5-35B-A3B-FP8 -- --gpu-memory-utilization 0.85
 ```
+
+### OpenRouter (Experimental)
+
+No GPU: serve a model hosted on [OpenRouter](https://openrouter.ai), alone or next to
+local upstreams:
+
+```bash
+export OPENROUTER_API_KEY=sk-or-...
+systemone serve --openrouter gemma4-openrouter=google/gemma-4-31b-it \
+  --calibration-dir calibration --demo
+```
+
+OpenRouter has no tokenizer and its providers don't continue a prefilled reply, so the
+answer-slot read isn't available. The model answers instead, and the probabilities come
+from the top-20 logprobs at its answer token, matched to the labels by text.
+`--openrouter-read` picks how:
+
+| `--openrouter-read` | requests per case | typed acc | ECE (cal) | cost / 1k cases |
+|---|---|---|---|---|
+| `per_question` (default) | 1 per question, `max_tokens: 1`: closest to the answer-slot read | 0.707 | 0.098 | ≈ $0.30 |
+| `single` | 1: the model writes an `id: label` line per question | 0.697 | 0.093 | ≈ $0.07 |
+
+Only providers that return logprobs can serve (for Gemma 4 31B: CoreWeave, Parasail,
+Novita); the probe checks each with a request and orders them by speed, or pass
+`--openrouter-providers`. Images work, `think`, video and audio don't. Temperatures:
+`calibration/gemma4-openrouter.json` (per_question) and
+`gemma4-openrouter-single.json` (serve the single read under that name). Details:
+[how_it_works.md](how_it_works.md#openrouter-hosted-models-no-gpu).
 
 ### Example Request
 

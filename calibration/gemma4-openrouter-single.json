@@ -1,0 +1,15 @@
+{
+ "model": "google/gemma-4-31b-it",
+ "served_as": "gemma4-openrouter-single",
+ "engine": "openrouter",
+ "read": "single",
+ "providers": "Parasail, CoreWeave",
+ "fitted_on": "LocalLLaMA/typed-decisions train (300 cases)",
+ "temperatures": {
+  "noul:2": 20.0,
+  "choice:4": 14.843,
+  "score:5": 11.8191,
+  "score:4": 11.4683,
+  "choice:5": 7.6318
+ }
+}

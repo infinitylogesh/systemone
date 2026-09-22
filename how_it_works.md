@@ -85,6 +85,113 @@ further at 64 in flight, but vLLM's E4B was capped at 32 concurrent sequences, a
 GPU SGLang used its Triton attention kernels. Raw data:
 `results/engines-e4b-vllm-vs-sglang-2026-09-21.json`.
 
+## OpenRouter: hosted models, no GPU
+
+`--openrouter NAME=MODEL` serves a model hosted on [OpenRouter](https://openrouter.ai)
+(key in `OPENROUTER_API_KEY`), alone or next to `--upstream` engines:
+
+```bash
+systemone serve --openrouter gemma4-openrouter=google/gemma-4-31b-it --calibration-dir calibration
+```
+
+### Why the answer-slot read isn't available
+
+The read above needs three things from the engine, and OpenRouter has none of them:
+
+| the answer-slot read needs | OpenRouter |
+|---|---|
+| a prompt that *ends* at `department:` | providers start a new reply instead of continuing a prefilled assistant message (a prefill of `The customer's dep` gets `churn`, not `artment`) |
+| token-id prompts from the model's own template | no `/tokenize`; `/v1/completions` does continue a hand-rendered prompt, but only without logprobs: with logprobs on, OpenRouter wraps the text in the chat template again |
+| the logprob of each chosen label id | top 20 logprobs per generated position only (no `logprob_token_ids`) |
+
+So the model has to *write* the answer, and the probabilities are read from the top 20
+alternatives at the token where it writes the label.
+
+### The per-question read (default)
+
+One chat request per question, `max_tokens: 1`, all of a stage's questions in parallel:
+
+```
+system:  the questions, exactly as for vLLM (same system_text())
+user:    {"body": "We were billed twice for March. Refund it today or we cancel."}
+
+         Now answer only question department. Reply with just its label (A / B / C) and nothing else.
+reply:   A        top_logprobs: 'A' −0.0, 'department' −8.5, '#' −13.9, 'depart' −14.1, ' A' −14.2, …
+```
+
+This is the closest match to the answer-slot read:
+
+- each question is read **independently from the same prompt**, like vLLM's batched read
+  in the default `independent` mode;
+- the read is **the next token after the prompt**: nothing is generated before it and
+  nothing needs parsing.
+
+The only differences are that the prompt ends in an instruction rather than in the
+answer line itself, and that a label outside the top 20 gets a floor (the lowest
+returned logprob − 5 nats) instead of its exact value. Measured on typed-decisions,
+the per-question read matches local vLLM's accuracy, and its fitted temperatures are
+close to vLLM's (noul 14.5 vs 14.0), so the probabilities have the same shape.
+
+### The single read (`--openrouter-read single`)
+
+One request per stage: the model writes an `id: label` line per question, and each
+question's distribution is the top 20 at the first non-space token after the colon on
+its line. The same case, captured live:
+
+```
+reply:  department: A\nurgency: 3\nchurn: yes           (14 tokens)
+tokens: 'department' ':' ' A' '\n' 'urg' 'ency' ':' ' ' '3' '\n' 'churn' ':' ' yes'
+                          ▲ department                   ▲ urgency (after a separate ' ')   ▲ churn
+' A'  top: ' A' −0.0, ' aspiration' −18.8, ' billing' −19.2, …   (B and C are not in the top 20)
+```
+
+It sends the prompt once per case instead of once per question (≈ 5× cheaper for 5
+questions, and 5× fewer requests against rate limits), at a cost in fidelity:
+
+- later questions are read **after the model's own earlier answers** (like `mode: "joint"`),
+  so one early mistake can pull the rest;
+- the label has to be **found in the reply**: ids split across tokens (`urg` + `ency`),
+  a space emitted as its own token, and the model sometimes writes the question's text
+  instead of its id (`What is the topic of this news article?: C`). The parser takes a
+  question's line by its id, else by its position, and falls back to a per-question
+  request for a question it can't find.
+
+### Providers
+
+Only some providers return logprobs (for Gemma 4 31B, 4 of 14 list them). The probe:
+
+1. keeps the providers whose OpenRouter listing includes `logprobs` and `top_logprobs`;
+2. sends each a 1-token request and keeps those that actually return them (Venice
+   lists them but returns none), fastest first.
+
+Every request sends that list with `allow_fallbacks: false` and
+`require_parameters: true`, so OpenRouter never routes elsewhere. A reply without
+logprobs, a rate limit or a provider error is retried (4 tries, backing off); a bad key
+or exhausted credits is not. `--openrouter-providers` sets the list by hand. The model's
+input modalities come from the same listing: images work; video and audio are refused
+because they haven't been tested through these providers; `think` isn't available.
+
+### Measured: Gemma 4 31B
+
+typed-decisions test split (2,000 decisions), temperatures fitted on 300 train cases:
+
+| | typed acc | ECE raw → cal | Brier (cal) | requests per 5-question case | cost / 1k cases |
+|---|---|---|---|---|---|
+| local vLLM, NVFP4 (answer-slot read) | 0.703–0.709 | 0.268 → 0.101 | 0.105 | 1 batched | your GPU |
+| **OpenRouter, per_question** | **0.707** | 0.262 → 0.098 | **0.095** | 5 | ≈ $0.30 |
+| OpenRouter, single | 0.697 | 0.286 → 0.093 | 0.104 | 1 | ≈ $0.07 |
+
+Per-call latency is ≈ 0.9 s at p50 (per_question) and ≈ 1.2 s (single, which also
+decodes the lines), almost all of it the network hop and the provider's queue; the local
+answer-slot read takes 81 ms per case. Answers depend on the provider serving the
+request (CoreWeave runs fp4, Parasail bf16/fp8). Temperatures:
+`calibration/gemma4-openrouter.json` (per_question) and
+`calibration/gemma4-openrouter-single.json` (serve the single read under that name).
+
+In code: `src/systemone/openrouter.py`. `engine.decide()` hands a request for an
+OpenRouter model to `OpenRouterModel.decide()`; the schema, calibration, response shape,
+server and demos are shared with the vLLM / SGLang path.
+
 ## Request options
 
 Standard Jev fields (`state`, `questions` with `type` / `instructions` / `criteria`), plus:

@@ -112,6 +112,8 @@ def media_of(body: dict, model: Model) -> List[dict]:
 
 
 def decide(model: Model, body: dict, calibration: Calibration) -> Dict:
+    if getattr(model, "chat_only", False):  # an OpenRouter model: see openrouter.py
+        return model.decide(body, calibration)
     started = time.time()
     qs = parse_questions(body)
     mode = body.get("mode", "independent")

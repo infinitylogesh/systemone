@@ -68,6 +68,27 @@ def main(argv=None):
     s.add_argument(
         "--upstream-api-key", default=os.environ.get("SYSTEMONE_UPSTREAM_API_KEY")
     )
+    s.add_argument(
+        "--openrouter",
+        action="append",
+        default=None,
+        metavar="[NAME=]MODEL",
+        help="also serve an OpenRouter model, e.g. gemma4-openrouter=google/gemma-4-31b-it; "
+        "repeatable. Needs OPENROUTER_API_KEY",
+    )
+    s.add_argument(
+        "--openrouter-read",
+        choices=["per_question", "single"],
+        default="per_question",
+        help="per_question: one 1-token request per question, closest to the answer-slot read "
+        "(default); single: one request per case, answers read from the reply's lines (~5x cheaper)",
+    )
+    s.add_argument(
+        "--openrouter-providers",
+        default=None,
+        help="comma-separated provider order (default: every provider that returns logprobs)",
+    )
+    s.add_argument("--openrouter-key", default=os.environ.get("OPENROUTER_API_KEY"))
 
     l_ = sub.add_parser(
         "launch",
@@ -128,8 +149,22 @@ def main(argv=None):
     from .server import serve
 
     if a.cmd == "serve":
+        remote = []
+        for spec in a.openrouter or []:
+            from .openrouter import OpenRouterModel
+
+            name, _, slug = spec.rpartition("=")
+            remote.append(
+                OpenRouterModel(
+                    slug,
+                    a.openrouter_key,
+                    name or None,
+                    a.openrouter_read,
+                    a.openrouter_providers.split(",") if a.openrouter_providers else None,
+                )
+            )
         return serve(
-            a.upstream or ["http://127.0.0.1:8000"],
+            a.upstream or ([] if remote else ["http://127.0.0.1:8000"]),
             a.host,
             a.port,
             a.model,
@@ -137,6 +172,7 @@ def main(argv=None):
             a.upstream_api_key,
             calibration_dir=a.calibration_dir,
             demo=a.demo,
+            remote=remote,
         )
 
     # launch

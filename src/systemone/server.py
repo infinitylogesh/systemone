@@ -23,15 +23,23 @@ class Registry:
         default: str = None,
         calibration: str = None,
         calibration_dir: str = None,
+        remote=(),
     ):
         self.ups, self.lock = upstreams, threading.Lock()
         self.cal_path, self.cal_dir = calibration, calibration_dir
         self.cals, self.models, self.known = {}, {}, set()
+        for m in remote:  # OpenRouter models, probed up front
+            m.probe()
+            self.models[m.model] = m
+        self.remote = [m.model for m in remote]
         self.refresh()
-        first = default or next(iter(self.served))
+        first = default or next(iter(self.served), None) or next(iter(self.remote), None)
+        if first in self.remote:
+            self.default = self.models[first]
+            return
         if first not in self.served:
             raise UpstreamError(
-                f"no upstream serves {first!r}; they serve {list(self.served)}"
+                f"no upstream serves {first!r}; they serve {list(self.served) + self.remote}"
             )
         self.default = Model(self.served[first], first)
         self.default.probe()
@@ -80,7 +88,7 @@ class Registry:
 
     def listing(self):
         self.refresh()
-        return list(self.served)
+        return list(self.served) + [m for m in self.remote if m not in self.served]
 
 
 def make_handler(registry: Registry, api_key: str, demo: bool = False):
@@ -183,13 +191,15 @@ def serve(
     api_key=None,
     calibration_dir=None,
     demo=False,
+    remote=(),
 ):
-    urls = [upstream] if isinstance(upstream, str) else list(upstream)
+    urls = [upstream] if isinstance(upstream, str) else list(upstream or [])
     registry = Registry(
         [Upstream(u, upstream_key) for u in urls],
         model_name,
         calibration,
         calibration_dir,
+        remote,
     )
     info = registry.default.info
     api_key = (
@@ -200,8 +210,8 @@ def serve(
     ThreadingHTTPServer.daemon_threads = True
     srv = ThreadingHTTPServer((host, port), make_handler(registry, api_key, demo))
     print(
-        f"systemone: POST http://{host}:{port}/v1/systemone -> {', '.join(urls)} (default {info['model']}; "
-        f"all of {list(registry.served)} selectable by the request's model field)",
+        f"systemone: POST http://{host}:{port}/v1/systemone -> {', '.join(urls + ['openrouter'] * bool(remote))} "
+        f"(default {info['model']}; all of {registry.listing()} selectable by the request's model field)",
         flush=True,
     )
     if demo:
