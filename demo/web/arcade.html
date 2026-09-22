@@ -1,0 +1,433 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>systemone arcade</title>
+<style>
+  :root {
+    --bg: #f6f5f1; --panel: #ffffff; --ink: #1d1d1b; --muted: #6b6a64; --line: #e3e1da;
+    --wall: #2b2a27; --floor: #fbfaf7; --seen: #efe3c8; --agent: #2f6fdd; --goal: #1f9d55;
+    --snake: #2f6fdd; --head: #1b4fae; --food: #d9480f; --accent: #2f6fdd; --bad: #c92a2a;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #151514; --panel: #1f1f1d; --ink: #ecebe6; --muted: #9c9a92; --line: #34332f;
+      --wall: #0b0b0a; --floor: #2a2926; --seen: #4a3f28; --agent: #6d9cf0; --goal: #3cc47a;
+      --snake: #6d9cf0; --head: #a9c4f7; --food: #ff7a45; --accent: #6d9cf0; --bad: #ff6b6b; }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 14px/1.45 system-ui, -apple-system, "Segoe UI", sans-serif; }
+  .wrap { max-width: 1100px; margin: 0 auto; padding: 20px 16px 40px; }
+  h1 { font-size: 20px; margin: 0 0 2px; letter-spacing: -0.01em; }
+  .sub { color: var(--muted); margin: 0 0 16px; }
+  .tabs { display: flex; gap: 6px; margin-bottom: 14px; }
+  .tabs button { border: 1px solid var(--line); background: var(--panel); color: var(--ink); padding: 7px 16px; border-radius: 999px; cursor: pointer; font: inherit; }
+  .tabs button[aria-selected="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+  .grid { display: grid; grid-template-columns: minmax(0, 1fr) 340px; gap: 16px; align-items: start; }
+  @media (max-width: 860px) { .grid { grid-template-columns: 1fr; } }
+  .card { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 14px; }
+  .board { display: flex; justify-content: center; }
+  canvas { max-width: 100%; height: auto; image-rendering: pixelated; border-radius: 8px; }
+  .row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-bottom: 10px; }
+  label { color: var(--muted); font-size: 12px; display: flex; flex-direction: column; gap: 3px; }
+  select, input[type=number], input[type=password] { font: inherit; color: var(--ink); background: var(--bg); border: 1px solid var(--line); border-radius: 8px; padding: 5px 8px; }
+  .btns { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 4px; }
+  .btn { font: inherit; border: 0; border-radius: 8px; padding: 7px 14px; cursor: pointer; background: var(--accent); color: #fff; }
+  .btn.ghost { background: transparent; color: var(--ink); border: 1px solid var(--line); }
+  .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: 10px 0; }
+  .stat { background: var(--bg); border-radius: 10px; padding: 8px 10px; }
+  .stat b { display: block; font-size: 18px; font-variant-numeric: tabular-nums; }
+  .stat span { color: var(--muted); font-size: 11px; }
+  .bars { margin-top: 8px; }
+  .bar { display: grid; grid-template-columns: 56px 1fr 44px; gap: 8px; align-items: center; margin: 4px 0; font-variant-numeric: tabular-nums; }
+  .bar .track { height: 10px; background: var(--bg); border-radius: 6px; overflow: hidden; }
+  .bar .fill { height: 100%; background: var(--muted); border-radius: 6px; transition: width .12s; }
+  .bar.chosen .fill { background: var(--accent); }
+  .bar.chosen span:first-child { font-weight: 600; }
+  .msg { min-height: 20px; color: var(--muted); font-size: 13px; margin-top: 8px; }
+  .msg.bad { color: var(--bad); }
+  .log { font: 12px/1.4 ui-monospace, SFMono-Regular, Menlo, monospace; color: var(--muted); max-height: 140px; overflow: auto; margin-top: 8px; white-space: pre; }
+  details { margin-top: 10px; } summary { cursor: pointer; color: var(--muted); font-size: 12px; }
+  pre.prompt { font: 11px/1.35 ui-monospace, Menlo, monospace; white-space: pre-wrap; background: var(--bg); padding: 8px; border-radius: 8px; max-height: 220px; overflow: auto; }
+  .check { flex-direction: row; align-items: center; gap: 6px; color: var(--ink); font-size: 13px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>systemone arcade</h1>
+  <p class="sub">Each move is one typed <code>choice</code> question to <code>/v1/systemone</code>: the model reads the board (text, image or both) and answers with a probability per move. Nothing is generated.</p>
+
+  <div class="tabs" role="tablist">
+    <button role="tab" aria-selected="true" data-game="maze">Maze</button>
+    <button role="tab" aria-selected="false" data-game="snake">Snake</button>
+  </div>
+
+  <div class="grid">
+    <div class="card">
+      <div class="board"><canvas id="board" width="480" height="480"></canvas></div>
+      <div class="msg" id="msg"></div>
+    </div>
+    <div class="card">
+      <div class="row">
+        <label>model <select id="model"></select></label>
+        <label>input <select id="mode">
+          <option value="text">text board</option>
+          <option value="both">image + text</option>
+          <option value="image">image only</option>
+        </select></label>
+      </div>
+      <div class="row">
+        <label>size <select id="size"></select></label>
+        <label>think <select id="think"><option value="0">off</option><option value="64">64 tokens</option><option value="128">128 tokens</option></select></label>
+        <label>min ms/move <input id="pace" type="number" min="0" step="50" value="0" style="width:80px"></label>
+      </div>
+      <div class="row">
+        <label>run on <select id="where">
+          <option value="server">server (streamed, fastest)</option>
+          <option value="browser">browser (one request per move)</option>
+        </select></label>
+        <label class="check" style="margin-top:14px"><input type="checkbox" id="hints" checked> <span id="hintlabel">hints</span></label>
+      </div>
+      <div class="btns">
+        <button class="btn" id="run">Play</button>
+        <button class="btn ghost" id="step">Step</button>
+        <button class="btn ghost" id="reset">New game</button>
+      </div>
+      <div class="stats">
+        <div class="stat"><b id="s1">0</b><span id="s1l">moves</span></div>
+        <div class="stat"><b id="s2">–</b><span id="s2l">ms / move</span></div>
+        <div class="stat"><b id="s3">–</b><span id="s3l">solved</span></div>
+      </div>
+      <div class="bars" id="bars"></div>
+      <div class="log" id="log"></div>
+      <details><summary>last request state</summary><pre class="prompt" id="prompt"></pre></details>
+      <details><summary>API token</summary>
+        <p class="sub" style="margin:6px 0">Only needed if requests return 401. Opening this page with <code>?token=…</code> fills it in.</p>
+        <input id="token" type="password" placeholder="Bearer token" style="width:100%">
+      </details>
+    </div>
+  </div>
+</div>
+
+<script>
+const $ = (id) => document.getElementById(id);
+const DIRS = { north: [-1, 0], east: [0, 1], south: [1, 0], west: [0, -1] };
+const OPP = { north: "south", south: "north", east: "west", west: "east" };
+const MOVE_LABEL = { north: "move up one row", east: "move right one column", south: "move down one row", west: "move left one column" };
+// the page follows the viewer's theme; the image sent to the model always uses this light
+// palette, which the prompts describe ("dark walls, light floor") and arcade_eval.py renders
+const MODEL_PALETTE = { "--wall": "#2b2a27", "--floor": "#fbfaf7", "--seen": "#efe3c8", "--agent": "#2f6fdd",
+  "--goal": "#1f9d55", "--snake": "#2f6fdd", "--head": "#1b4fae", "--food": "#d9480f", "--line": "#e3e1da" };
+let palette = null;
+const css = (v) => palette ? palette[v] : getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+const qs = new URLSearchParams(location.search);
+let token = qs.get("token") || "";
+try { token = token || localStorage.getItem("systemone-token") || ""; } catch (e) {}
+$("token").value = token;
+$("token").addEventListener("change", () => { token = $("token").value.trim(); try { localStorage.setItem("systemone-token", token); } catch (e) {} });
+
+// ------------------------------------------------------------------ API
+async function ask(body) {
+  const headers = { "content-type": "application/json" };
+  if (token) headers.authorization = "Bearer " + token;
+  const t0 = performance.now();
+  const r = await fetch("/v1/systemone", { method: "POST", headers, body: JSON.stringify(body), credentials: "same-origin" });
+  const d = await r.json().catch(() => ({}));
+  if (!r.ok) throw new Error((d.error && d.error.message) || ("HTTP " + r.status));
+  return { d, ms: performance.now() - t0 };
+}
+async function loadModels() {
+  const headers = token ? { authorization: "Bearer " + token } : {};
+  try {
+    const r = await fetch("/v1/systemone/info", { headers, credentials: "same-origin" });
+    const d = await r.json();
+    for (const m of d.models || [d.model]) $("model").add(new Option(m, m));
+    if (qs.get("model") && (d.models || []).includes(qs.get("model"))) $("model").value = qs.get("model");  // ?model=... preselects
+  } catch (e) { $("model").add(new Option("default", "")); }
+}
+
+// ------------------------------------------------------------------ maze
+const MAZE_SIZES = { "5×5": 5, "7×7": 7, "9×9": 9 };
+class Maze {
+  constructor(n) {
+    this.n = n; const H = 2 * n + 1;
+    this.g = Array.from({ length: H }, () => Array(H).fill("#"));
+    const seen = new Set(), stack = [[0, 0]]; seen.add("0,0"); this.g[1][1] = ".";
+    while (stack.length) {   // recursive backtracker
+      const [r, c] = stack[stack.length - 1];
+      const nb = [[0, 1], [1, 0], [0, -1], [-1, 0]].map(([dr, dc]) => [r + dr, c + dc])
+        .filter(([a, b]) => a >= 0 && b >= 0 && a < n && b < n && !seen.has(a + "," + b));
+      if (!nb.length) { stack.pop(); continue; }
+      const [a, b] = nb[Math.floor(Math.random() * nb.length)];
+      this.g[r + a + 1][c + b + 1] = "."; this.g[2 * a + 1][2 * b + 1] = ".";
+      seen.add(a + "," + b); stack.push([a, b]);
+    }
+    this.pos = [1, 1]; this.goal = [H - 2, H - 2];
+    this.visits = {}; this.visits[this.pos + ""] = 1;
+    this.moves = 0; this.limit = n * n * 6; this.done = false; this.won = false;
+  }
+  open([r, c]) { return this.g[r] && this.g[r][c] && this.g[r][c] !== "#"; }
+  legal() { return Object.keys(DIRS).filter((d) => this.open([this.pos[0] + DIRS[d][0], this.pos[1] + DIRS[d][1]])); }
+  move(d) {
+    this.pos = [this.pos[0] + DIRS[d][0], this.pos[1] + DIRS[d][1]]; this.moves++;
+    this.visits[this.pos + ""] = (this.visits[this.pos + ""] || 0) + 1;
+    if (this.pos + "" === this.goal + "") { this.done = this.won = true; }
+    else if (this.moves >= this.limit) this.done = true;
+  }
+  ascii(marks) {
+    return this.g.map((row, r) => row.map((ch, c) => {
+      if (r === this.pos[0] && c === this.pos[1]) return "@";
+      if (r === this.goal[0] && c === this.goal[1]) return "G";
+      if (marks && ch === "." && this.visits[[r, c] + ""]) return "v";
+      return ch;
+    }).join("")).join("\n");
+  }
+  request(mode, hints) {
+    const [r, c] = this.pos, [gr, gc] = this.goal, dr = gr - r, dc = gc - c;
+    const where = `You are at row ${r}, column ${c}. The goal is at row ${gr}, column ${gc} (${Math.abs(dr)} rows ${dr >= 0 ? "down" : "up"}, ${Math.abs(dc)} columns ${dc >= 0 ? "right" : "left"}).`;
+    const key = hints ? "# wall, . open floor, v open floor you already visited, @ you, G goal." : "# wall, . open floor, @ you, G goal.";
+    let state;
+    if (mode === "image") state = `The image shows a maze seen from above: dark squares are walls, light squares are floor, the blue circle is you and the green square is the goal${hints ? "; tinted floor squares are cells you already visited" : ""}. Row 0 is the top edge, column 0 the left edge. ${where}`;
+    else state = `A maze seen from above. Row 0 is the top, column 0 the left. ${key}\n${this.ascii(hints)}\n${where}` + (mode === "both" ? "\nThe image shows the same maze (blue circle = you, green square = goal)." : "");
+    // Per-move details go in the state (user message); the options stay fixed labels, so the
+    // system prompt repeats across moves and vLLM's prefix cache reuses it.
+    const lines = this.legal().map((d) => {
+      const p = [r + DIRS[d][0], c + DIRS[d][1]], v = this.visits[p + ""] || 0;
+      return `- ${d}: to row ${p[0]}, column ${p[1]}` + (p + "" === this.goal + "" ? " (the goal)" : hints ? (v ? `, already visited ${v} time${v > 1 ? "s" : ""}` : ", not visited yet") : "");
+    });
+    state += `\nMoves you can make now:\n${lines.join("\n")}`;
+    return { state, questions: { move: { type: "choice",
+      instructions: "Which move should you make next to reach the goal G? Walls block movement. Explore cells you have not visited, and back out of dead ends.",
+      criteria: Object.fromEntries(this.legal().map((d) => [d, MOVE_LABEL[d]])) } } };
+  }
+  draw(ctx, W) {
+    const H = this.g.length, s = Math.floor(W / H);
+    ctx.canvas.width = ctx.canvas.height = s * H;
+    for (let r = 0; r < H; r++) for (let c = 0; c < H; c++) {
+      ctx.fillStyle = this.g[r][c] === "#" ? css("--wall") : (this.visits[[r, c] + ""] && $("hints").checked ? css("--seen") : css("--floor"));
+      ctx.fillRect(c * s, r * s, s, s);
+    }
+    ctx.fillStyle = css("--goal"); ctx.fillRect(this.goal[1] * s + s * .15, this.goal[0] * s + s * .15, s * .7, s * .7);
+    ctx.fillStyle = css("--agent"); ctx.beginPath();
+    ctx.arc(this.pos[1] * s + s / 2, this.pos[0] * s + s / 2, s * .36, 0, 7); ctx.fill();
+  }
+}
+
+// ------------------------------------------------------------------ snake
+const SNAKE_SIZES = { "8×8": 8, "10×10": 10, "12×12": 12 };
+class Snake {
+  constructor(n) {
+    this.n = n; const m = Math.floor(n / 2);
+    this.body = [[m, 2], [m, 1], [m, 0]]; this.dir = "east";
+    this.score = 0; this.moves = 0; this.hunger = 0; this.done = false; this.won = false; this.why = "";
+    this.place();
+  }
+  place() {
+    const free = [];
+    for (let r = 0; r < this.n; r++) for (let c = 0; c < this.n; c++) if (!this.has([r, c])) free.push([r, c]);
+    if (!free.length) { this.done = this.won = true; this.why = "board full"; return; }
+    this.food = free[Math.floor(Math.random() * free.length)];
+  }
+  has(p, skipTail) {
+    const b = skipTail ? this.body.slice(0, -1) : this.body;
+    return b.some((q) => q[0] === p[0] && q[1] === p[1]);
+  }
+  next(d) { return [this.body[0][0] + DIRS[d][0], this.body[0][1] + DIRS[d][1]]; }
+  eats(p) { return p[0] === this.food[0] && p[1] === this.food[1]; }
+  safe() {
+    return Object.keys(DIRS).filter((d) => d !== OPP[this.dir]).filter((d) => {
+      const p = this.next(d);
+      return p[0] >= 0 && p[1] >= 0 && p[0] < this.n && p[1] < this.n && !this.has(p, !this.eats(p));
+    });
+  }
+  space(d) {   // free cells reachable after moving d (flood fill)
+    const p = this.next(d), grow = this.eats(p);
+    const body = [p, ...this.body.slice(0, grow ? undefined : -1)];
+    const blocked = new Set(body.map((q) => q + "")), seen = new Set([p + ""]), q = [p];
+    while (q.length) {
+      const [r, c] = q.pop();
+      for (const [dr, dc] of Object.values(DIRS)) {
+        const k = [r + dr, c + dc];
+        if (k[0] < 0 || k[1] < 0 || k[0] >= this.n || k[1] >= this.n || blocked.has(k + "") || seen.has(k + "")) continue;
+        seen.add(k + ""); q.push(k);
+      }
+    }
+    return seen.size - 1;
+  }
+  move(d) {
+    const p = this.next(d); this.dir = d; this.moves++; this.hunger++;
+    this.body.unshift(p);
+    if (this.eats(p)) { this.score++; this.hunger = 0; this.place(); } else this.body.pop();
+    if (this.hunger > this.n * this.n * 2) { this.done = true; this.why = "went in circles"; }
+  }
+  ascii() {
+    const g = Array.from({ length: this.n }, () => Array(this.n).fill("."));
+    this.body.forEach(([r, c], i) => g[r][c] = i === 0 ? "H" : (i === this.body.length - 1 ? "T" : "o"));
+    g[this.food[0]][this.food[1]] = "F";
+    return g.map((r) => r.join("")).join("\n");
+  }
+  request(mode, hints) {
+    const [r, c] = this.body[0], [fr, fc] = this.food, dr = fr - r, dc = fc - c;
+    const where = `The head is at row ${r}, column ${c}, moving ${this.dir}. The food is at row ${fr}, column ${fc} (${Math.abs(dr)} rows ${dr >= 0 ? "down" : "up"}, ${Math.abs(dc)} columns ${dc >= 0 ? "right" : "left"}). Length ${this.body.length}.`;
+    let state;
+    if (mode === "image") state = `The image shows a Snake game on a ${this.n}x${this.n} board: the blue squares are the snake (the dark blue one is its head), the orange circle is the food. Row 0 is the top, column 0 the left. ${where}`;
+    else state = `A Snake game on a ${this.n}x${this.n} board. Row 0 is the top, column 0 the left. . empty, H head, o body, T tail, F food. Hitting a wall or the body ends the game.\n${this.ascii()}\n${where}` + (mode === "both" ? "\nThe image shows the same board." : "");
+    const lines = this.safe().map((d) => {
+      const p = this.next(d);
+      let desc = `- ${d}: to row ${p[0]}, column ${p[1]}`;
+      if (this.eats(p)) desc += " (eats the food)";
+      else if (hints) {
+        const before = Math.abs(fr - r) + Math.abs(fc - c), after = Math.abs(fr - p[0]) + Math.abs(fc - p[1]);
+        desc += after < before ? ", closer to the food" : ", away from the food";
+        desc += `, leaves ${this.space(d)} free cells reachable`;
+      }
+      return desc;
+    });
+    state += `\nSafe moves now:\n${lines.join("\n")}`;
+    return { state, questions: { move: { type: "choice",
+      instructions: "Which way should the snake move next? Reach the food without trapping the snake: never move into a pocket too small for its body.",
+      criteria: Object.fromEntries(this.safe().map((d) => [d, MOVE_LABEL[d]])) } } };
+  }
+  draw(ctx, W) {
+    const s = Math.floor(W / this.n); ctx.canvas.width = ctx.canvas.height = s * this.n;
+    ctx.fillStyle = css("--floor"); ctx.fillRect(0, 0, s * this.n, s * this.n);
+    ctx.strokeStyle = css("--line"); ctx.lineWidth = 1;
+    for (let i = 1; i < this.n; i++) { ctx.beginPath(); ctx.moveTo(i * s, 0); ctx.lineTo(i * s, s * this.n); ctx.moveTo(0, i * s); ctx.lineTo(s * this.n, i * s); ctx.stroke(); }
+    ctx.fillStyle = css("--food"); ctx.beginPath(); ctx.arc(this.food[1] * s + s / 2, this.food[0] * s + s / 2, s * .35, 0, 7); ctx.fill();
+    this.body.forEach(([r, c], i) => { ctx.fillStyle = i ? css("--snake") : css("--head"); ctx.fillRect(c * s + 1, r * s + 1, s - 2, s - 2); });
+  }
+}
+
+// ------------------------------------------------------------------ loop
+const ctx = $("board").getContext("2d");
+let game = "maze", g = null, running = false, lat = [], tally = { played: 0, won: 0, best: 0, total: 0 };
+function setGame(name) {
+  game = name; running = false; $("run").textContent = "Play";
+  document.querySelectorAll(".tabs button").forEach((b) => b.setAttribute("aria-selected", b.dataset.game === name));
+  const sizes = name === "maze" ? MAZE_SIZES : SNAKE_SIZES;
+  $("size").innerHTML = ""; for (const k in sizes) $("size").add(new Option(k, sizes[k]));
+  $("size").value = name === "maze" ? 7 : 10;
+  $("hintlabel").textContent = name === "maze" ? "mark visited cells" : "hints (food direction, free space)";
+  $("s1l").textContent = name === "maze" ? "moves" : "score"; $("s3l").textContent = name === "maze" ? "mazes solved" : "best score";
+  tally = { played: 0, won: 0, best: 0, total: 0 }; lat = []; reset();
+}
+function reset() {
+  const n = +$("size").value; g = game === "maze" ? new Maze(n) : new Snake(n);
+  $("log").textContent = ""; $("bars").innerHTML = ""; msg(""); render();
+}
+function render() {
+  g.draw(ctx, 480);
+  $("s1").textContent = game === "maze" ? g.moves : g.score;
+  $("s2").textContent = lat.length ? Math.round(lat.reduce((a, b) => a + b, 0) / lat.length) : "–";
+  $("s3").textContent = game === "maze" ? `${tally.won}/${tally.played}` : tally.best;
+}
+function msg(t, bad) { $("msg").textContent = t; $("msg").className = "msg" + (bad ? " bad" : ""); }
+function bars(probs, chosen) {
+  $("bars").innerHTML = Object.entries(probs).sort((a, b) => b[1] - a[1]).map(([k, p]) =>
+    `<div class="bar${k === chosen ? " chosen" : ""}"><span>${k}</span><div class="track"><div class="fill" style="width:${(p * 100).toFixed(1)}%"></div></div><span>${(p * 100).toFixed(0)}%</span></div>`).join("");
+}
+function snapshot() {   // the board as a PNG, drawn without the visited tint unless hints are on
+  const c = document.createElement("canvas"), x = c.getContext("2d");
+  palette = MODEL_PALETTE; try { g.draw(x, 320); } finally { palette = null; }
+  return c.toDataURL("image/png");
+}
+async function step() {
+  if (g.done) return false;
+  const mode = $("mode").value, hints = $("hints").checked;
+  const options = game === "maze" ? g.legal() : g.safe();
+  if (game === "snake" && !options.length) { g.done = true; g.why = "trapped: no safe move"; return false; }
+  const req = g.request(mode, hints);
+  const body = { model: $("model").value || undefined, ...req };
+  if (mode !== "text") body.images = [snapshot()];
+  const think = +$("think").value; if (think && mode === "text") body.think = think;
+  $("prompt").textContent = req.state + "\n\nOPTIONS (system prompt) " + JSON.stringify(req.questions.move.criteria, null, 1);
+  let choice, probs;
+  if (options.length === 1) { choice = options[0]; probs = { [choice]: 1 }; }   // nothing to decide
+  else {
+    const { d, ms } = await ask(body); lat.push(ms); if (lat.length > 50) lat.shift();
+    const a = d.answers.move; choice = a.choice; probs = a.probabilities;
+  }
+  g.move(choice); bars(probs, choice);
+  $("log").textContent = `${String(game === "maze" ? g.moves : g.moves).padStart(3)} ${choice.padEnd(5)} ${(probs[choice] * 100).toFixed(0).padStart(3)}%` +
+    (Object.keys(probs).length > 1 ? `  (${Object.keys(probs).length} options)` : "  (forced)") + "\n" + $("log").textContent.split("\n").slice(0, 60).join("\n");
+  render(); return true;
+}
+function finish() {
+  tally.played++;
+  if (game === "maze") { if (g.won) tally.won++; msg(g.won ? `Solved in ${g.moves} moves.` : `Gave up after ${g.moves} moves.`, !g.won); }
+  else { tally.best = Math.max(tally.best, g.score); msg(`Game over (${g.why || "trapped"}): score ${g.score} after ${g.moves} moves.`, !g.won); }
+  render();
+}
+async function loop() {
+  while (running) {
+    const t0 = performance.now();
+    try { if (!(await step())) { running = false; finish(); break; } }
+    catch (e) { running = false; msg(e.message.includes("401") || e.message.includes("API key") ? "Unauthorized: open this page with ?token=YOUR_TOKEN" : e.message, true); break; }
+    const wait = +$("pace").value - (performance.now() - t0); if (wait > 0) await new Promise((r) => setTimeout(r, wait));
+  }
+  $("run").textContent = "Play";
+}
+// ------------------------------------------------------------------ server-side play
+let abort = null;
+async function playOnServer() {
+  const headers = { "content-type": "application/json" };
+  if (token) headers.authorization = "Bearer " + token;
+  abort = new AbortController();
+  const body = { game, size: +$("size").value, mode: $("mode").value, hints: $("hints").checked,
+                 model: $("model").value || undefined, think: +$("think").value, pace_ms: +$("pace").value };
+  const r = await fetch("/arcade/play", { method: "POST", headers, body: JSON.stringify(body), credentials: "same-origin", signal: abort.signal });
+  if (!r.ok) throw new Error(r.status === 401 ? "401" : "HTTP " + r.status);
+  const reader = r.body.getReader(), dec = new TextDecoder();
+  let buf = "", t0 = performance.now(), n = 0;
+  lat = [];
+  while (true) {
+    const { value, done } = await reader.read();
+    if (done) break;
+    buf += dec.decode(value, { stream: true });
+    let i;
+    while ((i = buf.indexOf("\n\n")) >= 0) {
+      const line = buf.slice(0, i).replace(/^data: /, ""); buf = buf.slice(i + 2);
+      const ev = JSON.parse(line);
+      if (ev.type === "start") {
+        $("s2l").textContent = `model ms / move (${ev.model}, ${ev.engine})`;
+        g = game === "maze" ? new Maze(ev.size) : new Snake(ev.n);
+        if (game === "maze") { g.g = ev.grid.map((r) => r.split("")); g.goal = ev.goal; g.pos = [1, 1]; g.visits = { "1,1": 1 }; }
+        $("log").textContent = ""; render();
+      } else if (ev.type === "move") {
+        n++;
+        if (game === "maze") { g.pos = ev.pos; g.moves = ev.i; g.visits[ev.pos + ""] = (g.visits[ev.pos + ""] || 0) + 1; }
+        else { g.body = ev.body; g.food = ev.food; g.score = ev.score; g.moves = ev.i; g.dir = ev.choice; }
+        if (!ev.forced) { lat.push(ev.ms); if (lat.length > 50) lat.shift(); }
+        bars(ev.probs, ev.choice);
+        $("log").textContent = `${String(ev.i).padStart(3)} ${ev.choice.padEnd(5)} ${(ev.probs[ev.choice] * 100).toFixed(0).padStart(3)}%` +
+          (ev.forced ? "  (forced)" : `  ${Math.round(ev.ms)} ms`) + "\n" + $("log").textContent.split("\n").slice(0, 60).join("\n");
+        render();
+        msg(`${(ev.i / ev.elapsed_s).toFixed(1)} moves/s, played on the server; ms / move is the model's time per decision`);
+      } else if (ev.type === "end") {
+        g.done = true; g.won = ev.won; g.why = ev.why; g.moves = ev.moves; if (ev.score != null) g.score = ev.score;
+        finish();
+        msg($("msg").textContent + ` · ${(ev.moves / ev.elapsed_s).toFixed(1)} moves/s on the server`, !ev.won && game === "maze");
+      } else if (ev.type === "error") throw new Error(ev.message);
+    }
+  }
+}
+$("run").onclick = async () => {
+  if ($("where").value === "server") {
+    if (running) { running = false; if (abort) abort.abort(); $("run").textContent = "Play"; msg("Stopped (a server game can't resume; press Play for a new one)."); return; }
+    running = true; $("run").textContent = "Stop"; msg("");
+    try { await playOnServer(); }
+    catch (e) { if (e.name !== "AbortError") msg(e.message.includes("401") ? "Unauthorized: open this page with ?token=YOUR_TOKEN" : e.message, true); }
+    running = false; $("run").textContent = "Play"; return;
+  }
+  if (running) { running = false; return; } if (g.done) reset(); running = true; $("run").textContent = "Pause"; msg(""); loop();
+};
+$("where").onchange = () => { $("step").disabled = $("where").value === "server"; $("s2l").textContent = $("where").value === "server" ? "model ms / move" : "ms / move (round trip)"; };
+$("step").onclick = async () => { if (running) return; try { if (!(await step()) || g.done) finish(); } catch (e) { msg(e.message, true); } };
+$("reset").onclick = () => { running = false; $("run").textContent = "Play"; reset(); };
+$("size").onchange = reset; $("hints").onchange = render;
+$("mode").onchange = () => { $("think").disabled = $("mode").value !== "text"; if ($("think").disabled) $("think").value = "0"; };
+document.querySelectorAll(".tabs button").forEach((b) => b.onclick = () => setGame(b.dataset.game));
+loadModels(); setGame("maze"); $("where").onchange();
+</script>
+</body>
+</html>

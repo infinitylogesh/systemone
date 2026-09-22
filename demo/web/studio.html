@@ -1,0 +1,422 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>systemone studio</title>
+<style>
+  :root {
+    --bg: #f6f5f1; --panel: #ffffff; --ink: #1d1d1b; --muted: #6b6a64; --line: #e3e1da;
+    --accent: #2f6fdd; --good: #1f9d55; --bad: #c92a2a; --track: #efede6;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #151514; --panel: #1f1f1d; --ink: #ecebe6; --muted: #9c9a92; --line: #34332f;
+      --accent: #6d9cf0; --good: #3cc47a; --bad: #ff6b6b; --track: #2a2926; }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 14px/1.45 system-ui, -apple-system, "Segoe UI", sans-serif; }
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 20px 16px 40px; }
+  h1 { font-size: 20px; margin: 0 0 2px; letter-spacing: -0.01em; }
+  .sub { color: var(--muted); margin: 0 0 14px; }
+  .tabs { display: flex; gap: 6px; margin-bottom: 14px; flex-wrap: wrap; }
+  .tabs button { border: 1px solid var(--line); background: var(--panel); color: var(--ink); padding: 7px 16px; border-radius: 999px; cursor: pointer; font: inherit; }
+  .tabs button[aria-selected="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+  .grid { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 16px; align-items: start; }
+  @media (max-width: 900px) { .grid { grid-template-columns: 1fr; } }
+  .card { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 14px; }
+  .media { position: relative; background: #000; border-radius: 10px; overflow: hidden; aspect-ratio: 4 / 3; display: grid; place-items: center; }
+  .media video { width: 100%; height: 100%; object-fit: contain; }
+  .media canvas.wave { width: 100%; height: 100%; }
+  .media .hint { position: absolute; color: #bbb; font-size: 13px; text-align: center; padding: 20px; }
+  .badge { position: absolute; left: 10px; top: 10px; background: rgba(0,0,0,.6); color: #fff; font-size: 12px; padding: 3px 8px; border-radius: 999px; }
+  .row { display: flex; flex-wrap: wrap; gap: 8px; align-items: end; margin: 10px 0; }
+  label { color: var(--muted); font-size: 12px; display: flex; flex-direction: column; gap: 3px; }
+  select, input[type=number] { font: inherit; color: var(--ink); background: var(--bg); border: 1px solid var(--line); border-radius: 8px; padding: 5px 8px; }
+  .btn { font: inherit; border: 0; border-radius: 8px; padding: 7px 14px; cursor: pointer; background: var(--accent); color: #fff; }
+  .btn.ghost { background: transparent; color: var(--ink); border: 1px solid var(--line); }
+  .btn:disabled { opacity: .5; cursor: default; }
+  .file { font-size: 12px; color: var(--muted); }
+  textarea { width: 100%; min-height: 150px; font: 12px/1.4 ui-monospace, Menlo, monospace; color: var(--ink); background: var(--bg); border: 1px solid var(--line); border-radius: 8px; padding: 8px; }
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin: 4px 0 12px; }
+  .stat { background: var(--bg); border-radius: 10px; padding: 8px 10px; }
+  .stat b { display: block; font-size: 18px; font-variant-numeric: tabular-nums; }
+  .stat span { color: var(--muted); font-size: 11px; }
+  .q { border-top: 1px solid var(--line); padding: 10px 0; }
+  .q:first-child { border-top: 0; }
+  .qhead { display: flex; justify-content: space-between; gap: 8px; align-items: baseline; }
+  .qid { font-weight: 600; }
+  .qans { font-variant-numeric: tabular-nums; }
+  .qins { color: var(--muted); font-size: 12px; margin: 2px 0 6px; }
+  .bar { display: grid; grid-template-columns: minmax(80px, 38%) 1fr 42px; gap: 8px; align-items: center; margin: 3px 0; font-size: 13px; font-variant-numeric: tabular-nums; }
+  .bar .name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .bar .track { height: 9px; background: var(--track); border-radius: 6px; overflow: hidden; }
+  .bar .fill { height: 100%; background: var(--muted); border-radius: 6px; transition: width .15s; }
+  .bar.top .fill { background: var(--accent); }
+  .bar.top .name { font-weight: 600; }
+  svg.spark { width: 100%; height: 26px; display: block; margin-top: 4px; }
+  .msg { min-height: 18px; color: var(--muted); font-size: 13px; margin-top: 6px; }
+  .msg.bad { color: var(--bad); }
+  details summary { cursor: pointer; color: var(--muted); font-size: 12px; margin-top: 8px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>systemone studio</h1>
+  <p class="sub">Live typed decisions on camera, motion and sound. Every update is one <code>/v1/systemone</code> call: the media plus your questions in, a probability per answer out.</p>
+
+  <div class="tabs" role="tablist">
+    <button role="tab" aria-selected="true" data-tab="camera">Camera</button>
+    <button role="tab" aria-selected="false" data-tab="motion">Motion</button>
+    <button role="tab" aria-selected="false" data-tab="audio">Audio</button>
+  </div>
+
+  <div class="grid">
+    <div class="card">
+      <div class="media" id="media">
+        <video id="video" playsinline muted></video>
+        <canvas class="wave" id="wave" width="640" height="480" hidden></canvas>
+        <div class="hint" id="hint">Start the camera, or open a video file.</div>
+        <div class="badge" id="badge" hidden></div>
+      </div>
+      <div class="row">
+        <button class="btn" id="live">Start camera</button>
+        <label class="file">or a file <input type="file" id="file" accept="video/*"></label>
+      </div>
+      <div class="stats">
+        <div class="stat"><b id="rate">–</b><span>decisions / s</span></div>
+        <div class="stat"><b id="model_ms">–</b><span>model ms (p50)</span></div>
+        <div class="stat"><b id="rt_ms">–</b><span>round trip ms (p50)</span></div>
+        <div class="stat"><b id="count">0</b><span>requests</span></div>
+      </div>
+      <div class="msg" id="msg"></div>
+    </div>
+
+    <div class="card">
+      <div class="row">
+        <label>model <select id="model"></select></label>
+        <label>questions <select id="preset"></select></label>
+        <label id="everyLabel">every (ms) <input id="every" type="number" min="50" step="50" value="250" style="width:80px"></label>
+        <label>in flight <select id="inflight"><option>1</option><option selected>2</option><option>3</option><option>4</option></select></label>
+        <label id="sizeLabel">frame px <select id="size"><option>224</option><option selected>336</option><option>448</option></select></label>
+      </div>
+      <div class="row">
+        <button class="btn" id="run" disabled>Classify live</button>
+        <button class="btn ghost" id="once" disabled>Once</button>
+      </div>
+      <div id="answers"></div>
+      <details><summary>edit questions (Jev JSON)</summary>
+        <textarea id="qjson" spellcheck="false"></textarea>
+      </details>
+    </div>
+  </div>
+</div>
+
+<script>
+const $ = (id) => document.getElementById(id);
+const qs = new URLSearchParams(location.search);
+const token = qs.get("token") || "";
+
+const PRESETS = {
+  camera: {
+    "People and scene": {
+      person: { type: "noul", instructions: "Is there a person in the frame?" },
+      people: { type: "score", instructions: "How many people are visible?", criteria: ["none", "one", "two", "three or more"] },
+      activity: { type: "choice", instructions: "What is the main person doing?", criteria: {
+        using_computer: "typing or looking at a screen", phone: "using or talking on a phone", drinking: "drinking or eating",
+        reading: "reading", talking: "talking to someone", idle: "sitting or standing still", no_person: "nobody in the frame" } },
+      expression: { type: "choice", instructions: "What is the main person's facial expression?", criteria: {
+        neutral: null, smiling: null, laughing: null, surprised: null, frowning: null, not_visible: "no face visible" } },
+    },
+    "Hand gestures": {
+      gesture: { type: "choice", instructions: "Which hand gesture is the person making?", criteria: {
+        thumbs_up: null, thumbs_down: null, open_palm: "palm facing the camera", peace_sign: "index and middle finger up",
+        pointing: null, fist: null, ok_sign: null, none: "no gesture or no hand visible" } },
+      hand_raised: { type: "noul", instructions: "Is a hand raised above the shoulder?" },
+      fingers: { type: "score", instructions: "How many fingers are held up?", criteria: ["0", "1", "2", "3", "4", "5"] },
+    },
+    "Objects in hand": {
+      holding: { type: "choice", instructions: "What is the person holding?", criteria: {
+        phone: null, cup: "a cup, mug or bottle", pen: "a pen or pencil", book: "a book or paper", keys: null, nothing: "nothing" } },
+      screen: { type: "noul", instructions: "Is a phone or computer screen visible?" },
+      glasses: { type: "noul", instructions: "Is the person wearing glasses?" },
+    },
+    "Attention": {
+      looking: { type: "noul", instructions: "Is the person looking at the camera?" },
+      eyes_closed: { type: "noul", instructions: "Are the person's eyes closed?" },
+      distracted: { type: "score", instructions: "How distracted does the person look?", criteria: ["focused", "slightly distracted", "very distracted"] },
+    },
+  },
+  motion: {
+    "Actions": {
+      action: { type: "choice", instructions: "What is the person doing in this clip?", criteria: {
+        waving: null, clapping: null, nodding: "nodding yes", shaking_head: "shaking the head no", raising_hand: "raising a hand",
+        drinking: null, typing: null, still: "no clear movement" } },
+      moving: { type: "noul", instructions: "Is anything moving noticeably during the clip?" },
+    },
+    "Swipes": {
+      hand_motion: { type: "choice", instructions: "Which hand motion happens in this clip (left and right as seen in the video)?", criteria: {
+        swipe_left: "the hand moves to the left", swipe_right: "the hand moves to the right", swipe_up: null, swipe_down: null,
+        circle: "the hand moves in a circle", wave: "waving back and forth", none: "no hand motion" } },
+    },
+    "Direction": {
+      direction: { type: "choice", instructions: "Which way does the main moving thing go (as seen in the video)?", criteria: {
+        left: null, right: null, up: null, down: null, closer: "toward the camera", away: "away from the camera", none: "nothing moves" } },
+      speed: { type: "score", instructions: "How fast is the movement?", criteria: ["still", "slow", "moderate", "fast"] },
+    },
+  },
+  audio: {
+    "Sound type": {
+      sound: { type: "choice", instructions: "What is the main sound in this clip?", criteria: {
+        speech: "someone talking", singing: null, music: "instrumental music", clapping: null, typing: "keyboard typing",
+        alarm: "an alarm, siren or beeping", animal: "a dog, cat or other animal", silence: "silence or near silence", noise: "other noise" } },
+      voices: { type: "score", instructions: "How many different people are speaking?", criteria: ["none", "one", "two or more"] },
+    },
+    "Speech": {
+      language: { type: "choice", instructions: "Which language is being spoken?", criteria: {
+        english: null, hindi: null, tamil: null, spanish: null, french: null, german: null, chinese: null, japanese: null, none: "no speech", other: null } },
+      emotion: { type: "choice", instructions: "What emotion does the speaker's voice convey?", criteria: {
+        neutral: null, happy: null, excited: null, angry: null, sad: null, no_speech: null } },
+      question: { type: "noul", instructions: "Is the speaker asking a question?" },
+    },
+    "Keywords": {
+      stop: { type: "noul", instructions: "Does the speaker say the word \"stop\"?" },
+      yes: { type: "noul", instructions: "Does the speaker say \"yes\"?" },
+      help: { type: "noul", instructions: "Does the speaker ask for help?" },
+      number: { type: "choice", instructions: "Which number, if any, does the speaker say?", criteria: {
+        one: null, two: null, three: null, four: null, five: null, none: "no number" } },
+    },
+  },
+};
+const STATE = {
+  camera: "A frame from a live camera.",
+  motion: "A short clip from a live camera; the frames are in time order.",
+  audio: "A short audio clip from a live microphone or recording.",
+};
+
+let tab = "camera", stream = null, running = false, busy = 0, count = 0;
+let lat = [], mlat = [], stamps = [], history = {};
+let frames = [], frameTimer = null, sendTimer = null;
+let actx = null, ring = null, ringPos = 0, ringFull = false, srcNode = null, proc = null, fileAudio = null;
+const AUDIO_RATE = 16000, AUDIO_WINDOW_S = 2, MOTION_FPS = 8, MOTION_FRAMES = 8;
+
+// ------------------------------------------------------------------ models
+async function loadModels() {
+  const headers = token ? { authorization: "Bearer " + token } : {};
+  let models = [];
+  try { models = (await (await fetch("/v1/systemone/info", { headers })).json()).models || []; } catch (e) {}
+  $("model").innerHTML = "";
+  const want = tab === "audio" ? models.filter((m) => /e4b|e2b|audio/i.test(m)) : models;
+  for (const m of (want.length ? want : models)) $("model").add(new Option(m, m));
+  // Defaults from the benchmarks: E4B is fast and good on single frames and speech, but
+  // can't read motion (22% on direction clips vs 100% for Gemma 4 31B).
+  const pick = tab === "motion" ? [...$("model").options].find((o) => /^gemma4$/i.test(o.value))
+                                : [...$("model").options].find((o) => /e4b/i.test(o.value));
+  if (pick) $("model").value = pick.value;
+  if (qs.get("model") && [...$("model").options].some((o) => o.value === qs.get("model"))) $("model").value = qs.get("model");
+}
+
+// ------------------------------------------------------------------ tabs and presets
+function setTab(t) {
+  stopAll(); tab = t;
+  document.querySelectorAll(".tabs button").forEach((b) => b.setAttribute("aria-selected", b.dataset.tab === t));
+  const audio = t === "audio";
+  $("video").hidden = audio; $("wave").hidden = !audio;
+  $("live").textContent = audio ? "Start microphone" : "Start camera";
+  $("file").accept = audio ? "audio/*" : "video/*";
+  $("hint").textContent = audio ? "Start the microphone, or open an audio file." : "Start the camera, or open a video file.";
+  $("hint").hidden = false; $("badge").hidden = true;
+  $("sizeLabel").hidden = audio;
+  $("every").value = t === "camera" ? 250 : 500;
+  $("preset").innerHTML = ""; for (const k in PRESETS[t]) $("preset").add(new Option(k, k));
+  setPreset(); loadModels(); resetStats();
+}
+function setPreset() {
+  $("qjson").value = JSON.stringify(PRESETS[tab][$("preset").value], null, 2);
+  history = {}; $("answers").innerHTML = "";
+}
+function questions() {
+  try { const q = JSON.parse($("qjson").value); msg(""); return q; }
+  catch (e) { msg("questions: invalid JSON (" + e.message + ")", true); return null; }
+}
+
+// ------------------------------------------------------------------ sources
+async function startLive() {
+  stopSource();
+  try {
+    if (tab === "audio") stream = await navigator.mediaDevices.getUserMedia({ audio: { echoCancellation: true, noiseSuppression: false } });
+    else stream = await navigator.mediaDevices.getUserMedia({ video: { width: { ideal: 960 }, height: { ideal: 720 } }, audio: false });
+  } catch (e) {
+    msg((window.isSecureContext ? "" : "Camera and microphone need an HTTPS page. ") + e.message, true); return;
+  }
+  if (tab === "audio") startAudio(stream); else { $("video").srcObject = stream; await $("video").play(); }
+  sourceReady(tab === "audio" ? "microphone" : "camera");
+}
+function openFile(f) {
+  stopSource();
+  const url = URL.createObjectURL(f);
+  if (tab === "audio") {
+    fileAudio = new Audio(url); fileAudio.loop = true; fileAudio.play(); startAudio(null, fileAudio);
+  } else { const v = $("video"); v.srcObject = null; v.src = url; v.loop = true; v.muted = true; v.play(); }
+  sourceReady(f.name);
+}
+function sourceReady(name) {
+  $("hint").hidden = true; $("badge").hidden = false; $("badge").textContent = name;
+  $("run").disabled = $("once").disabled = false;
+  if (tab === "motion") startFrameBuffer();
+}
+function stopSource() {
+  if (stream) stream.getTracks().forEach((t) => t.stop()); stream = null;
+  if (fileAudio) { fileAudio.pause(); fileAudio = null; }
+  if (proc) { proc.disconnect(); proc = null; } if (srcNode) { srcNode.disconnect(); srcNode = null; }
+  if (actx) { actx.close(); actx = null; }
+  clearInterval(frameTimer); frames = [];
+  const v = $("video"); v.pause(); v.srcObject = null; v.removeAttribute("src");
+}
+function stopAll() { running = false; clearInterval(sendTimer); $("run").textContent = "Classify live"; stopSource(); $("run").disabled = $("once").disabled = true; }
+
+// camera frame as JPEG, long side = size px
+function grab(size) {
+  const v = $("video"); if (!v.videoWidth) return null;
+  const s = size / Math.max(v.videoWidth, v.videoHeight), c = document.createElement("canvas");
+  c.width = Math.round(v.videoWidth * s); c.height = Math.round(v.videoHeight * s);
+  c.getContext("2d").drawImage(v, 0, 0, c.width, c.height);
+  return c.toDataURL("image/jpeg", 0.8);
+}
+function startFrameBuffer() {
+  clearInterval(frameTimer);
+  frameTimer = setInterval(() => {
+    const f = grab(Math.min(+$("size").value, 336)); if (!f) return;
+    frames.push(f); if (frames.length > MOTION_FRAMES) frames.shift();
+  }, 1000 / MOTION_FPS);
+}
+
+// microphone or file -> 16 kHz ring buffer
+function startAudio(s, el) {
+  actx = new AudioContext({ sampleRate: AUDIO_RATE });
+  ring = new Float32Array(AUDIO_RATE * AUDIO_WINDOW_S); ringPos = 0; ringFull = false;
+  srcNode = s ? actx.createMediaStreamSource(s) : actx.createMediaElementSource(el);
+  proc = actx.createScriptProcessor(2048, 1, 1);
+  proc.onaudioprocess = (e) => {
+    const x = e.inputBuffer.getChannelData(0);
+    for (let i = 0; i < x.length; i++) { ring[ringPos++] = x[i]; if (ringPos === ring.length) { ringPos = 0; ringFull = true; } }
+    if (!s) e.outputBuffer.getChannelData(0).set(x);  // play the file; don't echo the microphone
+  };
+  srcNode.connect(proc); proc.connect(actx.destination);
+  drawWave();
+}
+function lastWindow() {
+  if (!ring) return null;
+  const n = ringFull ? ring.length : ringPos; if (n < AUDIO_RATE / 2) return null;
+  const out = new Float32Array(n);
+  if (ringFull) { out.set(ring.subarray(ringPos)); out.set(ring.subarray(0, ringPos), ring.length - ringPos); }
+  else out.set(ring.subarray(0, ringPos));
+  return out;
+}
+function wavUrl(samples) {
+  const buf = new ArrayBuffer(44 + samples.length * 2), d = new DataView(buf);
+  const str = (o, s) => { for (let i = 0; i < s.length; i++) d.setUint8(o + i, s.charCodeAt(i)); };
+  str(0, "RIFF"); d.setUint32(4, 36 + samples.length * 2, true); str(8, "WAVE"); str(12, "fmt ");
+  d.setUint32(16, 16, true); d.setUint16(20, 1, true); d.setUint16(22, 1, true); d.setUint32(24, AUDIO_RATE, true);
+  d.setUint32(28, AUDIO_RATE * 2, true); d.setUint16(32, 2, true); d.setUint16(34, 16, true); str(36, "data"); d.setUint32(40, samples.length * 2, true);
+  for (let i = 0; i < samples.length; i++) d.setInt16(44 + i * 2, Math.max(-1, Math.min(1, samples[i])) * 0x7fff, true);
+  let bin = ""; const bytes = new Uint8Array(buf);
+  for (let i = 0; i < bytes.length; i += 0x8000) bin += String.fromCharCode.apply(null, bytes.subarray(i, i + 0x8000));
+  return "data:audio/wav;base64," + btoa(bin);
+}
+function drawWave() {
+  const c = $("wave"), x = c.getContext("2d");
+  const loop = () => {
+    if (!actx) return;
+    const w = lastWindow(); x.fillStyle = "#000"; x.fillRect(0, 0, c.width, c.height);
+    if (w) {
+      x.strokeStyle = "#6d9cf0"; x.lineWidth = 2; x.beginPath();
+      const step = Math.max(1, Math.floor(w.length / c.width));
+      for (let i = 0, px = 0; i < w.length; i += step, px++) { const y = c.height / 2 - w[i] * c.height * 0.45; px ? x.lineTo(px, y) : x.moveTo(px, y); }
+      x.stroke();
+      let e = 0; for (let i = Math.max(0, w.length - 1600); i < w.length; i++) e += w[i] * w[i];
+      x.fillStyle = "#ccc"; x.font = "13px system-ui"; x.fillText(`level ${(10 * Math.log10(e / 1600 + 1e-9)).toFixed(0)} dB · last ${(w.length / AUDIO_RATE).toFixed(1)} s sent each time`, 12, c.height - 14);
+    }
+    requestAnimationFrame(loop);
+  };
+  loop();
+}
+
+// ------------------------------------------------------------------ classify
+function payload() {
+  const q = questions(); if (!q) return null;
+  const body = { model: $("model").value || undefined, state: STATE[tab], questions: q };
+  if (tab === "camera") { const f = grab(+$("size").value); if (!f) return null; body.images = [f]; }
+  else if (tab === "motion") { if (frames.length < 4) return null; body.video_frames = frames.slice(); body.fps = MOTION_FPS; }
+  else { const w = lastWindow(); if (!w) return null; body.audio = [wavUrl(w)]; }
+  return body;
+}
+async function classify() {
+  const body = payload(); if (!body) return;
+  busy++; const t0 = performance.now();
+  try {
+    const headers = { "content-type": "application/json" }; if (token) headers.authorization = "Bearer " + token;
+    const r = await fetch("/v1/systemone", { method: "POST", headers, body: JSON.stringify(body) });
+    const d = await r.json();
+    if (!r.ok) throw new Error((d.error && d.error.message) || "HTTP " + r.status);
+    const rt = performance.now() - t0; count++;
+    lat.push(rt); mlat.push(d.diagnostics.timing.total_ms); stamps.push(performance.now());
+    if (lat.length > 40) { lat.shift(); mlat.shift(); } while (stamps.length && performance.now() - stamps[0] > 5000) stamps.shift();
+    show(d.answers, body.questions); stats(); msg("");
+  } catch (e) {
+    msg(e.message.includes("401") ? "Unauthorized: open this page with ?token=YOUR_TOKEN" : e.message, true);
+    if (running) toggleRun();
+  } finally { busy--; }
+}
+function tick() { if (running && busy < +$("inflight").value) classify(); }
+function toggleRun() {
+  running = !running; $("run").textContent = running ? "Stop" : "Classify live";
+  clearInterval(sendTimer); if (running) { sendTimer = setInterval(tick, +$("every").value); tick(); }
+}
+
+// ------------------------------------------------------------------ display
+const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+function dist(a) {
+  if (a.type === "noul") return [["yes", a.noul], ["no", 1 - a.noul]];
+  if (a.type === "choice") return Object.entries(a.probabilities);
+  return Object.entries(a.probabilities).map(([k, p]) => [a.legend[k], p]);
+}
+function show(answers, qdefs) {
+  const html = [];
+  for (const [id, a] of Object.entries(answers)) {
+    if (!a) continue;
+    const d = dist(a).sort((x, y) => y[1] - x[1]);
+    const top = d[0], h = (history[id] = history[id] || []);
+    h.push(a.type === "noul" ? a.noul : top[1]); if (h.length > 60) h.shift();
+    const head = a.type === "noul" ? `${(a.noul * 100).toFixed(0)}% yes` : `${esc(top[0])} · ${(top[1] * 100).toFixed(0)}%`;
+    const pts = h.map((v, i) => `${(i / 59) * 100},${24 - v * 22}`).join(" ");
+    html.push(`<div class="q"><div class="qhead"><span class="qid">${esc(id)}</span><span class="qans">${head}</span></div>
+      <div class="qins">${esc((qdefs[id] || {}).instructions || "")}</div>
+      ${d.slice(0, 4).map(([k, p], i) => `<div class="bar${i === 0 ? " top" : ""}"><span class="name">${esc(k)}</span><div class="track"><div class="fill" style="width:${(p * 100).toFixed(1)}%"></div></div><span>${(p * 100).toFixed(0)}%</span></div>`).join("")}
+      <svg class="spark" viewBox="0 0 100 26" preserveAspectRatio="none"><polyline fill="none" stroke="currentColor" stroke-opacity=".55" stroke-width="1.2" vector-effect="non-scaling-stroke" points="${pts}"/></svg></div>`);
+  }
+  $("answers").innerHTML = html.join("");
+}
+const p50 = (xs) => xs.length ? [...xs].sort((a, b) => a - b)[Math.floor(xs.length / 2)] : null;
+function stats() {
+  $("rate").textContent = stamps.length > 1 ? (stamps.length / ((stamps[stamps.length - 1] - stamps[0]) / 1000 || 1)).toFixed(1) : "–";
+  $("model_ms").textContent = mlat.length ? Math.round(p50(mlat)) : "–";
+  $("rt_ms").textContent = lat.length ? Math.round(p50(lat)) : "–";
+  $("count").textContent = count;
+}
+function resetStats() { lat = []; mlat = []; stamps = []; count = 0; stats(); }
+function msg(t, bad) { $("msg").textContent = t; $("msg").className = "msg" + (bad ? " bad" : ""); }
+
+// ------------------------------------------------------------------ wiring
+document.querySelectorAll(".tabs button").forEach((b) => b.onclick = () => setTab(b.dataset.tab));
+$("live").onclick = startLive;
+$("file").onchange = (e) => e.target.files[0] && openFile(e.target.files[0]);
+$("preset").onchange = setPreset;
+$("run").onclick = toggleRun;
+$("once").onclick = classify;
+$("every").onchange = () => { if (running) { toggleRun(); toggleRun(); } };
+$("model").onchange = resetStats;
+setTab("camera");
+if (!window.isSecureContext) msg("Note: this page isn't HTTPS, so the browser will block the camera and microphone. Video and audio files still work.");
+</script>
+</body>
+</html>
