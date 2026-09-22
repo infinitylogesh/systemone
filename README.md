@@ -1,7 +1,16 @@
 # System One
 
-TypeSafe Jev's `/v1/systemone` typed-decision API (`noul` / `choice` / `score`, with
-probabilities) on **any LLM served by vLLM or SGLang**.
+<p align="center">
+  <img src="demo/systemone_snake.gif" alt="Gemma 4 playing Snake through /v1/systemone" width="800" />
+</p>
+
+
+[Jev](https://typesafe.ai/blog/introducing-system-one-models-and-jev) and [Laya](https://github.com/NandhaKishorM/laya) are awesome but they don't yet support images or video. This project extends TypeSafe Jev's `/v1/systemone` typed-decision API (`noul` / `choice` / `score`, with
+probabilities) on **any LLM served by vLLM or SGLang or OpenRouter (Experimental)**.
+- With vision enabled models like gemma 4 or qwen 3.5 , **Multimodal understanding comes for free.**. Jev or Laya **doesn't** support images or video. 
+- This approach builds a zero-shot classification wrapper around existing decoder only models, enabling us to use them for typed-decision tasks. 
+- Therefore the existing world knowledge of these models is preserved, and we can use them for typed-decision tasks.
+- Experimental support for finetuning with RLCD objective to improve accuracy.
 
 ## Results
 
