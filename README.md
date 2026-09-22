@@ -1,4 +1,4 @@
-# System One
+<h1 align="center">System One</h1>
 
 <p align="center">
   <img src="demo/systemone_snake.gif" alt="Gemma 4 playing Snake through /v1/systemone" width="800" />
@@ -7,7 +7,7 @@
 
 [Jev](https://typesafe.ai/blog/introducing-system-one-models-and-jev) and [Laya](https://github.com/NandhaKishorM/laya) are awesome but they don't yet support images or video. This project extends TypeSafe Jev's `/v1/systemone` typed-decision API (`noul` / `choice` / `score`, with
 probabilities) on **any LLM served by vLLM or SGLang or OpenRouter (Experimental)**.
-- With vision enabled models like gemma 4 or qwen 3.5 , **Multimodal understanding comes for free.**. Jev or Laya **doesn't** support images or video. 
+- **Multimodal understanding comes for free.** With vision enabled models like gemma 4 or qwen 3.5 - the typed decisions endpoint supports images / video / audio, Jev or Laya **doesn't** support images or video or audio. 
 - This approach builds a zero-shot classification wrapper around existing decoder only models, enabling us to use them for typed-decision tasks. 
 - Therefore the existing world knowledge of these models is preserved, and we can use them for typed-decision tasks.
 - Experimental support for finetuning with RLCD objective to improve accuracy.
@@ -34,11 +34,7 @@ probabilities) on **any LLM served by vLLM or SGLang or OpenRouter (Experimental
 - **req/s**: 4-question requests per second with 32 in flight.
 
 ² Fine-tuned on the typed-decisions train split with `systemone rlcd train` (LoRA,
-[RLCD.md](RLCD.md)), so like Laya fine-tuned they are not zero-shot. Measured on the same
-NVFP4 server as adapters; in that run the base model took 124 ms and 66 req/s, so LoRA
-costs about 40 ms per case and 15% throughput. Fine-tuning leaves the model nearly
-calibrated (fitted T ≈ 1), which is why the ECE stays around 0.15, and costs 3–4 points
-of AG News.
+RLCD objective), so like Laya fine-tuned they are not zero-shot.
 
 ³ Hosted, through OpenRouter's chat API with the default per-question read (see
 [OpenRouter](#openrouter)); latency is mostly the network hop and the provider's queue.
@@ -56,6 +52,7 @@ pip install -e ./systemone            # standard library only
 
 # already running `vllm serve <model>`? put systemone in front of it:
 # upstream is the url of the vllm / sglang server
+# Important: log probs should be enabled in sglang / vllm config for this to work.
 systemone serve --upstream http://localhost:8000
 
 # or start both at once:
@@ -185,7 +182,3 @@ that only implements Jev's core contract.
   `depends_on` or `mode: "joint"` where they should.
 - **Images** go through the chat endpoint. For Gemma the prompt then lacks the empty
   thought block, a minor difference from the text path.
-- **Engine.** vLLM only for now; the probe needs `/tokenize`, `/detokenize` and token-id
-  prompts on `/v1/completions`.
-- **Not tested on DeepSeek V3.2/V4** (160 GB+, which doesn't fit the test GPU). The probe
-  path is the same one used for R1.
