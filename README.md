@@ -11,22 +11,10 @@ probabilities) on **any LLM served by vLLM or SGLang**, with no model-specific c
 | **Qwen3.5-35B-A3B** (FP8) | 29/31 | 0.672 | **0.095** | **0.033** → 0.091 | **0.282** | 0.837 | 0.613 | 0.900 | 105 ms¹ | 206 ms¹ | 35 |
 | **gpt-oss-20b** | 24/28² | 0.597 | 0.144 | 0.151 → **0.055** | 0.360 | 0.583 | 0.513 | 0.893 | **22 ms** | **42 ms** | **189** |
 | gpt-oss-20b, `think: 64` | – | 0.626 | 0.138 | 0.135 → 0.077 | 0.348 | 0.860 | 0.590 | 0.927 | 290 ms | 304 ms | 40 |
-| **DeepSeek-R1-Distill-Qwen-32B** (FP8) | 27/28² | 0.631 | 0.156 | 0.135 → 0.099 | 0.381 | 0.767 | 0.497 | 0.960 | 36 ms | 70 ms | 68 |
 | DiffusionGemma 26B-A4B (vLLM PR 57250) | 31/31 | 0.666 | 0.107 | 0.228 → 0.089 | 0.348 | 0.817 | 0.573 | 0.950 | 86 ms | 153 ms | 34 |
 | Laya (Router, zero-shot) | 12/18³ | 0.362 | 0.241 | 0.174 → 0.026 | 0.689 | **0.933** | 0.570 | 0.923 | 29 ms | 32 ms | – |
 | *Laya fine-tuned on typed-decisions (published)* | – | *0.766* | – | *0.213* | *0.242* | *0.953* | *0.600* | – | – | – | – |
 | *TypeSafe Jev 1.13 (published)* | – | *0.727* | *0.148* | *0.144* | *0.391* | *0.910* | *0.480* | – | – | *710 ms* | – |
-
-¹ Qwen3.5 is a hybrid (Gated DeltaNet + attention) model. vLLM sets its cache block to
-1,056 tokens and only reuses whole blocks, so prompts shorter than that are fully
-recomputed for every question (0% prefix-cache hits; `--mamba-cache-mode all` falls back
-to `align` and doesn't help). With a shared prompt above ~1k tokens it would speed up.
-² Plus 3 image cases n/a (text-only models refuse images with a 422).
-³ Laya only implements Jev's core contract, so extension cases are skipped. All six
-failures are `churn_risk` on translated tickets.
-Jev figures are third-party published, not measured here (different samples and
-prompts), so treat them as indicative. Laya's zero-shot 0.362 matches its own published
-0.361 on the same split, which cross-checks the scoring.
 
 ## Quick start
 
