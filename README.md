@@ -5,32 +5,46 @@ probabilities) on **any LLM served by vLLM or SGLang**, with no model-specific c
 
 ## Results
 
-| backend | features | typed acc | Brier (cal) | ECE raw → cal | score MAE (cal) | AG News | Emotion | SST-2 (choice) | 1 q p50 | typed case (5 q) p50 | req/s @32 (4 q) |
-|---|---|---|---|---|---|---|---|---|---|---|---|
-| **Gemma 4 31B** (NVFP4) | 31/31 | **0.709** | **0.105** | 0.259 → 0.105 | **0.296** | 0.867 | **0.620** | 0.960 | 36 ms | 81 ms | 62 |
-| **Qwen3.5-35B-A3B** (FP8) | 29/31 | 0.672 | **0.095** | **0.033** → 0.091 | **0.282** | 0.837 | 0.613 | 0.900 | 105 ms¹ | 206 ms¹ | 35 |
-| **gpt-oss-20b** | 24/28² | 0.597 | 0.144 | 0.151 → **0.055** | 0.360 | 0.583 | 0.513 | 0.893 | **22 ms** | **42 ms** | **189** |
-| gpt-oss-20b, `think: 64` | – | 0.626 | 0.138 | 0.135 → 0.077 | 0.348 | 0.860 | 0.590 | 0.927 | 290 ms | 304 ms | 40 |
-| DiffusionGemma 26B-A4B (vLLM PR 57250) | 31/31 | 0.666 | 0.107 | 0.228 → 0.089 | 0.348 | 0.817 | 0.573 | 0.950 | 86 ms | 153 ms | 34 |
-| Laya (Router, zero-shot) | 12/18³ | 0.362 | 0.241 | 0.174 → 0.026 | 0.689 | **0.933** | 0.570 | 0.923 | 29 ms | 32 ms | – |
-| *Laya fine-tuned on typed-decisions (published)* | – | *0.766* | – | *0.213* | *0.242* | *0.953* | *0.600* | – | – | – | – |
-| *TypeSafe Jev 1.13 (published)* | – | *0.727* | *0.148* | *0.144* | *0.391* | *0.910* | *0.480* | – | – | *710 ms* | – |
+| model | typed acc | ECE (cal) | AG News | ms / case | req/s |
+|---|---|---|---|---|---|
+| **Gemma 4 31B** | **0.709** | 0.105 | 0.867 | 81 | 62 |
+| **Qwen3.5-35B-A3B** | 0.672 | 0.091 | 0.837 | 206¹ | 35 |
+| **gpt-oss-20b** | 0.597 | 0.055 | 0.583 | 42 | **189** |
+| gpt-oss-20b, `think: 64` | 0.626 | 0.077 | 0.860 | 304 | 40 |
+| DiffusionGemma 26B-A4B | 0.666 | 0.089 | 0.817 | 153 | 34 |
+| Laya, zero-shot | 0.362 | **0.026** | **0.933** | **32** | – |
+| *Laya, fine-tuned (published)* | *0.766* | *0.213* | *0.953* | – | – |
+| *TypeSafe Jev 1.13 (published)* | *0.727* | *0.144* | *0.910* | *710* | – |
+
+- **typed acc**: accuracy on typed-decisions (2,000 decisions).
+- **ECE (cal)**: calibration error after the per-model temperature fit (lower is better).
+- **ms / case**: p50 for a 5-question typed-decisions case.
+- **req/s**: 4-question requests per second with 32 in flight.
+
+Jev figures are third-party published, not measured here, so treat them as indicative.
+Laya's zero-shot 0.362 matches its own published 0.361 on the same split, which
+cross-checks the scoring.
 
 ## Quick start
 
 ```bash
+
+git clone https://github.com/infinitylogesh/systemone.git
 pip install -e ./systemone            # standard library only
 
 # already running `vllm serve <model>`? put systemone in front of it:
+# upstream is the url of the vllm / sglang server
 systemone serve --upstream http://localhost:8000
 
 # or start both at once:
 systemone launch Qwen/Qwen3.5-35B-A3B-FP8 -- --gpu-memory-utilization 0.85
 ```
 
+### Example Request
+
 ```bash
 curl -s localhost:8011/v1/systemone -H 'content-type: application/json' -d '{
-  "model": "jev-latest",
+  "model": "<model_name>",
   "state": {"body": "We were billed twice for March. Refund it today or we cancel."},
   "questions": {
     "department": {"type": "choice", "instructions": "Which team handles this?",
