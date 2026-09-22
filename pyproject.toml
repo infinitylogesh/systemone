@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "systemone"
+version = "0.1.0"
+description = "Jev's /v1/systemone typed-decision API (noul / choice / score) on any LLM served by vLLM or SGLang"
+readme = "README.md"
+license = {text = "Apache-2.0"}
+requires-python = ">=3.9"
+dependencies = []  # the server is standard library only
+
+[project.optional-dependencies]
+bench = ["datasets"]
+rlcd = ["torch", "transformers>=5.5", "peft", "trl", "accelerate", "datasets"]
+vllm = ["vllm"]
+
+[project.scripts]
+systemone = "systemone.cli:main"
+
+[tool.setuptools]
+packages = ["systemone", "systemone.demo", "systemone.rlcd"]
+
+[tool.setuptools.package-dir]
+"systemone" = "src/systemone"
+"systemone.demo" = "demo"
+"systemone.rlcd" = "src/systemone/rlcd"
+
+[tool.setuptools.package-data]
+"systemone.demo" = ["web/*.html"]
