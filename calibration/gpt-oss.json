@@ -1,0 +1,12 @@
+{
+ "model": "openai/gpt-oss-20b",
+ "served_as": "gpt-oss",
+ "fitted_on": "LocalLLaMA/typed-decisions train (300 cases)",
+ "temperatures": {
+  "noul:2": 3.5502,
+  "choice:4": 2.3139,
+  "score:5": 2.9536,
+  "score:4": 2.282,
+  "choice:5": 2.3644
+ }
+}

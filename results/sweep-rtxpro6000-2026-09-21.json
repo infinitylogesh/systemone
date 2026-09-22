@@ -1,0 +1,3858 @@
+{
+ "features": {
+  "gemma4": [
+   {
+    "name": "noul yes",
+    "backend": "gemma4",
+    "status": 200,
+    "ms": 69.0,
+    "answers": {
+     "outage": {
+      "label": "yes",
+      "conf": 1.0
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "noul no",
+    "backend": "gemma4",
+    "status": 200,
+    "ms": 37.4,
+    "answers": {
+     "outage": {
+      "label": "no",
+      "conf": 1.0
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "noul with true/false criteria",
+    "backend": "gemma4",
+    "status": 200,
+    "ms": 41.2,
+    "answers": {
+     "spam": {
+      "label": "yes",
+      "conf": 1.0
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "choice 4-way",
+    "backend": "gemma4",
+    "status": 200,
+    "ms": 89.2,
+    "answers": {
+     "department": {
+      "label": "billing",
+      "conf": 1.0
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "choice null descriptions",
+    "backend": "gemma4",
+    "status": 200,
+    "ms": 43.9,
+    "answers": {
+     "lang": {
+      "label": "rust",
+      "conf": 1.0
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "choice 12 options",
+    "backend": "gemma4",
+    "status": 200,
+    "ms": 94.6,
+    "answers": {
+     "intent": {
+      "label": "alarm_set",
+      "conf": 1.0
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "score ordinal high",
+    "backend": "gemma4",
+    "status": 200,
+    "ms": 40.0,
+    "answers": {
+     "urgency": {
+      "label": "critical deadline or blocking issue",
+      "conf": 1.0
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "score ordinal low",
+    "backend": "gemma4",
+    "status": 200,
+    "ms": 33.7,
+    "answers": {
+     "urgency": {
+      "label": "not urgent",
+      "conf": 1.0
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "score 1-5 sentiment",
+    "backend": "gemma4",
+    "status": 200,
+    "ms": 43.0,
+    "answers": {
+     "stars": {
+      "label": "1 star",
+      "conf": 1.0
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "4 mixed questions, JSON state",
+    "backend": "gemma4",
+    "status": 200,
+    "ms": 115.8,
+    "answers": {
+     "department": {
+      "label": "billing",
+      "conf": 1.0
+     },
+     "urgency": {
+      "label": "critical deadline or blocking issue",
+      "conf": 1.0
+     },
+     "churn_risk": {
+      "label": "yes",
+      "conf": 1.0
+     },
+     "refund_requested": {
+      "label": "yes",
+      "conf": 1.0
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "string state",
+    "backend": "gemma4",
+    "status": 200,
+    "ms": 72.5,
+    "answers": {
+     "department": {
+      "label": "billing",
+      "conf": 1.0
+     },
+     "urgency": {
+      "label": "critical deadline or blocking issue",
+      "conf": 1.0
+     },
+     "churn_risk": {
+      "label": "yes",
+      "conf": 1.0
+     },
+     "refund_requested": {
+      "label": "yes",
+      "conf": 1.0
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "conversation state",
+    "backend": "gemma4",
+    "status": 200,
+    "ms": 75.9,
+    "answers": {
+     "department": {
+      "label": "billing",
+      "conf": 1.0
+     },
+     "urgency": {
+      "label": "critical deadline or blocking issue",
+      "conf": 1.0
+     },
+     "churn_risk": {
+      "label": "yes",
+      "conf": 1.0
+     },
+     "refund_requested": {
+      "label": "yes",
+      "conf": 1.0
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "multilingual hi",
+    "backend": "gemma4",
+    "status": 200,
+    "ms": 65.3,
+    "answers": {
+     "department": {
+      "label": "billing",
+      "conf": 1.0
+     },
+     "urgency": {
+      "label": "critical deadline or blocking issue",
+      "conf": 0.999
+     },
+     "churn_risk": {
+      "label": "yes",
+      "conf": 1.0
+     },
+     "refund_requested": {
+      "label": "yes",
+      "conf": 1.0
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "multilingual de",
+    "backend": "gemma4",
+    "status": 200,
+    "ms": 67.8,
+    "answers": {
+     "department": {
+      "label": "billing",
+      "conf": 1.0
+     },
+     "urgency": {
+      "label": "critical deadline or blocking issue",
+      "conf": 0.999
+     },
+     "churn_risk": {
+      "label": "yes",
+      "conf": 1.0
+     },
+     "refund_requested": {
+      "label": "yes",
+      "conf": 1.0
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "multilingual ja",
+    "backend": "gemma4",
+    "status": 200,
+    "ms": 66.8,
+    "answers": {
+     "department": {
+      "label": "billing",
+      "conf": 1.0
+     },
+     "urgency": {
+      "label": "critical deadline or blocking issue",
+      "conf": 1.0
+     },
+     "churn_risk": {
+      "label": "yes",
+      "conf": 1.0
+     },
+     "refund_requested": {
+      "label": "yes",
+      "conf": 1.0
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "multilingual es",
+    "backend": "gemma4",
+    "status": 200,
+    "ms": 69.5,
+    "answers": {
+     "department": {
+      "label": "billing",
+      "conf": 1.0
+     },
+     "urgency": {
+      "label": "critical deadline or blocking issue",
+      "conf": 1.0
+     },
+     "churn_risk": {
+      "label": "yes",
+      "conf": 1.0
+     },
+     "refund_requested": {
+      "label": "yes",
+      "conf": 1.0
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "multilingual ta",
+    "backend": "gemma4",
+    "status": 200,
+    "ms": 68.0,
+    "answers": {
+     "department": {
+      "label": "billing",
+      "conf": 1.0
+     },
+     "urgency": {
+      "label": "critical deadline or blocking issue",
+      "conf": 0.998
+     },
+     "churn_risk": {
+      "label": "yes",
+      "conf": 1.0
+     },
+     "refund_requested": {
+      "label": "yes",
+      "conf": 1.0
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "multilingual ar",
+    "backend": "gemma4",
+    "status": 200,
+    "ms": 67.6,
+    "answers": {
+     "department": {
+      "label": "billing",
+      "conf": 1.0
+     },
+     "urgency": {
+      "label": "critical deadline or blocking issue",
+      "conf": 0.999
+     },
+     "churn_risk": {
+      "label": "yes",
+      "conf": 1.0
+     },
+     "refund_requested": {
+      "label": "yes",
+      "conf": 1.0
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "depends_on",
+    "backend": "gemma4",
+    "status": 200,
+    "ms": 89.3,
+    "answers": {
+     "category": {
+      "label": "software",
+      "conf": 1.0
+     },
+     "escalate": {
+      "label": "yes",
+      "conf": 0.999
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "ask_if (asked)",
+    "backend": "gemma4",
+    "status": 200,
+    "ms": 79.1,
+    "answers": {
+     "cancel": {
+      "label": "yes",
+      "conf": 1.0
+     },
+     "reason": {
+      "label": "price",
+      "conf": 1.0
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "ask_if (skipped)",
+    "backend": "gemma4",
+    "status": 200,
+    "ms": 36.6,
+    "answers": {
+     "cancel": {
+      "label": "no",
+      "conf": 1.0
+     },
+     "reason": {
+      "label": null,
+      "conf": null
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "mode=independent",
+    "backend": "gemma4",
+    "status": 200,
+    "ms": 76.7,
+    "answers": {
+     "tone": {
+      "label": "annoyed",
+      "conf": 0.999
+     },
+     "complaint": {
+      "label": "yes",
+      "conf": 1.0
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "mode=joint",
+    "backend": "gemma4",
+    "status": 200,
+    "ms": 72.0,
+    "answers": {
+     "tone": {
+      "label": "annoyed",
+      "conf": 1.0
+     },
+     "complaint": {
+      "label": "yes",
+      "conf": 1.0
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "ambiguous state",
+    "backend": "gemma4",
+    "status": 200,
+    "ms": 37.8,
+    "answers": {
+     "department": {
+      "label": "other",
+      "conf": 1.0
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "think=256",
+    "backend": "gemma4",
+    "status": 200,
+    "ms": 3782.4,
+    "answers": {
+     "on_time": {
+      "label": "yes",
+      "conf": 1.0
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "image color red",
+    "backend": "gemma4",
+    "status": 200,
+    "ms": 196.7,
+    "answers": {
+     "color": {
+      "label": "red",
+      "conf": 1.0
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "image color green",
+    "backend": "gemma4",
+    "status": 200,
+    "ms": 136.1,
+    "answers": {
+     "color": {
+      "label": "green",
+      "conf": 1.0
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "image color blue",
+    "backend": "gemma4",
+    "status": 200,
+    "ms": 136.3,
+    "answers": {
+     "color": {
+      "label": "blue",
+      "conf": 1.0
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "bad type -> 422",
+    "backend": "gemma4",
+    "status": 422,
+    "ms": 2.4,
+    "ok": true
+   },
+   {
+    "name": "missing state -> 422",
+    "backend": "gemma4",
+    "status": 422,
+    "ms": 2.1,
+    "ok": true
+   },
+   {
+    "name": "27 options -> 422",
+    "backend": "gemma4",
+    "status": 422,
+    "ms": 2.1,
+    "ok": true
+   }
+  ],
+  "qwen3.5": [
+   {
+    "name": "noul yes",
+    "backend": "qwen3.5",
+    "status": 200,
+    "ms": 265.2,
+    "answers": {
+     "outage": {
+      "label": "yes",
+      "conf": 0.995
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "noul no",
+    "backend": "qwen3.5",
+    "status": 200,
+    "ms": 46.7,
+    "answers": {
+     "outage": {
+      "label": "no",
+      "conf": 0.994
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "noul with true/false criteria",
+    "backend": "qwen3.5",
+    "status": 200,
+    "ms": 50.3,
+    "answers": {
+     "spam": {
+      "label": "yes",
+      "conf": 0.995
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "choice 4-way",
+    "backend": "qwen3.5",
+    "status": 200,
+    "ms": 403.4,
+    "answers": {
+     "department": {
+      "label": "billing",
+      "conf": 1.0
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "choice null descriptions",
+    "backend": "qwen3.5",
+    "status": 200,
+    "ms": 175.2,
+    "answers": {
+     "lang": {
+      "label": "rust",
+      "conf": 0.99
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "choice 12 options",
+    "backend": "qwen3.5",
+    "status": 200,
+    "ms": 340.1,
+    "answers": {
+     "intent": {
+      "label": "alarm_set",
+      "conf": 0.997
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "score ordinal high",
+    "backend": "qwen3.5",
+    "status": 200,
+    "ms": 51.9,
+    "answers": {
+     "urgency": {
+      "label": "critical deadline or blocking issue",
+      "conf": 0.999
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "score ordinal low",
+    "backend": "qwen3.5",
+    "status": 200,
+    "ms": 50.7,
+    "answers": {
+     "urgency": {
+      "label": "not urgent",
+      "conf": 1.0
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "score 1-5 sentiment",
+    "backend": "qwen3.5",
+    "status": 200,
+    "ms": 120.4,
+    "answers": {
+     "stars": {
+      "label": "1 star",
+      "conf": 0.999
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "4 mixed questions, JSON state",
+    "backend": "qwen3.5",
+    "status": 200,
+    "ms": 263.0,
+    "answers": {
+     "department": {
+      "label": "billing",
+      "conf": 0.998
+     },
+     "urgency": {
+      "label": "critical deadline or blocking issue",
+      "conf": 0.909
+     },
+     "churn_risk": {
+      "label": "yes",
+      "conf": 0.967
+     },
+     "refund_requested": {
+      "label": "yes",
+      "conf": 0.924
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "string state",
+    "backend": "qwen3.5",
+    "status": 200,
+    "ms": 214.0,
+    "answers": {
+     "department": {
+      "label": "billing",
+      "conf": 0.999
+     },
+     "urgency": {
+      "label": "critical deadline or blocking issue",
+      "conf": 0.955
+     },
+     "churn_risk": {
+      "label": "yes",
+      "conf": 0.947
+     },
+     "refund_requested": {
+      "label": "yes",
+      "conf": 0.971
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "conversation state",
+    "backend": "qwen3.5",
+    "status": 200,
+    "ms": 217.2,
+    "answers": {
+     "department": {
+      "label": "billing",
+      "conf": 0.998
+     },
+     "urgency": {
+      "label": "critical deadline or blocking issue",
+      "conf": 0.978
+     },
+     "churn_risk": {
+      "label": "yes",
+      "conf": 0.947
+     },
+     "refund_requested": {
+      "label": "yes",
+      "conf": 0.94
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "multilingual hi",
+    "backend": "qwen3.5",
+    "status": 200,
+    "ms": 225.4,
+    "answers": {
+     "department": {
+      "label": "billing",
+      "conf": 0.989
+     },
+     "urgency": {
+      "label": "critical deadline or blocking issue",
+      "conf": 0.896
+     },
+     "churn_risk": {
+      "label": "yes",
+      "conf": 0.924
+     },
+     "refund_requested": {
+      "label": "yes",
+      "conf": 0.932
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "multilingual de",
+    "backend": "qwen3.5",
+    "status": 200,
+    "ms": 217.9,
+    "answers": {
+     "department": {
+      "label": "billing",
+      "conf": 0.997
+     },
+     "urgency": {
+      "label": "critical deadline or blocking issue",
+      "conf": 0.973
+     },
+     "churn_risk": {
+      "label": "yes",
+      "conf": 0.958
+     },
+     "refund_requested": {
+      "label": "yes",
+      "conf": 0.963
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "multilingual ja",
+    "backend": "qwen3.5",
+    "status": 200,
+    "ms": 211.5,
+    "answers": {
+     "department": {
+      "label": "billing",
+      "conf": 0.985
+     },
+     "urgency": {
+      "label": "critical deadline or blocking issue",
+      "conf": 0.984
+     },
+     "churn_risk": {
+      "label": "yes",
+      "conf": 0.958
+     },
+     "refund_requested": {
+      "label": "yes",
+      "conf": 0.947
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "multilingual es",
+    "backend": "qwen3.5",
+    "status": 200,
+    "ms": 216.1,
+    "answers": {
+     "department": {
+      "label": "billing",
+      "conf": 0.992
+     },
+     "urgency": {
+      "label": "critical deadline or blocking issue",
+      "conf": 0.959
+     },
+     "churn_risk": {
+      "label": "yes",
+      "conf": 0.94
+     },
+     "refund_requested": {
+      "label": "yes",
+      "conf": 0.94
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "multilingual ta",
+    "backend": "qwen3.5",
+    "status": 200,
+    "ms": 211.0,
+    "answers": {
+     "department": {
+      "label": "billing",
+      "conf": 0.97
+     },
+     "urgency": {
+      "label": "critical deadline or blocking issue",
+      "conf": 0.76
+     },
+     "churn_risk": {
+      "label": "yes",
+      "conf": 0.94
+     },
+     "refund_requested": {
+      "label": "yes",
+      "conf": 0.915
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "multilingual ar",
+    "backend": "qwen3.5",
+    "status": 200,
+    "ms": 205.6,
+    "answers": {
+     "department": {
+      "label": "billing",
+      "conf": 0.981
+     },
+     "urgency": {
+      "label": "critical deadline or blocking issue",
+      "conf": 0.962
+     },
+     "churn_risk": {
+      "label": "yes",
+      "conf": 0.94
+     },
+     "refund_requested": {
+      "label": "yes",
+      "conf": 0.932
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "depends_on",
+    "backend": "qwen3.5",
+    "status": 200,
+    "ms": 216.0,
+    "answers": {
+     "category": {
+      "label": "software",
+      "conf": 0.865
+     },
+     "escalate": {
+      "label": "yes",
+      "conf": 0.835
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "ask_if (asked)",
+    "backend": "qwen3.5",
+    "status": 200,
+    "ms": 161.5,
+    "answers": {
+     "cancel": {
+      "label": "yes",
+      "conf": 0.999
+     },
+     "reason": {
+      "label": "price",
+      "conf": 1.0
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "ask_if (skipped)",
+    "backend": "qwen3.5",
+    "status": 200,
+    "ms": 42.9,
+    "answers": {
+     "cancel": {
+      "label": "no",
+      "conf": 0.999
+     },
+     "reason": {
+      "label": null,
+      "conf": null
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "mode=independent",
+    "backend": "qwen3.5",
+    "status": 200,
+    "ms": 112.1,
+    "answers": {
+     "tone": {
+      "label": "calm",
+      "conf": 0.529
+     },
+     "complaint": {
+      "label": "no",
+      "conf": 0.622
+     }
+    },
+    "misses": [
+     "complaint"
+    ],
+    "ok": false
+   },
+   {
+    "name": "mode=joint",
+    "backend": "qwen3.5",
+    "status": 200,
+    "ms": 150.0,
+    "answers": {
+     "tone": {
+      "label": "calm",
+      "conf": 0.498
+     },
+     "complaint": {
+      "label": "yes",
+      "conf": 0.905
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "ambiguous state",
+    "backend": "qwen3.5",
+    "status": 200,
+    "ms": 42.2,
+    "answers": {
+     "department": {
+      "label": "other",
+      "conf": 0.824
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "think=256",
+    "backend": "qwen3.5",
+    "status": 200,
+    "ms": 1635.7,
+    "answers": {
+     "on_time": {
+      "label": "no",
+      "conf": 0.531
+     }
+    },
+    "misses": [
+     "on_time"
+    ],
+    "ok": false
+   },
+   {
+    "name": "image color red",
+    "backend": "qwen3.5",
+    "status": 200,
+    "ms": 159.1,
+    "answers": {
+     "color": {
+      "label": "red",
+      "conf": 0.993
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "image color green",
+    "backend": "qwen3.5",
+    "status": 200,
+    "ms": 125.9,
+    "answers": {
+     "color": {
+      "label": "green",
+      "conf": 0.996
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "image color blue",
+    "backend": "qwen3.5",
+    "status": 200,
+    "ms": 124.5,
+    "answers": {
+     "color": {
+      "label": "blue",
+      "conf": 0.989
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "bad type -> 422",
+    "backend": "qwen3.5",
+    "status": 422,
+    "ms": 1.8,
+    "ok": true
+   },
+   {
+    "name": "missing state -> 422",
+    "backend": "qwen3.5",
+    "status": 422,
+    "ms": 1.6,
+    "ok": true
+   },
+   {
+    "name": "27 options -> 422",
+    "backend": "qwen3.5",
+    "status": 422,
+    "ms": 1.2,
+    "ok": true
+   }
+  ],
+  "gpt-oss": [
+   {
+    "name": "noul yes",
+    "backend": "gpt-oss",
+    "status": 200,
+    "ms": 282.3,
+    "answers": {
+     "outage": {
+      "label": "yes",
+      "conf": 1.0
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "noul no",
+    "backend": "gpt-oss",
+    "status": 200,
+    "ms": 20.9,
+    "answers": {
+     "outage": {
+      "label": "no",
+      "conf": 1.0
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "noul with true/false criteria",
+    "backend": "gpt-oss",
+    "status": 200,
+    "ms": 26.2,
+    "answers": {
+     "spam": {
+      "label": "yes",
+      "conf": 0.999
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "choice 4-way",
+    "backend": "gpt-oss",
+    "status": 200,
+    "ms": 31.3,
+    "answers": {
+     "department": {
+      "label": "billing",
+      "conf": 0.444
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "choice null descriptions",
+    "backend": "gpt-oss",
+    "status": 200,
+    "ms": 92.4,
+    "answers": {
+     "lang": {
+      "label": "rust",
+      "conf": 0.906
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "choice 12 options",
+    "backend": "gpt-oss",
+    "status": 200,
+    "ms": 242.2,
+    "answers": {
+     "intent": {
+      "label": "alarm_set",
+      "conf": 0.999
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "score ordinal high",
+    "backend": "gpt-oss",
+    "status": 200,
+    "ms": 26.3,
+    "answers": {
+     "urgency": {
+      "label": "critical deadline or blocking issue",
+      "conf": 1.0
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "score ordinal low",
+    "backend": "gpt-oss",
+    "status": 200,
+    "ms": 20.4,
+    "answers": {
+     "urgency": {
+      "label": "not urgent",
+      "conf": 1.0
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "score 1-5 sentiment",
+    "backend": "gpt-oss",
+    "status": 200,
+    "ms": 33.1,
+    "answers": {
+     "stars": {
+      "label": "1 star",
+      "conf": 0.988
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "4 mixed questions, JSON state",
+    "backend": "gpt-oss",
+    "status": 200,
+    "ms": 52.0,
+    "answers": {
+     "department": {
+      "label": "billing",
+      "conf": 0.865
+     },
+     "urgency": {
+      "label": "critical deadline or blocking issue",
+      "conf": 0.911
+     },
+     "churn_risk": {
+      "label": "yes",
+      "conf": 0.998
+     },
+     "refund_requested": {
+      "label": "yes",
+      "conf": 0.998
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "string state",
+    "backend": "gpt-oss",
+    "status": 200,
+    "ms": 38.3,
+    "answers": {
+     "department": {
+      "label": "billing",
+      "conf": 0.824
+     },
+     "urgency": {
+      "label": "critical deadline or blocking issue",
+      "conf": 0.875
+     },
+     "churn_risk": {
+      "label": "yes",
+      "conf": 1.0
+     },
+     "refund_requested": {
+      "label": "yes",
+      "conf": 0.999
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "conversation state",
+    "backend": "gpt-oss",
+    "status": 200,
+    "ms": 39.1,
+    "answers": {
+     "department": {
+      "label": "billing",
+      "conf": 0.694
+     },
+     "urgency": {
+      "label": "soon",
+      "conf": 0.493
+     },
+     "churn_risk": {
+      "label": "yes",
+      "conf": 0.995
+     },
+     "refund_requested": {
+      "label": "yes",
+      "conf": 0.997
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "multilingual hi",
+    "backend": "gpt-oss",
+    "status": 200,
+    "ms": 35.1,
+    "answers": {
+     "department": {
+      "label": "other",
+      "conf": 0.618
+     },
+     "urgency": {
+      "label": "critical deadline or blocking issue",
+      "conf": 0.832
+     },
+     "churn_risk": {
+      "label": "yes",
+      "conf": 0.999
+     },
+     "refund_requested": {
+      "label": "yes",
+      "conf": 0.982
+     }
+    },
+    "misses": [
+     "department"
+    ],
+    "ok": false
+   },
+   {
+    "name": "multilingual de",
+    "backend": "gpt-oss",
+    "status": 200,
+    "ms": 28.4,
+    "answers": {
+     "department": {
+      "label": "billing",
+      "conf": 0.962
+     },
+     "urgency": {
+      "label": "critical deadline or blocking issue",
+      "conf": 0.875
+     },
+     "churn_risk": {
+      "label": "yes",
+      "conf": 1.0
+     },
+     "refund_requested": {
+      "label": "yes",
+      "conf": 0.977
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "multilingual ja",
+    "backend": "gpt-oss",
+    "status": 200,
+    "ms": 28.9,
+    "answers": {
+     "department": {
+      "label": "billing",
+      "conf": 0.818
+     },
+     "urgency": {
+      "label": "critical deadline or blocking issue",
+      "conf": 0.936
+     },
+     "churn_risk": {
+      "label": "yes",
+      "conf": 0.999
+     },
+     "refund_requested": {
+      "label": "yes",
+      "conf": 0.998
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "multilingual es",
+    "backend": "gpt-oss",
+    "status": 200,
+    "ms": 26.7,
+    "answers": {
+     "department": {
+      "label": "billing",
+      "conf": 0.906
+     },
+     "urgency": {
+      "label": "critical deadline or blocking issue",
+      "conf": 0.808
+     },
+     "churn_risk": {
+      "label": "yes",
+      "conf": 0.977
+     },
+     "refund_requested": {
+      "label": "yes",
+      "conf": 0.986
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "multilingual ta",
+    "backend": "gpt-oss",
+    "status": 200,
+    "ms": 32.2,
+    "answers": {
+     "department": {
+      "label": "billing",
+      "conf": 0.965
+     },
+     "urgency": {
+      "label": "critical deadline or blocking issue",
+      "conf": 0.83
+     },
+     "churn_risk": {
+      "label": "yes",
+      "conf": 0.998
+     },
+     "refund_requested": {
+      "label": "yes",
+      "conf": 0.986
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "multilingual ar",
+    "backend": "gpt-oss",
+    "status": 200,
+    "ms": 33.9,
+    "answers": {
+     "department": {
+      "label": "other",
+      "conf": 0.89
+     },
+     "urgency": {
+      "label": "critical deadline or blocking issue",
+      "conf": 0.813
+     },
+     "churn_risk": {
+      "label": "yes",
+      "conf": 1.0
+     },
+     "refund_requested": {
+      "label": "yes",
+      "conf": 0.991
+     }
+    },
+    "misses": [
+     "department"
+    ],
+    "ok": false
+   },
+   {
+    "name": "depends_on",
+    "backend": "gpt-oss",
+    "status": 200,
+    "ms": 46.6,
+    "answers": {
+     "category": {
+      "label": "software",
+      "conf": 0.53
+     },
+     "escalate": {
+      "label": "no",
+      "conf": 0.893
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "ask_if (asked)",
+    "backend": "gpt-oss",
+    "status": 200,
+    "ms": 27.3,
+    "answers": {
+     "cancel": {
+      "label": "no",
+      "conf": 0.798
+     },
+     "reason": {
+      "label": null,
+      "conf": null
+     }
+    },
+    "misses": [
+     "cancel",
+     "reason"
+    ],
+    "ok": false
+   },
+   {
+    "name": "ask_if (skipped)",
+    "backend": "gpt-oss",
+    "status": 200,
+    "ms": 20.6,
+    "answers": {
+     "cancel": {
+      "label": "no",
+      "conf": 1.0
+     },
+     "reason": {
+      "label": null,
+      "conf": null
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "mode=independent",
+    "backend": "gpt-oss",
+    "status": 200,
+    "ms": 43.3,
+    "answers": {
+     "tone": {
+      "label": "annoyed",
+      "conf": 0.982
+     },
+     "complaint": {
+      "label": "no",
+      "conf": 0.98
+     }
+    },
+    "misses": [
+     "complaint"
+    ],
+    "ok": false
+   },
+   {
+    "name": "mode=joint",
+    "backend": "gpt-oss",
+    "status": 200,
+    "ms": 40.5,
+    "answers": {
+     "tone": {
+      "label": "annoyed",
+      "conf": 0.982
+     },
+     "complaint": {
+      "label": "yes",
+      "conf": 0.755
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "ambiguous state",
+    "backend": "gpt-oss",
+    "status": 200,
+    "ms": 20.7,
+    "answers": {
+     "department": {
+      "label": "other",
+      "conf": 0.971
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "think=256",
+    "backend": "gpt-oss",
+    "status": 200,
+    "ms": 476.5,
+    "answers": {
+     "on_time": {
+      "label": "yes",
+      "conf": 1.0
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "image color red",
+    "backend": "gpt-oss",
+    "status": 422,
+    "ms": 1.7,
+    "ok": null,
+    "detail": "n/a: text-only model"
+   },
+   {
+    "name": "image color green",
+    "backend": "gpt-oss",
+    "status": 422,
+    "ms": 1.7,
+    "ok": null,
+    "detail": "n/a: text-only model"
+   },
+   {
+    "name": "image color blue",
+    "backend": "gpt-oss",
+    "status": 422,
+    "ms": 1.6,
+    "ok": null,
+    "detail": "n/a: text-only model"
+   },
+   {
+    "name": "bad type -> 422",
+    "backend": "gpt-oss",
+    "status": 422,
+    "ms": 1.7,
+    "ok": true
+   },
+   {
+    "name": "missing state -> 422",
+    "backend": "gpt-oss",
+    "status": 422,
+    "ms": 1.1,
+    "ok": true
+   },
+   {
+    "name": "27 options -> 422",
+    "backend": "gpt-oss",
+    "status": 422,
+    "ms": 0.8,
+    "ok": true
+   }
+  ],
+  "deepseek-r1": [
+   {
+    "name": "noul yes",
+    "backend": "deepseek-r1",
+    "status": 200,
+    "ms": 251.9,
+    "answers": {
+     "outage": {
+      "label": "yes",
+      "conf": 1.0
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "noul no",
+    "backend": "deepseek-r1",
+    "status": 200,
+    "ms": 37.2,
+    "answers": {
+     "outage": {
+      "label": "no",
+      "conf": 0.991
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "noul with true/false criteria",
+    "backend": "deepseek-r1",
+    "status": 200,
+    "ms": 44.8,
+    "answers": {
+     "spam": {
+      "label": "yes",
+      "conf": 0.998
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "choice 4-way",
+    "backend": "deepseek-r1",
+    "status": 200,
+    "ms": 96.1,
+    "answers": {
+     "department": {
+      "label": "billing",
+      "conf": 1.0
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "choice null descriptions",
+    "backend": "deepseek-r1",
+    "status": 200,
+    "ms": 84.5,
+    "answers": {
+     "lang": {
+      "label": "rust",
+      "conf": 0.992
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "choice 12 options",
+    "backend": "deepseek-r1",
+    "status": 200,
+    "ms": 241.2,
+    "answers": {
+     "intent": {
+      "label": "alarm_set",
+      "conf": 1.0
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "score ordinal high",
+    "backend": "deepseek-r1",
+    "status": 200,
+    "ms": 50.8,
+    "answers": {
+     "urgency": {
+      "label": "critical deadline or blocking issue",
+      "conf": 0.997
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "score ordinal low",
+    "backend": "deepseek-r1",
+    "status": 200,
+    "ms": 35.0,
+    "answers": {
+     "urgency": {
+      "label": "not urgent",
+      "conf": 0.998
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "score 1-5 sentiment",
+    "backend": "deepseek-r1",
+    "status": 200,
+    "ms": 50.5,
+    "answers": {
+     "stars": {
+      "label": "1 star",
+      "conf": 0.992
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "4 mixed questions, JSON state",
+    "backend": "deepseek-r1",
+    "status": 200,
+    "ms": 91.6,
+    "answers": {
+     "department": {
+      "label": "billing",
+      "conf": 1.0
+     },
+     "urgency": {
+      "label": "critical deadline or blocking issue",
+      "conf": 0.943
+     },
+     "churn_risk": {
+      "label": "yes",
+      "conf": 1.0
+     },
+     "refund_requested": {
+      "label": "yes",
+      "conf": 1.0
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "string state",
+    "backend": "deepseek-r1",
+    "status": 200,
+    "ms": 65.0,
+    "answers": {
+     "department": {
+      "label": "billing",
+      "conf": 1.0
+     },
+     "urgency": {
+      "label": "critical deadline or blocking issue",
+      "conf": 0.963
+     },
+     "churn_risk": {
+      "label": "yes",
+      "conf": 1.0
+     },
+     "refund_requested": {
+      "label": "yes",
+      "conf": 1.0
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "conversation state",
+    "backend": "deepseek-r1",
+    "status": 200,
+    "ms": 73.0,
+    "answers": {
+     "department": {
+      "label": "billing",
+      "conf": 1.0
+     },
+     "urgency": {
+      "label": "critical deadline or blocking issue",
+      "conf": 0.941
+     },
+     "churn_risk": {
+      "label": "yes",
+      "conf": 1.0
+     },
+     "refund_requested": {
+      "label": "yes",
+      "conf": 0.999
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "multilingual hi",
+    "backend": "deepseek-r1",
+    "status": 200,
+    "ms": 85.3,
+    "answers": {
+     "department": {
+      "label": "billing",
+      "conf": 0.983
+     },
+     "urgency": {
+      "label": "critical deadline or blocking issue",
+      "conf": 0.977
+     },
+     "churn_risk": {
+      "label": "yes",
+      "conf": 1.0
+     },
+     "refund_requested": {
+      "label": "yes",
+      "conf": 0.999
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "multilingual de",
+    "backend": "deepseek-r1",
+    "status": 200,
+    "ms": 64.1,
+    "answers": {
+     "department": {
+      "label": "billing",
+      "conf": 0.998
+     },
+     "urgency": {
+      "label": "critical deadline or blocking issue",
+      "conf": 0.974
+     },
+     "churn_risk": {
+      "label": "yes",
+      "conf": 1.0
+     },
+     "refund_requested": {
+      "label": "yes",
+      "conf": 0.999
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "multilingual ja",
+    "backend": "deepseek-r1",
+    "status": 200,
+    "ms": 64.9,
+    "answers": {
+     "department": {
+      "label": "billing",
+      "conf": 0.98
+     },
+     "urgency": {
+      "label": "critical deadline or blocking issue",
+      "conf": 0.964
+     },
+     "churn_risk": {
+      "label": "yes",
+      "conf": 1.0
+     },
+     "refund_requested": {
+      "label": "yes",
+      "conf": 0.999
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "multilingual es",
+    "backend": "deepseek-r1",
+    "status": 200,
+    "ms": 67.7,
+    "answers": {
+     "department": {
+      "label": "billing",
+      "conf": 0.999
+     },
+     "urgency": {
+      "label": "critical deadline or blocking issue",
+      "conf": 0.962
+     },
+     "churn_risk": {
+      "label": "yes",
+      "conf": 1.0
+     },
+     "refund_requested": {
+      "label": "yes",
+      "conf": 0.999
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "multilingual ta",
+    "backend": "deepseek-r1",
+    "status": 200,
+    "ms": 95.8,
+    "answers": {
+     "department": {
+      "label": "billing",
+      "conf": 0.998
+     },
+     "urgency": {
+      "label": "critical deadline or blocking issue",
+      "conf": 0.852
+     },
+     "churn_risk": {
+      "label": "yes",
+      "conf": 1.0
+     },
+     "refund_requested": {
+      "label": "yes",
+      "conf": 0.993
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "multilingual ar",
+    "backend": "deepseek-r1",
+    "status": 200,
+    "ms": 65.7,
+    "answers": {
+     "department": {
+      "label": "billing",
+      "conf": 0.997
+     },
+     "urgency": {
+      "label": "critical deadline or blocking issue",
+      "conf": 0.985
+     },
+     "churn_risk": {
+      "label": "yes",
+      "conf": 1.0
+     },
+     "refund_requested": {
+      "label": "yes",
+      "conf": 1.0
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "depends_on",
+    "backend": "deepseek-r1",
+    "status": 200,
+    "ms": 80.1,
+    "answers": {
+     "category": {
+      "label": "software",
+      "conf": 0.867
+     },
+     "escalate": {
+      "label": "yes",
+      "conf": 0.988
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "ask_if (asked)",
+    "backend": "deepseek-r1",
+    "status": 200,
+    "ms": 87.0,
+    "answers": {
+     "cancel": {
+      "label": "yes",
+      "conf": 1.0
+     },
+     "reason": {
+      "label": "price",
+      "conf": 1.0
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "ask_if (skipped)",
+    "backend": "deepseek-r1",
+    "status": 200,
+    "ms": 36.5,
+    "answers": {
+     "cancel": {
+      "label": "no",
+      "conf": 0.993
+     },
+     "reason": {
+      "label": null,
+      "conf": null
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "mode=independent",
+    "backend": "deepseek-r1",
+    "status": 200,
+    "ms": 74.0,
+    "answers": {
+     "tone": {
+      "label": "calm",
+      "conf": 0.915
+     },
+     "complaint": {
+      "label": "no",
+      "conf": 0.651
+     }
+    },
+    "misses": [
+     "complaint"
+    ],
+    "ok": false
+   },
+   {
+    "name": "mode=joint",
+    "backend": "deepseek-r1",
+    "status": 200,
+    "ms": 70.0,
+    "answers": {
+     "tone": {
+      "label": "calm",
+      "conf": 0.852
+     },
+     "complaint": {
+      "label": "yes",
+      "conf": 0.777
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "ambiguous state",
+    "backend": "deepseek-r1",
+    "status": 200,
+    "ms": 37.0,
+    "answers": {
+     "department": {
+      "label": "other",
+      "conf": 0.756
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "think=256",
+    "backend": "deepseek-r1",
+    "status": 200,
+    "ms": 5903.4,
+    "answers": {
+     "on_time": {
+      "label": "yes",
+      "conf": 1.0
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "image color red",
+    "backend": "deepseek-r1",
+    "status": 422,
+    "ms": 2.1,
+    "ok": null,
+    "detail": "n/a: text-only model"
+   },
+   {
+    "name": "image color green",
+    "backend": "deepseek-r1",
+    "status": 422,
+    "ms": 1.8,
+    "ok": null,
+    "detail": "n/a: text-only model"
+   },
+   {
+    "name": "image color blue",
+    "backend": "deepseek-r1",
+    "status": 422,
+    "ms": 1.0,
+    "ok": null,
+    "detail": "n/a: text-only model"
+   },
+   {
+    "name": "bad type -> 422",
+    "backend": "deepseek-r1",
+    "status": 422,
+    "ms": 1.5,
+    "ok": true
+   },
+   {
+    "name": "missing state -> 422",
+    "backend": "deepseek-r1",
+    "status": 422,
+    "ms": 1.6,
+    "ok": true
+   },
+   {
+    "name": "27 options -> 422",
+    "backend": "deepseek-r1",
+    "status": 422,
+    "ms": 1.0,
+    "ok": true
+   }
+  ],
+  "dgemma": [
+   {
+    "name": "noul yes",
+    "backend": "dgemma",
+    "status": 200,
+    "ms": 1655.0,
+    "answers": {
+     "outage": {
+      "label": "yes",
+      "conf": 1.0
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "noul no",
+    "backend": "dgemma",
+    "status": 200,
+    "ms": 52.1,
+    "answers": {
+     "outage": {
+      "label": "no",
+      "conf": 1.0
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "noul with true/false criteria",
+    "backend": "dgemma",
+    "status": 200,
+    "ms": 2298.3,
+    "answers": {
+     "spam": {
+      "label": "yes",
+      "conf": 0.563
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "choice 4-way",
+    "backend": "dgemma",
+    "status": 200,
+    "ms": 110.3,
+    "answers": {
+     "department": {
+      "label": "billing",
+      "conf": 0.995
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "choice null descriptions",
+    "backend": "dgemma",
+    "status": 200,
+    "ms": 98.7,
+    "answers": {
+     "lang": {
+      "label": "rust",
+      "conf": 0.993
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "choice 12 options",
+    "backend": "dgemma",
+    "status": 200,
+    "ms": 47.5,
+    "answers": {
+     "intent": {
+      "label": "alarm_set",
+      "conf": 1.0
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "score ordinal high",
+    "backend": "dgemma",
+    "status": 200,
+    "ms": 93.5,
+    "answers": {
+     "urgency": {
+      "label": "critical deadline or blocking issue",
+      "conf": 0.999
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "score ordinal low",
+    "backend": "dgemma",
+    "status": 200,
+    "ms": 37.8,
+    "answers": {
+     "urgency": {
+      "label": "not urgent",
+      "conf": 0.999
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "score 1-5 sentiment",
+    "backend": "dgemma",
+    "status": 200,
+    "ms": 103.4,
+    "answers": {
+     "stars": {
+      "label": "1 star",
+      "conf": 0.991
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "4 mixed questions, JSON state",
+    "backend": "dgemma",
+    "status": 200,
+    "ms": 142.1,
+    "answers": {
+     "department": {
+      "label": "billing",
+      "conf": 0.992
+     },
+     "urgency": {
+      "label": "critical deadline or blocking issue",
+      "conf": 0.903
+     },
+     "churn_risk": {
+      "label": "yes",
+      "conf": 1.0
+     },
+     "refund_requested": {
+      "label": "yes",
+      "conf": 1.0
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "string state",
+    "backend": "dgemma",
+    "status": 200,
+    "ms": 133.9,
+    "answers": {
+     "department": {
+      "label": "billing",
+      "conf": 0.99
+     },
+     "urgency": {
+      "label": "critical deadline or blocking issue",
+      "conf": 0.941
+     },
+     "churn_risk": {
+      "label": "yes",
+      "conf": 1.0
+     },
+     "refund_requested": {
+      "label": "yes",
+      "conf": 1.0
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "conversation state",
+    "backend": "dgemma",
+    "status": 200,
+    "ms": 138.0,
+    "answers": {
+     "department": {
+      "label": "billing",
+      "conf": 0.999
+     },
+     "urgency": {
+      "label": "critical deadline or blocking issue",
+      "conf": 0.953
+     },
+     "churn_risk": {
+      "label": "yes",
+      "conf": 1.0
+     },
+     "refund_requested": {
+      "label": "yes",
+      "conf": 1.0
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "multilingual hi",
+    "backend": "dgemma",
+    "status": 200,
+    "ms": 137.1,
+    "answers": {
+     "department": {
+      "label": "billing",
+      "conf": 0.997
+     },
+     "urgency": {
+      "label": "critical deadline or blocking issue",
+      "conf": 0.905
+     },
+     "churn_risk": {
+      "label": "yes",
+      "conf": 1.0
+     },
+     "refund_requested": {
+      "label": "yes",
+      "conf": 1.0
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "multilingual de",
+    "backend": "dgemma",
+    "status": 200,
+    "ms": 134.0,
+    "answers": {
+     "department": {
+      "label": "billing",
+      "conf": 0.991
+     },
+     "urgency": {
+      "label": "critical deadline or blocking issue",
+      "conf": 0.992
+     },
+     "churn_risk": {
+      "label": "yes",
+      "conf": 0.999
+     },
+     "refund_requested": {
+      "label": "yes",
+      "conf": 1.0
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "multilingual ja",
+    "backend": "dgemma",
+    "status": 200,
+    "ms": 144.7,
+    "answers": {
+     "department": {
+      "label": "billing",
+      "conf": 0.992
+     },
+     "urgency": {
+      "label": "critical deadline or blocking issue",
+      "conf": 0.977
+     },
+     "churn_risk": {
+      "label": "yes",
+      "conf": 1.0
+     },
+     "refund_requested": {
+      "label": "yes",
+      "conf": 1.0
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "multilingual es",
+    "backend": "dgemma",
+    "status": 200,
+    "ms": 137.1,
+    "answers": {
+     "department": {
+      "label": "billing",
+      "conf": 0.995
+     },
+     "urgency": {
+      "label": "critical deadline or blocking issue",
+      "conf": 0.921
+     },
+     "churn_risk": {
+      "label": "yes",
+      "conf": 1.0
+     },
+     "refund_requested": {
+      "label": "yes",
+      "conf": 1.0
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "multilingual ta",
+    "backend": "dgemma",
+    "status": 200,
+    "ms": 139.9,
+    "answers": {
+     "department": {
+      "label": "billing",
+      "conf": 0.996
+     },
+     "urgency": {
+      "label": "critical deadline or blocking issue",
+      "conf": 0.976
+     },
+     "churn_risk": {
+      "label": "yes",
+      "conf": 1.0
+     },
+     "refund_requested": {
+      "label": "yes",
+      "conf": 1.0
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "multilingual ar",
+    "backend": "dgemma",
+    "status": 200,
+    "ms": 138.4,
+    "answers": {
+     "department": {
+      "label": "billing",
+      "conf": 0.998
+     },
+     "urgency": {
+      "label": "critical deadline or blocking issue",
+      "conf": 0.96
+     },
+     "churn_risk": {
+      "label": "yes",
+      "conf": 1.0
+     },
+     "refund_requested": {
+      "label": "yes",
+      "conf": 1.0
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "depends_on",
+    "backend": "dgemma",
+    "status": 200,
+    "ms": 233.8,
+    "answers": {
+     "category": {
+      "label": "software",
+      "conf": 0.989
+     },
+     "escalate": {
+      "label": "no",
+      "conf": 0.607
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "ask_if (asked)",
+    "backend": "dgemma",
+    "status": 200,
+    "ms": 124.0,
+    "answers": {
+     "cancel": {
+      "label": "yes",
+      "conf": 0.994
+     },
+     "reason": {
+      "label": "price",
+      "conf": 1.0
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "ask_if (skipped)",
+    "backend": "dgemma",
+    "status": 200,
+    "ms": 94.4,
+    "answers": {
+     "cancel": {
+      "label": "no",
+      "conf": 0.999
+     },
+     "reason": {
+      "label": null,
+      "conf": null
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "mode=independent",
+    "backend": "dgemma",
+    "status": 200,
+    "ms": 107.5,
+    "answers": {
+     "tone": {
+      "label": "annoyed",
+      "conf": 0.948
+     },
+     "complaint": {
+      "label": "yes",
+      "conf": 0.998
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "mode=joint",
+    "backend": "dgemma",
+    "status": 200,
+    "ms": 105.0,
+    "answers": {
+     "tone": {
+      "label": "annoyed",
+      "conf": 0.941
+     },
+     "complaint": {
+      "label": "yes",
+      "conf": 0.998
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "ambiguous state",
+    "backend": "dgemma",
+    "status": 200,
+    "ms": 95.5,
+    "answers": {
+     "department": {
+      "label": "other",
+      "conf": 0.98
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "think=256",
+    "backend": "dgemma",
+    "status": 200,
+    "ms": 1294.1,
+    "answers": {
+     "on_time": {
+      "label": "yes",
+      "conf": 1.0
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "image color red",
+    "backend": "dgemma",
+    "status": 200,
+    "ms": 215.8,
+    "answers": {
+     "color": {
+      "label": "red",
+      "conf": 0.999
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "image color green",
+    "backend": "dgemma",
+    "status": 200,
+    "ms": 106.0,
+    "answers": {
+     "color": {
+      "label": "green",
+      "conf": 1.0
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "image color blue",
+    "backend": "dgemma",
+    "status": 200,
+    "ms": 104.6,
+    "answers": {
+     "color": {
+      "label": "blue",
+      "conf": 0.999
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "bad type -> 422",
+    "backend": "dgemma",
+    "status": 422,
+    "ms": 1.5,
+    "ok": true
+   },
+   {
+    "name": "missing state -> 422",
+    "backend": "dgemma",
+    "status": 422,
+    "ms": 1.2,
+    "ok": true
+   },
+   {
+    "name": "27 options -> 422",
+    "backend": "dgemma",
+    "status": 422,
+    "ms": 1.4,
+    "ok": true
+   }
+  ],
+  "laya": [
+   {
+    "name": "noul yes",
+    "backend": "laya",
+    "status": 200,
+    "ms": 50.6,
+    "answers": {
+     "outage": {
+      "label": "yes",
+      "conf": 0.87
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "noul no",
+    "backend": "laya",
+    "status": 200,
+    "ms": 30.5,
+    "answers": {
+     "outage": {
+      "label": "no",
+      "conf": 1.0
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "choice 4-way",
+    "backend": "laya",
+    "status": 200,
+    "ms": 30.9,
+    "answers": {
+     "department": {
+      "label": "billing",
+      "conf": 0.862
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "choice 12 options",
+    "backend": "laya",
+    "status": 200,
+    "ms": 28.5,
+    "answers": {
+     "intent": {
+      "label": "alarm_set",
+      "conf": 1.0
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "score ordinal high",
+    "backend": "laya",
+    "status": 200,
+    "ms": 27.6,
+    "answers": {
+     "urgency": {
+      "label": "critical deadline or blocking issue",
+      "conf": 0.656
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "score ordinal low",
+    "backend": "laya",
+    "status": 200,
+    "ms": 26.8,
+    "answers": {
+     "urgency": {
+      "label": "not urgent",
+      "conf": 0.152
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "score 1-5 sentiment",
+    "backend": "laya",
+    "status": 200,
+    "ms": 27.5,
+    "answers": {
+     "stars": {
+      "label": "1 star",
+      "conf": 0.934
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "4 mixed questions, JSON state",
+    "backend": "laya",
+    "status": 200,
+    "ms": 29.5,
+    "answers": {
+     "department": {
+      "label": "billing",
+      "conf": 0.862
+     },
+     "urgency": {
+      "label": "critical deadline or blocking issue",
+      "conf": 0.139
+     },
+     "churn_risk": {
+      "label": "yes",
+      "conf": 0.822
+     },
+     "refund_requested": {
+      "label": "yes",
+      "conf": 0.843
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "string state",
+    "backend": "laya",
+    "status": 200,
+    "ms": 30.2,
+    "answers": {
+     "department": {
+      "label": "billing",
+      "conf": 0.839
+     },
+     "urgency": {
+      "label": "soon",
+      "conf": 0.054
+     },
+     "churn_risk": {
+      "label": "yes",
+      "conf": 0.739
+     },
+     "refund_requested": {
+      "label": "yes",
+      "conf": 0.879
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "conversation state",
+    "backend": "laya",
+    "status": 200,
+    "ms": 30.0,
+    "answers": {
+     "department": {
+      "label": "billing",
+      "conf": 0.71
+     },
+     "urgency": {
+      "label": "critical deadline or blocking issue",
+      "conf": 0.118
+     },
+     "churn_risk": {
+      "label": "yes",
+      "conf": 0.668
+     },
+     "refund_requested": {
+      "label": "yes",
+      "conf": 0.85
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "multilingual hi",
+    "backend": "laya",
+    "status": 200,
+    "ms": 33.4,
+    "answers": {
+     "department": {
+      "label": "billing",
+      "conf": 0.909
+     },
+     "urgency": {
+      "label": "critical deadline or blocking issue",
+      "conf": 0.301
+     },
+     "churn_risk": {
+      "label": "no",
+      "conf": 0.991
+     },
+     "refund_requested": {
+      "label": "yes",
+      "conf": 0.941
+     }
+    },
+    "misses": [
+     "churn_risk"
+    ],
+    "ok": false
+   },
+   {
+    "name": "multilingual de",
+    "backend": "laya",
+    "status": 200,
+    "ms": 26.7,
+    "answers": {
+     "department": {
+      "label": "billing",
+      "conf": 0.815
+     },
+     "urgency": {
+      "label": "critical deadline or blocking issue",
+      "conf": 0.449
+     },
+     "churn_risk": {
+      "label": "no",
+      "conf": 0.992
+     },
+     "refund_requested": {
+      "label": "yes",
+      "conf": 0.967
+     }
+    },
+    "misses": [
+     "churn_risk"
+    ],
+    "ok": false
+   },
+   {
+    "name": "multilingual ja",
+    "backend": "laya",
+    "status": 200,
+    "ms": 26.8,
+    "answers": {
+     "department": {
+      "label": "billing",
+      "conf": 0.993
+     },
+     "urgency": {
+      "label": "critical deadline or blocking issue",
+      "conf": 0.507
+     },
+     "churn_risk": {
+      "label": "no",
+      "conf": 0.963
+     },
+     "refund_requested": {
+      "label": "yes",
+      "conf": 0.995
+     }
+    },
+    "misses": [
+     "churn_risk"
+    ],
+    "ok": false
+   },
+   {
+    "name": "multilingual es",
+    "backend": "laya",
+    "status": 200,
+    "ms": 24.8,
+    "answers": {
+     "department": {
+      "label": "billing",
+      "conf": 1.0
+     },
+     "urgency": {
+      "label": "critical deadline or blocking issue",
+      "conf": 0.511
+     },
+     "churn_risk": {
+      "label": "no",
+      "conf": 0.976
+     },
+     "refund_requested": {
+      "label": "yes",
+      "conf": 0.989
+     }
+    },
+    "misses": [
+     "churn_risk"
+    ],
+    "ok": false
+   },
+   {
+    "name": "multilingual ta",
+    "backend": "laya",
+    "status": 200,
+    "ms": 27.8,
+    "answers": {
+     "department": {
+      "label": "billing",
+      "conf": 0.987
+     },
+     "urgency": {
+      "label": "critical deadline or blocking issue",
+      "conf": 0.345
+     },
+     "churn_risk": {
+      "label": "no",
+      "conf": 0.97
+     },
+     "refund_requested": {
+      "label": "yes",
+      "conf": 0.766
+     }
+    },
+    "misses": [
+     "churn_risk"
+    ],
+    "ok": false
+   },
+   {
+    "name": "multilingual ar",
+    "backend": "laya",
+    "status": 200,
+    "ms": 25.6,
+    "answers": {
+     "department": {
+      "label": "billing",
+      "conf": 0.403
+     },
+     "urgency": {
+      "label": "critical deadline or blocking issue",
+      "conf": 0.441
+     },
+     "churn_risk": {
+      "label": "no",
+      "conf": 0.996
+     },
+     "refund_requested": {
+      "label": "yes",
+      "conf": 0.987
+     }
+    },
+    "misses": [
+     "churn_risk"
+    ],
+    "ok": false
+   },
+   {
+    "name": "ambiguous state",
+    "backend": "laya",
+    "status": 200,
+    "ms": 29.7,
+    "answers": {
+     "department": {
+      "label": "billing",
+      "conf": 0.007
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "bad type -> 422",
+    "backend": "laya",
+    "status": 422,
+    "ms": 2.7,
+    "ok": true
+   }
+  ]
+ },
+ "public": {
+  "ag_news/gemma4": {
+   "acc": 0.867,
+   "n": 300,
+   "errors": 0,
+   "mean_conf": 0.993,
+   "ece": 0.131,
+   "wall_s": 4.6
+  },
+  "emotion/gemma4": {
+   "acc": 0.62,
+   "n": 300,
+   "errors": 0,
+   "mean_conf": 0.988,
+   "ece": 0.375,
+   "wall_s": 2.6
+  },
+  "sst2/gemma4": {
+   "acc": 0.947,
+   "n": 300,
+   "errors": 0,
+   "mean_conf": 1.0,
+   "ece": 0.053,
+   "wall_s": 3.1
+  },
+  "sst2_choice/gemma4": {
+   "acc": 0.96,
+   "n": 300,
+   "errors": 0,
+   "mean_conf": 0.999,
+   "ece": 0.041,
+   "wall_s": 3.2
+  },
+  "ag_news/qwen3.5": {
+   "acc": 0.837,
+   "n": 300,
+   "errors": 0,
+   "mean_conf": 0.898,
+   "ece": 0.063,
+   "wall_s": 4.5
+  },
+  "emotion/qwen3.5": {
+   "acc": 0.613,
+   "n": 300,
+   "errors": 0,
+   "mean_conf": 0.753,
+   "ece": 0.15,
+   "wall_s": 4.7
+  },
+  "sst2/qwen3.5": {
+   "acc": 0.96,
+   "n": 300,
+   "errors": 0,
+   "mean_conf": 0.944,
+   "ece": 0.016,
+   "wall_s": 4.3
+  },
+  "sst2_choice/qwen3.5": {
+   "acc": 0.9,
+   "n": 300,
+   "errors": 0,
+   "mean_conf": 0.901,
+   "ece": 0.028,
+   "wall_s": 4.4
+  },
+  "ag_news/gpt-oss": {
+   "acc": 0.583,
+   "n": 300,
+   "errors": 0,
+   "mean_conf": 0.635,
+   "ece": 0.056,
+   "wall_s": 1.4
+  },
+  "emotion/gpt-oss": {
+   "acc": 0.513,
+   "n": 300,
+   "errors": 0,
+   "mean_conf": 0.675,
+   "ece": 0.169,
+   "wall_s": 1.3
+  },
+  "sst2/gpt-oss": {
+   "acc": 0.593,
+   "n": 300,
+   "errors": 0,
+   "mean_conf": 0.934,
+   "ece": 0.342,
+   "wall_s": 1.2
+  },
+  "sst2_choice/gpt-oss": {
+   "acc": 0.893,
+   "n": 300,
+   "errors": 0,
+   "mean_conf": 0.825,
+   "ece": 0.069,
+   "wall_s": 1.3
+  },
+  "ag_news/deepseek-r1": {
+   "acc": 0.767,
+   "n": 300,
+   "errors": 0,
+   "mean_conf": 0.902,
+   "ece": 0.14,
+   "wall_s": 4.5
+  },
+  "emotion/deepseek-r1": {
+   "acc": 0.497,
+   "n": 300,
+   "errors": 0,
+   "mean_conf": 0.724,
+   "ece": 0.241,
+   "wall_s": 3.1
+  },
+  "sst2/deepseek-r1": {
+   "acc": 0.943,
+   "n": 300,
+   "errors": 0,
+   "mean_conf": 0.975,
+   "ece": 0.032,
+   "wall_s": 2.9
+  },
+  "sst2_choice/deepseek-r1": {
+   "acc": 0.96,
+   "n": 300,
+   "errors": 0,
+   "mean_conf": 0.963,
+   "ece": 0.013,
+   "wall_s": 3.0
+  },
+  "ag_news/dgemma": {
+   "acc": 0.817,
+   "n": 300,
+   "errors": 0,
+   "mean_conf": 0.942,
+   "ece": 0.132,
+   "wall_s": 8.5
+  },
+  "emotion/dgemma": {
+   "acc": 0.573,
+   "n": 300,
+   "errors": 0,
+   "mean_conf": 0.792,
+   "ece": 0.223,
+   "wall_s": 8.2
+  },
+  "sst2/dgemma": {
+   "acc": 0.927,
+   "n": 300,
+   "errors": 0,
+   "mean_conf": 0.956,
+   "ece": 0.032,
+   "wall_s": 7.2
+  },
+  "sst2_choice/dgemma": {
+   "acc": 0.95,
+   "n": 300,
+   "errors": 0,
+   "mean_conf": 0.956,
+   "ece": 0.014,
+   "wall_s": 7.4
+  },
+  "ag_news/laya": {
+   "acc": 0.933,
+   "n": 300,
+   "errors": 0,
+   "mean_conf": 0.781,
+   "ece": 0.162,
+   "wall_s": 8.3
+  },
+  "emotion/laya": {
+   "acc": 0.57,
+   "n": 300,
+   "errors": 0,
+   "mean_conf": 0.84,
+   "ece": 0.271,
+   "wall_s": 8.0
+  },
+  "sst2/laya": {
+   "acc": 0.51,
+   "n": 300,
+   "errors": 0,
+   "mean_conf": 1.0,
+   "ece": 0.49,
+   "wall_s": 8.3
+  },
+  "sst2_choice/laya": {
+   "acc": 0.923,
+   "n": 300,
+   "errors": 0,
+   "mean_conf": 0.67,
+   "ece": 0.253,
+   "wall_s": 7.9
+  },
+  "ag_news/gpt-oss+think64": {
+   "acc": 0.86,
+   "n": 300,
+   "errors": 0,
+   "mean_conf": 0.972,
+   "ece": 0.128,
+   "wall_s": 12.8
+  },
+  "emotion/gpt-oss+think64": {
+   "acc": 0.59,
+   "n": 300,
+   "errors": 0,
+   "mean_conf": 0.832,
+   "ece": 0.242,
+   "wall_s": 11.9
+  },
+  "sst2/gpt-oss+think64": {
+   "acc": 0.833,
+   "n": 300,
+   "errors": 0,
+   "mean_conf": 0.968,
+   "ece": 0.141,
+   "wall_s": 12.2
+  },
+  "sst2_choice/gpt-oss+think64": {
+   "acc": 0.927,
+   "n": 300,
+   "errors": 0,
+   "mean_conf": 0.972,
+   "ece": 0.047,
+   "wall_s": 12.1
+  }
+ },
+ "typed": {
+  "gemma4": {
+   "raw": {
+    "accuracy": 0.7085,
+    "soft_accuracy": 0.6247,
+    "brier": 0.333,
+    "ece": 0.2587,
+    "score_mae": 0.4678,
+    "mean_conf": 0.9672,
+    "decisions": 2000
+   },
+   "errors": 0,
+   "wall_s": 19.6,
+   "per_workflow": {
+    "agent_trace_observability": 0.58,
+    "customer_service": 0.78,
+    "invoice_processing": 0.736,
+    "security_incidents": 0.738
+   },
+   "temperatures": {
+    "noul:2": 13.9754,
+    "choice:4": 12.3213,
+    "score:5": 7.805,
+    "score:4": 7.8318,
+    "choice:5": 6.4929
+   },
+   "calibrated": {
+    "accuracy": 0.7085,
+    "soft_accuracy": 0.5033,
+    "brier": 0.1051,
+    "ece": 0.1053,
+    "score_mae": 0.2956,
+    "mean_conf": 0.6032,
+    "decisions": 2000
+   },
+   "calibration_file": "/workspace/dg/sweep/calibration/gemma4.json"
+  },
+  "qwen3.5": {
+   "raw": {
+    "accuracy": 0.6725,
+    "soft_accuracy": 0.5559,
+    "brier": 0.115,
+    "ece": 0.0333,
+    "score_mae": 0.3164,
+    "mean_conf": 0.7034,
+    "decisions": 2000
+   },
+   "errors": 0,
+   "wall_s": 31.0,
+   "per_workflow": {
+    "agent_trace_observability": 0.61,
+    "customer_service": 0.674,
+    "invoice_processing": 0.73,
+    "security_incidents": 0.676
+   },
+   "temperatures": {
+    "noul:2": 1.9054,
+    "choice:4": 1.6606,
+    "score:5": 1.5889,
+    "score:4": 1.8974,
+    "choice:5": 1.3485
+   },
+   "calibrated": {
+    "accuracy": 0.6725,
+    "soft_accuracy": 0.5108,
+    "brier": 0.0953,
+    "ece": 0.0906,
+    "score_mae": 0.2818,
+    "mean_conf": 0.5819,
+    "decisions": 2000
+   },
+   "calibration_file": "/workspace/dg/sweep/calibration/qwen3.5.json"
+  },
+  "gpt-oss": {
+   "raw": {
+    "accuracy": 0.597,
+    "soft_accuracy": 0.534,
+    "brier": 0.2434,
+    "ece": 0.1509,
+    "score_mae": 0.3484,
+    "mean_conf": 0.7479,
+    "decisions": 2000
+   },
+   "errors": 0,
+   "wall_s": 5.5,
+   "per_workflow": {
+    "agent_trace_observability": 0.542,
+    "customer_service": 0.576,
+    "invoice_processing": 0.668,
+    "security_incidents": 0.602
+   },
+   "temperatures": {
+    "noul:2": 3.5502,
+    "choice:4": 2.3139,
+    "score:5": 2.9536,
+    "score:4": 2.282,
+    "choice:5": 2.3644
+   },
+   "calibrated": {
+    "accuracy": 0.597,
+    "soft_accuracy": 0.4682,
+    "brier": 0.1437,
+    "ece": 0.0547,
+    "score_mae": 0.3597,
+    "mean_conf": 0.5457,
+    "decisions": 2000
+   },
+   "calibration_file": "/workspace/dg/sweep/calibration/gpt-oss.json"
+  },
+  "deepseek-r1": {
+   "raw": {
+    "accuracy": 0.6315,
+    "soft_accuracy": 0.5346,
+    "brier": 0.2463,
+    "ece": 0.1346,
+    "score_mae": 0.4435,
+    "mean_conf": 0.7661,
+    "decisions": 2000
+   },
+   "errors": 0,
+   "wall_s": 19.5,
+   "per_workflow": {
+    "agent_trace_observability": 0.624,
+    "customer_service": 0.646,
+    "invoice_processing": 0.682,
+    "security_incidents": 0.574
+   },
+   "temperatures": {
+    "noul:2": 4.5146,
+    "choice:4": 2.6231,
+    "score:5": 2.1833,
+    "score:4": 2.8919,
+    "choice:5": 2.3024
+   },
+   "calibrated": {
+    "accuracy": 0.6315,
+    "soft_accuracy": 0.4539,
+    "brier": 0.1561,
+    "ece": 0.0987,
+    "score_mae": 0.3808,
+    "mean_conf": 0.5328,
+    "decisions": 2000
+   },
+   "calibration_file": "/workspace/dg/sweep/calibration/deepseek-r1.json"
+  },
+  "dgemma": {
+   "raw": {
+    "accuracy": 0.666,
+    "soft_accuracy": 0.6022,
+    "brier": 0.2751,
+    "ece": 0.2282,
+    "score_mae": 0.4271,
+    "mean_conf": 0.8942,
+    "decisions": 2000
+   },
+   "errors": 0,
+   "wall_s": 20.8,
+   "per_workflow": {
+    "agent_trace_observability": 0.566,
+    "customer_service": 0.718,
+    "invoice_processing": 0.69,
+    "security_incidents": 0.69
+   },
+   "temperatures": {
+    "noul:2": 7.6041,
+    "choice:4": 5.232,
+    "score:5": 4.795,
+    "score:4": 4.499,
+    "choice:5": 4.6427
+   },
+   "calibrated": {
+    "accuracy": 0.666,
+    "soft_accuracy": 0.4985,
+    "brier": 0.1074,
+    "ece": 0.0894,
+    "score_mae": 0.3484,
+    "mean_conf": 0.5766,
+    "decisions": 2000
+   },
+   "calibration_file": "sweep/calibration/dgemma.json"
+  },
+  "laya": {
+   "raw": {
+    "accuracy": 0.362,
+    "soft_accuracy": 0.3655,
+    "brier": 0.3289,
+    "ece": 0.1742,
+    "score_mae": 0.6944,
+    "mean_conf": 0.5362,
+    "decisions": 2000
+   },
+   "errors": 0,
+   "wall_s": 12.8,
+   "per_workflow": {
+    "agent_trace_observability": 0.394,
+    "customer_service": 0.378,
+    "invoice_processing": 0.362,
+    "security_incidents": 0.314
+   },
+   "temperatures": {
+    "noul:2": 20.0,
+    "choice:4": 20.0,
+    "score:5": 1.7792,
+    "score:4": 3.4613,
+    "choice:5": 2.0524
+   },
+   "calibrated": {
+    "accuracy": 0.362,
+    "soft_accuracy": 0.3704,
+    "brier": 0.2411,
+    "ece": 0.0261,
+    "score_mae": 0.6885,
+    "mean_conf": 0.3661,
+    "decisions": 2000
+   },
+   "calibration_file": "sweep/calibration/laya.json"
+  },
+  "qwen3.5-cache-all": {
+   "raw": {
+    "accuracy": 0.6765,
+    "soft_accuracy": 0.5571,
+    "brier": 0.117,
+    "ece": 0.034,
+    "score_mae": 0.3137,
+    "mean_conf": 0.7063,
+    "decisions": 2000
+   },
+   "errors": 0,
+   "wall_s": 31.8,
+   "per_workflow": {
+    "agent_trace_observability": 0.592,
+    "customer_service": 0.694,
+    "invoice_processing": 0.72,
+    "security_incidents": 0.7
+   }
+  },
+  "gpt-oss+think64": {
+   "raw": {
+    "accuracy": 0.626,
+    "soft_accuracy": 0.5537,
+    "brier": 0.2286,
+    "ece": 0.1347,
+    "score_mae": 0.3369,
+    "mean_conf": 0.7607,
+    "decisions": 2000
+   },
+   "errors": 0,
+   "wall_s": 20.8,
+   "per_workflow": {
+    "agent_trace_observability": 0.558,
+    "customer_service": 0.582,
+    "invoice_processing": 0.718,
+    "security_incidents": 0.646
+   },
+   "temperatures": {
+    "noul:2": 3.3788,
+    "choice:4": 2.6879,
+    "score:5": 2.7214,
+    "score:4": 2.3679,
+    "choice:5": 2.8867
+   },
+   "calibrated": {
+    "accuracy": 0.626,
+    "soft_accuracy": 0.4751,
+    "brier": 0.1379,
+    "ece": 0.0775,
+    "score_mae": 0.3479,
+    "mean_conf": 0.5517,
+    "decisions": 2000
+   },
+   "calibration_file": "sweep/calibration/gpt-oss+think64.json"
+  }
+ },
+ "latency": {
+  "gemma4 1q": {
+   "p50_ms": 36.2,
+   "p90_ms": 39.9
+  },
+  "gemma4 4q": {
+   "p50_ms": 67.9,
+   "p90_ms": 70.3
+  },
+  "gemma4 typed-case": {
+   "p50_ms": 81.4,
+   "p90_ms": 116.5
+  },
+  "gemma4 4q c=1": {
+   "req_per_s": 14.7,
+   "decisions_per_s": 58.9,
+   "p50_ms": 69,
+   "p90_ms": 72,
+   "errors": 0
+  },
+  "gemma4 4q c=8": {
+   "req_per_s": 40.7,
+   "decisions_per_s": 162.7,
+   "p50_ms": 200,
+   "p90_ms": 209,
+   "errors": 0
+  },
+  "gemma4 4q c=32": {
+   "req_per_s": 61.9,
+   "decisions_per_s": 247.7,
+   "p50_ms": 491,
+   "p90_ms": 501,
+   "errors": 0
+  },
+  "gemma4 4q c=64": {
+   "req_per_s": 62.9,
+   "decisions_per_s": 251.6,
+   "p50_ms": 989,
+   "p90_ms": 1012,
+   "errors": 0
+  },
+  "qwen3.5 1q": {
+   "p50_ms": 105.1,
+   "p90_ms": 109.7
+  },
+  "qwen3.5 4q": {
+   "p50_ms": 202.5,
+   "p90_ms": 208.0
+  },
+  "qwen3.5 typed-case": {
+   "p50_ms": 205.6,
+   "p90_ms": 213.4
+  },
+  "qwen3.5 4q c=1": {
+   "req_per_s": 4.9,
+   "decisions_per_s": 19.7,
+   "p50_ms": 202,
+   "p90_ms": 208,
+   "errors": 0
+  },
+  "qwen3.5 4q c=8": {
+   "req_per_s": 20.7,
+   "decisions_per_s": 82.7,
+   "p50_ms": 387,
+   "p90_ms": 400,
+   "errors": 0
+  },
+  "qwen3.5 4q c=32": {
+   "req_per_s": 35.4,
+   "decisions_per_s": 141.6,
+   "p50_ms": 826,
+   "p90_ms": 1033,
+   "errors": 0
+  },
+  "qwen3.5 4q c=64": {
+   "req_per_s": 35.6,
+   "decisions_per_s": 142.3,
+   "p50_ms": 1664,
+   "p90_ms": 1867,
+   "errors": 0
+  },
+  "gpt-oss 1q": {
+   "p50_ms": 21.6,
+   "p90_ms": 26.2
+  },
+  "gpt-oss 4q": {
+   "p50_ms": 32.1,
+   "p90_ms": 36.9
+  },
+  "gpt-oss typed-case": {
+   "p50_ms": 41.5,
+   "p90_ms": 45.4
+  },
+  "gpt-oss 4q c=1": {
+   "req_per_s": 28.7,
+   "decisions_per_s": 114.7,
+   "p50_ms": 36,
+   "p90_ms": 37,
+   "errors": 0
+  },
+  "gpt-oss 4q c=8": {
+   "req_per_s": 90.4,
+   "decisions_per_s": 361.8,
+   "p50_ms": 87,
+   "p90_ms": 96,
+   "errors": 0
+  },
+  "gpt-oss 4q c=32": {
+   "req_per_s": 189.0,
+   "decisions_per_s": 756.1,
+   "p50_ms": 168,
+   "p90_ms": 216,
+   "errors": 0
+  },
+  "gpt-oss 4q c=64": {
+   "req_per_s": 184.3,
+   "decisions_per_s": 737.1,
+   "p50_ms": 336,
+   "p90_ms": 373,
+   "errors": 0
+  },
+  "deepseek-r1 1q": {
+   "p50_ms": 35.9,
+   "p90_ms": 37.3
+  },
+  "deepseek-r1 4q": {
+   "p50_ms": 63.9,
+   "p90_ms": 68.6
+  },
+  "deepseek-r1 typed-case": {
+   "p50_ms": 69.6,
+   "p90_ms": 73.1
+  },
+  "deepseek-r1 4q c=1": {
+   "req_per_s": 15.4,
+   "decisions_per_s": 61.7,
+   "p50_ms": 65,
+   "p90_ms": 66,
+   "errors": 0
+  },
+  "deepseek-r1 4q c=8": {
+   "req_per_s": 48.4,
+   "decisions_per_s": 193.5,
+   "p50_ms": 164,
+   "p90_ms": 189,
+   "errors": 0
+  },
+  "deepseek-r1 4q c=32": {
+   "req_per_s": 68.4,
+   "decisions_per_s": 273.8,
+   "p50_ms": 448,
+   "p90_ms": 463,
+   "errors": 0
+  },
+  "deepseek-r1 4q c=64": {
+   "req_per_s": 70.7,
+   "decisions_per_s": 282.7,
+   "p50_ms": 891,
+   "p90_ms": 913,
+   "errors": 0
+  },
+  "dgemma 1q": {
+   "p50_ms": 85.9,
+   "p90_ms": 91.9
+  },
+  "dgemma 4q": {
+   "p50_ms": 131.0,
+   "p90_ms": 134.4
+  },
+  "dgemma typed-case": {
+   "p50_ms": 152.8,
+   "p90_ms": 163.7
+  },
+  "dgemma 4q c=1": {
+   "req_per_s": 7.9,
+   "decisions_per_s": 31.6,
+   "p50_ms": 130,
+   "p90_ms": 133,
+   "errors": 0
+  },
+  "dgemma 4q c=8": {
+   "req_per_s": 20.7,
+   "decisions_per_s": 82.6,
+   "p50_ms": 387,
+   "p90_ms": 407,
+   "errors": 0
+  },
+  "dgemma 4q c=32": {
+   "req_per_s": 34.4,
+   "decisions_per_s": 137.6,
+   "p50_ms": 889,
+   "p90_ms": 1012,
+   "errors": 0
+  },
+  "dgemma 4q c=64": {
+   "req_per_s": 39.5,
+   "decisions_per_s": 158.0,
+   "p50_ms": 1546,
+   "p90_ms": 1736,
+   "errors": 0
+  },
+  "laya 1q": {
+   "p50_ms": 28.9,
+   "p90_ms": 32.5
+  },
+  "laya 4q": {
+   "p50_ms": 30.4,
+   "p90_ms": 31.1
+  },
+  "laya typed-case": {
+   "p50_ms": 32.2,
+   "p90_ms": 33.7
+  },
+  "qwen3.5-cache-all 1q": {
+   "p50_ms": 103.7,
+   "p90_ms": 106.4
+  },
+  "qwen3.5-cache-all 4q": {
+   "p50_ms": 201.2,
+   "p90_ms": 209.7
+  },
+  "qwen3.5-cache-all typed-case": {
+   "p50_ms": 207.4,
+   "p90_ms": 220.4
+  },
+  "qwen3.5-cache-all 4q c=1": {
+   "req_per_s": 5.0,
+   "decisions_per_s": 19.8,
+   "p50_ms": 201,
+   "p90_ms": 205,
+   "errors": 0
+  },
+  "qwen3.5-cache-all 4q c=8": {
+   "req_per_s": 22.6,
+   "decisions_per_s": 90.3,
+   "p50_ms": 373,
+   "p90_ms": 381,
+   "errors": 0
+  },
+  "qwen3.5-cache-all 4q c=32": {
+   "req_per_s": 35.7,
+   "decisions_per_s": 143.0,
+   "p50_ms": 817,
+   "p90_ms": 1021,
+   "errors": 0
+  },
+  "qwen3.5-cache-all 4q c=64": {
+   "req_per_s": 35.8,
+   "decisions_per_s": 143.3,
+   "p50_ms": 1656,
+   "p90_ms": 1854,
+   "errors": 0
+  },
+  "gpt-oss+think64 1q": {
+   "p50_ms": 290.1,
+   "p90_ms": 294.3
+  },
+  "gpt-oss+think64 4q": {
+   "p50_ms": 298.6,
+   "p90_ms": 301.7
+  },
+  "gpt-oss+think64 typed-case": {
+   "p50_ms": 303.9,
+   "p90_ms": 311.8
+  },
+  "gpt-oss+think64 4q c=1": {
+   "req_per_s": 3.3,
+   "decisions_per_s": 13.4,
+   "p50_ms": 298,
+   "p90_ms": 303,
+   "errors": 0
+  },
+  "gpt-oss+think64 4q c=8": {
+   "req_per_s": 16.2,
+   "decisions_per_s": 64.8,
+   "p50_ms": 487,
+   "p90_ms": 526,
+   "errors": 0
+  },
+  "gpt-oss+think64 4q c=32": {
+   "req_per_s": 40.2,
+   "decisions_per_s": 160.7,
+   "p50_ms": 785,
+   "p90_ms": 835,
+   "errors": 0
+  },
+  "gpt-oss+think64 4q c=64": {
+   "req_per_s": 57.2,
+   "decisions_per_s": 228.8,
+   "p50_ms": 1094,
+   "p90_ms": 1228,
+   "errors": 0
+  }
+ }
+}

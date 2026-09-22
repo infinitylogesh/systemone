@@ -1,0 +1,1324 @@
+{
+ "features": {
+  "e4b-vllm": [
+   {
+    "name": "noul yes",
+    "backend": "e4b-vllm",
+    "status": 200,
+    "ms": 50.1,
+    "answers": {
+     "outage": {
+      "label": "yes",
+      "conf": 1.0
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "noul no",
+    "backend": "e4b-vllm",
+    "status": 200,
+    "ms": 35.8,
+    "answers": {
+     "outage": {
+      "label": "no",
+      "conf": 1.0
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "noul with true/false criteria",
+    "backend": "e4b-vllm",
+    "status": 200,
+    "ms": 36.8,
+    "answers": {
+     "spam": {
+      "label": "yes",
+      "conf": 1.0
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "choice 4-way",
+    "backend": "e4b-vllm",
+    "status": 200,
+    "ms": 48.1,
+    "answers": {
+     "department": {
+      "label": "billing",
+      "conf": 1.0
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "choice null descriptions",
+    "backend": "e4b-vllm",
+    "status": 200,
+    "ms": 46.2,
+    "answers": {
+     "lang": {
+      "label": "rust",
+      "conf": 0.999
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "choice 12 options",
+    "backend": "e4b-vllm",
+    "status": 200,
+    "ms": 56.9,
+    "answers": {
+     "intent": {
+      "label": "alarm_set",
+      "conf": 1.0
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "score ordinal high",
+    "backend": "e4b-vllm",
+    "status": 200,
+    "ms": 42.8,
+    "answers": {
+     "urgency": {
+      "label": "critical deadline or blocking issue",
+      "conf": 0.999
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "score ordinal low",
+    "backend": "e4b-vllm",
+    "status": 200,
+    "ms": 25.2,
+    "answers": {
+     "urgency": {
+      "label": "not urgent",
+      "conf": 1.0
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "score 1-5 sentiment",
+    "backend": "e4b-vllm",
+    "status": 200,
+    "ms": 42.9,
+    "answers": {
+     "stars": {
+      "label": "1 star",
+      "conf": 0.997
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "4 mixed questions, JSON state",
+    "backend": "e4b-vllm",
+    "status": 200,
+    "ms": 64.2,
+    "answers": {
+     "department": {
+      "label": "billing",
+      "conf": 1.0
+     },
+     "urgency": {
+      "label": "critical deadline or blocking issue",
+      "conf": 0.973
+     },
+     "churn_risk": {
+      "label": "yes",
+      "conf": 1.0
+     },
+     "refund_requested": {
+      "label": "yes",
+      "conf": 1.0
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "string state",
+    "backend": "e4b-vllm",
+    "status": 200,
+    "ms": 51.3,
+    "answers": {
+     "department": {
+      "label": "billing",
+      "conf": 1.0
+     },
+     "urgency": {
+      "label": "critical deadline or blocking issue",
+      "conf": 0.979
+     },
+     "churn_risk": {
+      "label": "yes",
+      "conf": 1.0
+     },
+     "refund_requested": {
+      "label": "yes",
+      "conf": 1.0
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "conversation state",
+    "backend": "e4b-vllm",
+    "status": 200,
+    "ms": 64.4,
+    "answers": {
+     "department": {
+      "label": "billing",
+      "conf": 1.0
+     },
+     "urgency": {
+      "label": "critical deadline or blocking issue",
+      "conf": 0.982
+     },
+     "churn_risk": {
+      "label": "yes",
+      "conf": 1.0
+     },
+     "refund_requested": {
+      "label": "yes",
+      "conf": 1.0
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "multilingual hi",
+    "backend": "e4b-vllm",
+    "status": 200,
+    "ms": 65.0,
+    "answers": {
+     "department": {
+      "label": "billing",
+      "conf": 1.0
+     },
+     "urgency": {
+      "label": "critical deadline or blocking issue",
+      "conf": 0.977
+     },
+     "churn_risk": {
+      "label": "yes",
+      "conf": 1.0
+     },
+     "refund_requested": {
+      "label": "yes",
+      "conf": 1.0
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "multilingual de",
+    "backend": "e4b-vllm",
+    "status": 200,
+    "ms": 94.9,
+    "answers": {
+     "department": {
+      "label": "billing",
+      "conf": 1.0
+     },
+     "urgency": {
+      "label": "critical deadline or blocking issue",
+      "conf": 0.981
+     },
+     "churn_risk": {
+      "label": "yes",
+      "conf": 1.0
+     },
+     "refund_requested": {
+      "label": "yes",
+      "conf": 1.0
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "multilingual ja",
+    "backend": "e4b-vllm",
+    "status": 200,
+    "ms": 83.0,
+    "answers": {
+     "department": {
+      "label": "billing",
+      "conf": 1.0
+     },
+     "urgency": {
+      "label": "critical deadline or blocking issue",
+      "conf": 0.962
+     },
+     "churn_risk": {
+      "label": "yes",
+      "conf": 1.0
+     },
+     "refund_requested": {
+      "label": "yes",
+      "conf": 1.0
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "multilingual es",
+    "backend": "e4b-vllm",
+    "status": 200,
+    "ms": 49.7,
+    "answers": {
+     "department": {
+      "label": "billing",
+      "conf": 1.0
+     },
+     "urgency": {
+      "label": "critical deadline or blocking issue",
+      "conf": 0.988
+     },
+     "churn_risk": {
+      "label": "yes",
+      "conf": 1.0
+     },
+     "refund_requested": {
+      "label": "yes",
+      "conf": 1.0
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "multilingual ta",
+    "backend": "e4b-vllm",
+    "status": 200,
+    "ms": 55.9,
+    "answers": {
+     "department": {
+      "label": "billing",
+      "conf": 1.0
+     },
+     "urgency": {
+      "label": "critical deadline or blocking issue",
+      "conf": 0.977
+     },
+     "churn_risk": {
+      "label": "yes",
+      "conf": 1.0
+     },
+     "refund_requested": {
+      "label": "yes",
+      "conf": 1.0
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "multilingual ar",
+    "backend": "e4b-vllm",
+    "status": 200,
+    "ms": 55.3,
+    "answers": {
+     "department": {
+      "label": "billing",
+      "conf": 1.0
+     },
+     "urgency": {
+      "label": "critical deadline or blocking issue",
+      "conf": 0.984
+     },
+     "churn_risk": {
+      "label": "yes",
+      "conf": 1.0
+     },
+     "refund_requested": {
+      "label": "yes",
+      "conf": 1.0
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "depends_on",
+    "backend": "e4b-vllm",
+    "status": 200,
+    "ms": 61.9,
+    "answers": {
+     "category": {
+      "label": "hardware",
+      "conf": 1.0
+     },
+     "escalate": {
+      "label": "yes",
+      "conf": 0.993
+     }
+    },
+    "misses": [
+     "category"
+    ],
+    "ok": false
+   },
+   {
+    "name": "ask_if (asked)",
+    "backend": "e4b-vllm",
+    "status": 200,
+    "ms": 62.1,
+    "answers": {
+     "cancel": {
+      "label": "yes",
+      "conf": 1.0
+     },
+     "reason": {
+      "label": "price",
+      "conf": 1.0
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "ask_if (skipped)",
+    "backend": "e4b-vllm",
+    "status": 200,
+    "ms": 23.2,
+    "answers": {
+     "cancel": {
+      "label": "no",
+      "conf": 1.0
+     },
+     "reason": {
+      "label": null,
+      "conf": null
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "mode=independent",
+    "backend": "e4b-vllm",
+    "status": 200,
+    "ms": 57.3,
+    "answers": {
+     "tone": {
+      "label": "annoyed",
+      "conf": 0.867
+     },
+     "complaint": {
+      "label": "no",
+      "conf": 0.992
+     }
+    },
+    "misses": [
+     "complaint"
+    ],
+    "ok": false
+   },
+   {
+    "name": "mode=joint",
+    "backend": "e4b-vllm",
+    "status": 200,
+    "ms": 42.9,
+    "answers": {
+     "tone": {
+      "label": "annoyed",
+      "conf": 0.867
+     },
+     "complaint": {
+      "label": "no",
+      "conf": 0.905
+     }
+    },
+    "misses": [
+     "complaint"
+    ],
+    "ok": false
+   },
+   {
+    "name": "ambiguous state",
+    "backend": "e4b-vllm",
+    "status": 200,
+    "ms": 22.4,
+    "answers": {
+     "department": {
+      "label": "other",
+      "conf": 0.998
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "think=256",
+    "backend": "e4b-vllm",
+    "status": 200,
+    "ms": 2233.8,
+    "answers": {
+     "on_time": {
+      "label": "yes",
+      "conf": 1.0
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "image color red",
+    "backend": "e4b-vllm",
+    "status": 200,
+    "ms": 113.8,
+    "answers": {
+     "color": {
+      "label": "red",
+      "conf": 1.0
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "image color green",
+    "backend": "e4b-vllm",
+    "status": 200,
+    "ms": 87.0,
+    "answers": {
+     "color": {
+      "label": "green",
+      "conf": 1.0
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "image color blue",
+    "backend": "e4b-vllm",
+    "status": 200,
+    "ms": 84.4,
+    "answers": {
+     "color": {
+      "label": "blue",
+      "conf": 1.0
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "bad type -> 422",
+    "backend": "e4b-vllm",
+    "status": 422,
+    "ms": 3.2,
+    "ok": true
+   },
+   {
+    "name": "missing state -> 422",
+    "backend": "e4b-vllm",
+    "status": 422,
+    "ms": 3.3,
+    "ok": true
+   },
+   {
+    "name": "27 options -> 422",
+    "backend": "e4b-vllm",
+    "status": 422,
+    "ms": 2.0,
+    "ok": true
+   }
+  ],
+  "e4b-sglang": [
+   {
+    "name": "noul yes",
+    "backend": "e4b-sglang",
+    "status": 200,
+    "ms": 120.8,
+    "answers": {
+     "outage": {
+      "label": "yes",
+      "conf": 1.0
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "noul no",
+    "backend": "e4b-sglang",
+    "status": 200,
+    "ms": 63.5,
+    "answers": {
+     "outage": {
+      "label": "no",
+      "conf": 1.0
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "noul with true/false criteria",
+    "backend": "e4b-sglang",
+    "status": 200,
+    "ms": 60.7,
+    "answers": {
+     "spam": {
+      "label": "yes",
+      "conf": 1.0
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "choice 4-way",
+    "backend": "e4b-sglang",
+    "status": 200,
+    "ms": 57.2,
+    "answers": {
+     "department": {
+      "label": "billing",
+      "conf": 1.0
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "choice null descriptions",
+    "backend": "e4b-sglang",
+    "status": 200,
+    "ms": 60.8,
+    "answers": {
+     "lang": {
+      "label": "rust",
+      "conf": 0.999
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "choice 12 options",
+    "backend": "e4b-sglang",
+    "status": 200,
+    "ms": 64.7,
+    "answers": {
+     "intent": {
+      "label": "alarm_set",
+      "conf": 1.0
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "score ordinal high",
+    "backend": "e4b-sglang",
+    "status": 200,
+    "ms": 56.2,
+    "answers": {
+     "urgency": {
+      "label": "critical deadline or blocking issue",
+      "conf": 0.999
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "score ordinal low",
+    "backend": "e4b-sglang",
+    "status": 200,
+    "ms": 54.6,
+    "answers": {
+     "urgency": {
+      "label": "not urgent",
+      "conf": 1.0
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "score 1-5 sentiment",
+    "backend": "e4b-sglang",
+    "status": 200,
+    "ms": 58.9,
+    "answers": {
+     "stars": {
+      "label": "1 star",
+      "conf": 0.998
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "4 mixed questions, JSON state",
+    "backend": "e4b-sglang",
+    "status": 200,
+    "ms": 80.1,
+    "answers": {
+     "department": {
+      "label": "billing",
+      "conf": 1.0
+     },
+     "urgency": {
+      "label": "critical deadline or blocking issue",
+      "conf": 0.971
+     },
+     "churn_risk": {
+      "label": "yes",
+      "conf": 1.0
+     },
+     "refund_requested": {
+      "label": "yes",
+      "conf": 1.0
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "string state",
+    "backend": "e4b-sglang",
+    "status": 200,
+    "ms": 57.5,
+    "answers": {
+     "department": {
+      "label": "billing",
+      "conf": 1.0
+     },
+     "urgency": {
+      "label": "critical deadline or blocking issue",
+      "conf": 0.979
+     },
+     "churn_risk": {
+      "label": "yes",
+      "conf": 1.0
+     },
+     "refund_requested": {
+      "label": "yes",
+      "conf": 1.0
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "conversation state",
+    "backend": "e4b-sglang",
+    "status": 200,
+    "ms": 63.7,
+    "answers": {
+     "department": {
+      "label": "billing",
+      "conf": 1.0
+     },
+     "urgency": {
+      "label": "critical deadline or blocking issue",
+      "conf": 0.982
+     },
+     "churn_risk": {
+      "label": "yes",
+      "conf": 1.0
+     },
+     "refund_requested": {
+      "label": "yes",
+      "conf": 1.0
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "multilingual hi",
+    "backend": "e4b-sglang",
+    "status": 200,
+    "ms": 62.1,
+    "answers": {
+     "department": {
+      "label": "billing",
+      "conf": 1.0
+     },
+     "urgency": {
+      "label": "critical deadline or blocking issue",
+      "conf": 0.974
+     },
+     "churn_risk": {
+      "label": "yes",
+      "conf": 1.0
+     },
+     "refund_requested": {
+      "label": "yes",
+      "conf": 1.0
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "multilingual de",
+    "backend": "e4b-sglang",
+    "status": 200,
+    "ms": 60.5,
+    "answers": {
+     "department": {
+      "label": "billing",
+      "conf": 1.0
+     },
+     "urgency": {
+      "label": "critical deadline or blocking issue",
+      "conf": 0.982
+     },
+     "churn_risk": {
+      "label": "yes",
+      "conf": 1.0
+     },
+     "refund_requested": {
+      "label": "yes",
+      "conf": 1.0
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "multilingual ja",
+    "backend": "e4b-sglang",
+    "status": 200,
+    "ms": 59.1,
+    "answers": {
+     "department": {
+      "label": "billing",
+      "conf": 1.0
+     },
+     "urgency": {
+      "label": "critical deadline or blocking issue",
+      "conf": 0.964
+     },
+     "churn_risk": {
+      "label": "yes",
+      "conf": 1.0
+     },
+     "refund_requested": {
+      "label": "yes",
+      "conf": 1.0
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "multilingual es",
+    "backend": "e4b-sglang",
+    "status": 200,
+    "ms": 56.2,
+    "answers": {
+     "department": {
+      "label": "billing",
+      "conf": 1.0
+     },
+     "urgency": {
+      "label": "critical deadline or blocking issue",
+      "conf": 0.988
+     },
+     "churn_risk": {
+      "label": "yes",
+      "conf": 1.0
+     },
+     "refund_requested": {
+      "label": "yes",
+      "conf": 1.0
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "multilingual ta",
+    "backend": "e4b-sglang",
+    "status": 200,
+    "ms": 56.8,
+    "answers": {
+     "department": {
+      "label": "billing",
+      "conf": 1.0
+     },
+     "urgency": {
+      "label": "critical deadline or blocking issue",
+      "conf": 0.975
+     },
+     "churn_risk": {
+      "label": "yes",
+      "conf": 1.0
+     },
+     "refund_requested": {
+      "label": "yes",
+      "conf": 1.0
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "multilingual ar",
+    "backend": "e4b-sglang",
+    "status": 200,
+    "ms": 61.6,
+    "answers": {
+     "department": {
+      "label": "billing",
+      "conf": 1.0
+     },
+     "urgency": {
+      "label": "critical deadline or blocking issue",
+      "conf": 0.984
+     },
+     "churn_risk": {
+      "label": "yes",
+      "conf": 1.0
+     },
+     "refund_requested": {
+      "label": "yes",
+      "conf": 1.0
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "depends_on",
+    "backend": "e4b-sglang",
+    "status": 200,
+    "ms": 108.7,
+    "answers": {
+     "category": {
+      "label": "hardware",
+      "conf": 1.0
+     },
+     "escalate": {
+      "label": "yes",
+      "conf": 0.994
+     }
+    },
+    "misses": [
+     "category"
+    ],
+    "ok": false
+   },
+   {
+    "name": "ask_if (asked)",
+    "backend": "e4b-sglang",
+    "status": 200,
+    "ms": 110.6,
+    "answers": {
+     "cancel": {
+      "label": "yes",
+      "conf": 1.0
+     },
+     "reason": {
+      "label": "price",
+      "conf": 1.0
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "ask_if (skipped)",
+    "backend": "e4b-sglang",
+    "status": 200,
+    "ms": 53.2,
+    "answers": {
+     "cancel": {
+      "label": "no",
+      "conf": 1.0
+     },
+     "reason": {
+      "label": null,
+      "conf": null
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "mode=independent",
+    "backend": "e4b-sglang",
+    "status": 200,
+    "ms": 59.6,
+    "answers": {
+     "tone": {
+      "label": "annoyed",
+      "conf": 0.784
+     },
+     "complaint": {
+      "label": "no",
+      "conf": 0.993
+     }
+    },
+    "misses": [
+     "complaint"
+    ],
+    "ok": false
+   },
+   {
+    "name": "mode=joint",
+    "backend": "e4b-sglang",
+    "status": 200,
+    "ms": 105.5,
+    "answers": {
+     "tone": {
+      "label": "annoyed",
+      "conf": 0.809
+     },
+     "complaint": {
+      "label": "no",
+      "conf": 0.926
+     }
+    },
+    "misses": [
+     "complaint"
+    ],
+    "ok": false
+   },
+   {
+    "name": "ambiguous state",
+    "backend": "e4b-sglang",
+    "status": 200,
+    "ms": 55.0,
+    "answers": {
+     "department": {
+      "label": "other",
+      "conf": 0.998
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "think=256",
+    "backend": "e4b-sglang",
+    "status": 200,
+    "ms": 2275.2,
+    "answers": {
+     "on_time": {
+      "label": "yes",
+      "conf": 1.0
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "image color red",
+    "backend": "e4b-sglang",
+    "status": 200,
+    "ms": 148.6,
+    "answers": {
+     "color": {
+      "label": "red",
+      "conf": 1.0
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "image color green",
+    "backend": "e4b-sglang",
+    "status": 200,
+    "ms": 129.8,
+    "answers": {
+     "color": {
+      "label": "green",
+      "conf": 1.0
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "image color blue",
+    "backend": "e4b-sglang",
+    "status": 200,
+    "ms": 120.7,
+    "answers": {
+     "color": {
+      "label": "blue",
+      "conf": 1.0
+     }
+    },
+    "misses": [],
+    "ok": true
+   },
+   {
+    "name": "bad type -> 422",
+    "backend": "e4b-sglang",
+    "status": 422,
+    "ms": 4.3,
+    "ok": true
+   },
+   {
+    "name": "missing state -> 422",
+    "backend": "e4b-sglang",
+    "status": 422,
+    "ms": 2.1,
+    "ok": true
+   },
+   {
+    "name": "27 options -> 422",
+    "backend": "e4b-sglang",
+    "status": 422,
+    "ms": 2.1,
+    "ok": true
+   }
+  ]
+ },
+ "public": {
+  "ag_news/e4b-vllm": {
+   "acc": 0.733,
+   "n": 300,
+   "errors": 0,
+   "mean_conf": 0.964,
+   "ece": 0.231,
+   "wall_s": 2.4
+  },
+  "emotion/e4b-vllm": {
+   "acc": 0.543,
+   "n": 300,
+   "errors": 0,
+   "mean_conf": 0.926,
+   "ece": 0.387,
+   "wall_s": 1.9
+  },
+  "sst2/e4b-vllm": {
+   "acc": 0.933,
+   "n": 300,
+   "errors": 0,
+   "mean_conf": 0.983,
+   "ece": 0.056,
+   "wall_s": 1.8
+  },
+  "sst2_choice/e4b-vllm": {
+   "acc": 0.947,
+   "n": 300,
+   "errors": 0,
+   "mean_conf": 0.983,
+   "ece": 0.04,
+   "wall_s": 1.9
+  },
+  "ag_news/e4b-sglang": {
+   "acc": 0.737,
+   "n": 300,
+   "errors": 0,
+   "mean_conf": 0.962,
+   "ece": 0.225,
+   "wall_s": 2.7
+  },
+  "emotion/e4b-sglang": {
+   "acc": 0.547,
+   "n": 300,
+   "errors": 0,
+   "mean_conf": 0.927,
+   "ece": 0.385,
+   "wall_s": 2.7
+  },
+  "sst2/e4b-sglang": {
+   "acc": 0.937,
+   "n": 300,
+   "errors": 0,
+   "mean_conf": 0.983,
+   "ece": 0.052,
+   "wall_s": 2.7
+  },
+  "sst2_choice/e4b-sglang": {
+   "acc": 0.95,
+   "n": 300,
+   "errors": 0,
+   "mean_conf": 0.98,
+   "ece": 0.04,
+   "wall_s": 2.6
+  }
+ },
+ "typed": {
+  "e4b-vllm": {
+   "raw": {
+    "accuracy": 0.6395,
+    "soft_accuracy": 0.601,
+    "brier": 0.3288,
+    "ece": 0.2804,
+    "score_mae": 0.4399,
+    "mean_conf": 0.9199,
+    "decisions": 2000
+   },
+   "errors": 0,
+   "wall_s": 6.2,
+   "per_workflow": {
+    "agent_trace_observability": 0.552,
+    "customer_service": 0.69,
+    "invoice_processing": 0.654,
+    "security_incidents": 0.662
+   },
+   "temperatures": {
+    "noul:2": 7.8751,
+    "choice:4": 7.1355,
+    "score:5": 5.3657,
+    "score:4": 5.0612,
+    "choice:5": 3.6927
+   },
+   "calibrated": {
+    "accuracy": 0.6395,
+    "soft_accuracy": 0.4997,
+    "brier": 0.1097,
+    "ece": 0.0671,
+    "score_mae": 0.3905,
+    "mean_conf": 0.5777,
+    "decisions": 2000
+   },
+   "calibration_file": "sglang_exp/calibration/e4b-vllm.json"
+  },
+  "e4b-sglang": {
+   "raw": {
+    "accuracy": 0.64,
+    "soft_accuracy": 0.6019,
+    "brier": 0.3258,
+    "ece": 0.279,
+    "score_mae": 0.4391,
+    "mean_conf": 0.919,
+    "decisions": 2000
+   },
+   "errors": 0,
+   "wall_s": 23.1,
+   "per_workflow": {
+    "agent_trace_observability": 0.546,
+    "customer_service": 0.694,
+    "invoice_processing": 0.654,
+    "security_incidents": 0.666
+   },
+   "temperatures": {
+    "noul:2": 7.8727,
+    "choice:4": 7.1347,
+    "score:5": 5.3762,
+    "score:4": 5.0318,
+    "choice:5": 3.5611
+   },
+   "calibrated": {
+    "accuracy": 0.64,
+    "soft_accuracy": 0.5009,
+    "brier": 0.1086,
+    "ece": 0.068,
+    "score_mae": 0.3894,
+    "mean_conf": 0.5785,
+    "decisions": 2000
+   },
+   "calibration_file": "sglang_exp/calibration/e4b-sglang.json"
+  }
+ },
+ "latency": {
+  "e4b-vllm 1q": {
+   "p50_ms": 23.9,
+   "p90_ms": 28.4
+  },
+  "e4b-vllm 4q": {
+   "p50_ms": 40.2,
+   "p90_ms": 41.5
+  },
+  "e4b-vllm typed-case": {
+   "p50_ms": 56.2,
+   "p90_ms": 64.2
+  },
+  "e4b-vllm 4q c=1": {
+   "req_per_s": 24.8,
+   "decisions_per_s": 99.1,
+   "p50_ms": 41,
+   "p90_ms": 42,
+   "errors": 0
+  },
+  "e4b-vllm 4q c=8": {
+   "req_per_s": 76.5,
+   "decisions_per_s": 305.9,
+   "p50_ms": 106,
+   "p90_ms": 114,
+   "errors": 0
+  },
+  "e4b-vllm 4q c=32": {
+   "req_per_s": 133.0,
+   "decisions_per_s": 532.0,
+   "p50_ms": 221,
+   "p90_ms": 261,
+   "errors": 0
+  },
+  "e4b-vllm 4q c=64": {
+   "req_per_s": 118.5,
+   "decisions_per_s": 474.1,
+   "p50_ms": 518,
+   "p90_ms": 542,
+   "errors": 0
+  },
+  "e4b-sglang 1q": {
+   "p50_ms": 54.2,
+   "p90_ms": 58.3
+  },
+  "e4b-sglang 4q": {
+   "p50_ms": 58.9,
+   "p90_ms": 61.6
+  },
+  "e4b-sglang typed-case": {
+   "p50_ms": 64.8,
+   "p90_ms": 96.8
+  },
+  "e4b-sglang 4q c=1": {
+   "req_per_s": 17.3,
+   "decisions_per_s": 69.2,
+   "p50_ms": 57,
+   "p90_ms": 61,
+   "errors": 0
+  },
+  "e4b-sglang 4q c=8": {
+   "req_per_s": 56.8,
+   "decisions_per_s": 227.2,
+   "p50_ms": 147,
+   "p90_ms": 169,
+   "errors": 0
+  },
+  "e4b-sglang 4q c=32": {
+   "req_per_s": 129.1,
+   "decisions_per_s": 516.3,
+   "p50_ms": 234,
+   "p90_ms": 282,
+   "errors": 0
+  },
+  "e4b-sglang 4q c=64": {
+   "req_per_s": 174.4,
+   "decisions_per_s": 697.7,
+   "p50_ms": 341,
+   "p90_ms": 379,
+   "errors": 0
+  }
+ }
+}

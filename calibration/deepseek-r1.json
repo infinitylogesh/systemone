@@ -1,0 +1,12 @@
+{
+ "model": "deepseek-ai/DeepSeek-R1-Distill-Qwen-32B",
+ "served_as": "deepseek-r1",
+ "fitted_on": "LocalLLaMA/typed-decisions train (300 cases)",
+ "temperatures": {
+  "noul:2": 4.5146,
+  "choice:4": 2.6231,
+  "score:5": 2.1833,
+  "score:4": 2.8919,
+  "choice:5": 2.3024
+ }
+}

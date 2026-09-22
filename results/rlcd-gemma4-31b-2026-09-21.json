@@ -1,0 +1,2402 @@
+{
+ "experiment": "Gemma 4 31B (google/gemma-4-31B-it, bf16) + LoRA r16, 1 epoch on LocalLLaMA/typed-decisions train (900 cases / 4500 questions; 300 held out for temperatures), evaluated on the 400-case test split",
+ "date": "2026-09-21",
+ "hardware": "1x RTX PRO 6000 Blackwell 96GB",
+ "reward_bounds": {
+  "oracle_report_gold": -0.194,
+  "uniform": -0.834
+ },
+ "bf16": {
+  "features": {
+   "base": [
+    {
+     "name": "noul yes",
+     "backend": "base",
+     "status": 200,
+     "ms": 258.1,
+     "answers": {
+      "outage": {
+       "label": "yes",
+       "conf": 1.0
+      }
+     },
+     "misses": [],
+     "ok": true
+    },
+    {
+     "name": "noul no",
+     "backend": "base",
+     "status": 200,
+     "ms": 56.1,
+     "answers": {
+      "outage": {
+       "label": "no",
+       "conf": 1.0
+      }
+     },
+     "misses": [],
+     "ok": true
+    },
+    {
+     "name": "noul with true/false criteria",
+     "backend": "base",
+     "status": 200,
+     "ms": 62.7,
+     "answers": {
+      "spam": {
+       "label": "yes",
+       "conf": 1.0
+      }
+     },
+     "misses": [],
+     "ok": true
+    },
+    {
+     "name": "choice 4-way",
+     "backend": "base",
+     "status": 200,
+     "ms": 135.0,
+     "answers": {
+      "department": {
+       "label": "billing",
+       "conf": 1.0
+      }
+     },
+     "misses": [],
+     "ok": true
+    },
+    {
+     "name": "choice null descriptions",
+     "backend": "base",
+     "status": 200,
+     "ms": 92.6,
+     "answers": {
+      "lang": {
+       "label": "rust",
+       "conf": 1.0
+      }
+     },
+     "misses": [],
+     "ok": true
+    },
+    {
+     "name": "choice 12 options",
+     "backend": "base",
+     "status": 200,
+     "ms": 281.3,
+     "answers": {
+      "intent": {
+       "label": "alarm_set",
+       "conf": 1.0
+      }
+     },
+     "misses": [],
+     "ok": true
+    },
+    {
+     "name": "score ordinal high",
+     "backend": "base",
+     "status": 200,
+     "ms": 62.7,
+     "answers": {
+      "urgency": {
+       "label": "critical deadline or blocking issue",
+       "conf": 1.0
+      }
+     },
+     "misses": [],
+     "ok": true
+    },
+    {
+     "name": "score ordinal low",
+     "backend": "base",
+     "status": 200,
+     "ms": 56.8,
+     "answers": {
+      "urgency": {
+       "label": "not urgent",
+       "conf": 1.0
+      }
+     },
+     "misses": [],
+     "ok": true
+    },
+    {
+     "name": "score 1-5 sentiment",
+     "backend": "base",
+     "status": 200,
+     "ms": 68.6,
+     "answers": {
+      "stars": {
+       "label": "1 star",
+       "conf": 1.0
+      }
+     },
+     "misses": [],
+     "ok": true
+    },
+    {
+     "name": "4 mixed questions, JSON state",
+     "backend": "base",
+     "status": 200,
+     "ms": 157.8,
+     "answers": {
+      "department": {
+       "label": "billing",
+       "conf": 1.0
+      },
+      "urgency": {
+       "label": "critical deadline or blocking issue",
+       "conf": 1.0
+      },
+      "churn_risk": {
+       "label": "yes",
+       "conf": 1.0
+      },
+      "refund_requested": {
+       "label": "yes",
+       "conf": 1.0
+      }
+     },
+     "misses": [],
+     "ok": true
+    },
+    {
+     "name": "string state",
+     "backend": "base",
+     "status": 200,
+     "ms": 68.0,
+     "answers": {
+      "department": {
+       "label": "billing",
+       "conf": 1.0
+      },
+      "urgency": {
+       "label": "critical deadline or blocking issue",
+       "conf": 1.0
+      },
+      "churn_risk": {
+       "label": "yes",
+       "conf": 1.0
+      },
+      "refund_requested": {
+       "label": "yes",
+       "conf": 1.0
+      }
+     },
+     "misses": [],
+     "ok": true
+    },
+    {
+     "name": "conversation state",
+     "backend": "base",
+     "status": 200,
+     "ms": 92.9,
+     "answers": {
+      "department": {
+       "label": "billing",
+       "conf": 1.0
+      },
+      "urgency": {
+       "label": "critical deadline or blocking issue",
+       "conf": 1.0
+      },
+      "churn_risk": {
+       "label": "yes",
+       "conf": 1.0
+      },
+      "refund_requested": {
+       "label": "yes",
+       "conf": 1.0
+      }
+     },
+     "misses": [],
+     "ok": true
+    },
+    {
+     "name": "multilingual hi",
+     "backend": "base",
+     "status": 200,
+     "ms": 107.7,
+     "answers": {
+      "department": {
+       "label": "billing",
+       "conf": 1.0
+      },
+      "urgency": {
+       "label": "critical deadline or blocking issue",
+       "conf": 1.0
+      },
+      "churn_risk": {
+       "label": "yes",
+       "conf": 1.0
+      },
+      "refund_requested": {
+       "label": "yes",
+       "conf": 1.0
+      }
+     },
+     "misses": [],
+     "ok": true
+    },
+    {
+     "name": "multilingual de",
+     "backend": "base",
+     "status": 200,
+     "ms": 109.2,
+     "answers": {
+      "department": {
+       "label": "billing",
+       "conf": 1.0
+      },
+      "urgency": {
+       "label": "critical deadline or blocking issue",
+       "conf": 1.0
+      },
+      "churn_risk": {
+       "label": "yes",
+       "conf": 1.0
+      },
+      "refund_requested": {
+       "label": "yes",
+       "conf": 1.0
+      }
+     },
+     "misses": [],
+     "ok": true
+    },
+    {
+     "name": "multilingual ja",
+     "backend": "base",
+     "status": 200,
+     "ms": 111.4,
+     "answers": {
+      "department": {
+       "label": "billing",
+       "conf": 1.0
+      },
+      "urgency": {
+       "label": "critical deadline or blocking issue",
+       "conf": 1.0
+      },
+      "churn_risk": {
+       "label": "yes",
+       "conf": 1.0
+      },
+      "refund_requested": {
+       "label": "yes",
+       "conf": 1.0
+      }
+     },
+     "misses": [],
+     "ok": true
+    },
+    {
+     "name": "multilingual es",
+     "backend": "base",
+     "status": 200,
+     "ms": 115.4,
+     "answers": {
+      "department": {
+       "label": "billing",
+       "conf": 1.0
+      },
+      "urgency": {
+       "label": "critical deadline or blocking issue",
+       "conf": 1.0
+      },
+      "churn_risk": {
+       "label": "yes",
+       "conf": 1.0
+      },
+      "refund_requested": {
+       "label": "yes",
+       "conf": 1.0
+      }
+     },
+     "misses": [],
+     "ok": true
+    },
+    {
+     "name": "multilingual ta",
+     "backend": "base",
+     "status": 200,
+     "ms": 121.3,
+     "answers": {
+      "department": {
+       "label": "billing",
+       "conf": 1.0
+      },
+      "urgency": {
+       "label": "critical deadline or blocking issue",
+       "conf": 1.0
+      },
+      "churn_risk": {
+       "label": "yes",
+       "conf": 1.0
+      },
+      "refund_requested": {
+       "label": "yes",
+       "conf": 1.0
+      }
+     },
+     "misses": [],
+     "ok": true
+    },
+    {
+     "name": "multilingual ar",
+     "backend": "base",
+     "status": 200,
+     "ms": 118.1,
+     "answers": {
+      "department": {
+       "label": "billing",
+       "conf": 1.0
+      },
+      "urgency": {
+       "label": "critical deadline or blocking issue",
+       "conf": 1.0
+      },
+      "churn_risk": {
+       "label": "yes",
+       "conf": 1.0
+      },
+      "refund_requested": {
+       "label": "yes",
+       "conf": 1.0
+      }
+     },
+     "misses": [],
+     "ok": true
+    },
+    {
+     "name": "depends_on",
+     "backend": "base",
+     "status": 200,
+     "ms": 118.4,
+     "answers": {
+      "category": {
+       "label": "software",
+       "conf": 1.0
+      },
+      "escalate": {
+       "label": "yes",
+       "conf": 0.777
+      }
+     },
+     "misses": [],
+     "ok": true
+    },
+    {
+     "name": "ask_if (asked)",
+     "backend": "base",
+     "status": 200,
+     "ms": 122.3,
+     "answers": {
+      "cancel": {
+       "label": "yes",
+       "conf": 1.0
+      },
+      "reason": {
+       "label": "price",
+       "conf": 1.0
+      }
+     },
+     "misses": [],
+     "ok": true
+    },
+    {
+     "name": "ask_if (skipped)",
+     "backend": "base",
+     "status": 200,
+     "ms": 57.6,
+     "answers": {
+      "cancel": {
+       "label": "no",
+       "conf": 1.0
+      },
+      "reason": {
+       "label": null,
+       "conf": null
+      }
+     },
+     "misses": [],
+     "ok": true
+    },
+    {
+     "name": "mode=independent",
+     "backend": "base",
+     "status": 200,
+     "ms": 109.3,
+     "answers": {
+      "tone": {
+       "label": "annoyed",
+       "conf": 0.999
+      },
+      "complaint": {
+       "label": "yes",
+       "conf": 1.0
+      }
+     },
+     "misses": [],
+     "ok": true
+    },
+    {
+     "name": "mode=joint",
+     "backend": "base",
+     "status": 200,
+     "ms": 118.5,
+     "answers": {
+      "tone": {
+       "label": "annoyed",
+       "conf": 0.999
+      },
+      "complaint": {
+       "label": "yes",
+       "conf": 1.0
+      }
+     },
+     "misses": [],
+     "ok": true
+    },
+    {
+     "name": "ambiguous state",
+     "backend": "base",
+     "status": 200,
+     "ms": 59.7,
+     "answers": {
+      "department": {
+       "label": "other",
+       "conf": 1.0
+      }
+     },
+     "misses": [],
+     "ok": true
+    },
+    {
+     "name": "think=256",
+     "backend": "base",
+     "status": 200,
+     "ms": 7001.6,
+     "answers": {
+      "on_time": {
+       "label": "yes",
+       "conf": 1.0
+      }
+     },
+     "misses": [],
+     "ok": true
+    },
+    {
+     "name": "image color red",
+     "backend": "base",
+     "status": 200,
+     "ms": 183.0,
+     "answers": {
+      "color": {
+       "label": "red",
+       "conf": 1.0
+      }
+     },
+     "misses": [],
+     "ok": true
+    },
+    {
+     "name": "image color green",
+     "backend": "base",
+     "status": 200,
+     "ms": 159.0,
+     "answers": {
+      "color": {
+       "label": "green",
+       "conf": 1.0
+      }
+     },
+     "misses": [],
+     "ok": true
+    },
+    {
+     "name": "image color blue",
+     "backend": "base",
+     "status": 200,
+     "ms": 163.3,
+     "answers": {
+      "color": {
+       "label": "blue",
+       "conf": 1.0
+      }
+     },
+     "misses": [],
+     "ok": true
+    },
+    {
+     "name": "bad type -> 422",
+     "backend": "base",
+     "status": 422,
+     "ms": 1.7,
+     "ok": true
+    },
+    {
+     "name": "missing state -> 422",
+     "backend": "base",
+     "status": 422,
+     "ms": 1.1,
+     "ok": true
+    },
+    {
+     "name": "27 options -> 422",
+     "backend": "base",
+     "status": 422,
+     "ms": 1.0,
+     "ok": true
+    }
+   ],
+   "rlcd": [
+    {
+     "name": "noul yes",
+     "backend": "rlcd",
+     "status": 200,
+     "ms": 90.3,
+     "answers": {
+      "outage": {
+       "label": "yes",
+       "conf": 0.924
+      }
+     },
+     "misses": [],
+     "ok": true
+    },
+    {
+     "name": "noul no",
+     "backend": "rlcd",
+     "status": 200,
+     "ms": 59.9,
+     "answers": {
+      "outage": {
+       "label": "no",
+       "conf": 0.963
+      }
+     },
+     "misses": [],
+     "ok": true
+    },
+    {
+     "name": "noul with true/false criteria",
+     "backend": "rlcd",
+     "status": 200,
+     "ms": 66.9,
+     "answers": {
+      "spam": {
+       "label": "yes",
+       "conf": 0.915
+      }
+     },
+     "misses": [],
+     "ok": true
+    },
+    {
+     "name": "choice 4-way",
+     "backend": "rlcd",
+     "status": 200,
+     "ms": 109.4,
+     "answers": {
+      "department": {
+       "label": "billing",
+       "conf": 0.99
+      }
+     },
+     "misses": [],
+     "ok": true
+    },
+    {
+     "name": "choice null descriptions",
+     "backend": "rlcd",
+     "status": 200,
+     "ms": 71.1,
+     "answers": {
+      "lang": {
+       "label": "rust",
+       "conf": 0.981
+      }
+     },
+     "misses": [],
+     "ok": true
+    },
+    {
+     "name": "choice 12 options",
+     "backend": "rlcd",
+     "status": 200,
+     "ms": 600.9,
+     "answers": {
+      "intent": {
+       "label": "alarm_set",
+       "conf": 0.969
+      }
+     },
+     "misses": [],
+     "ok": true
+    },
+    {
+     "name": "score ordinal high",
+     "backend": "rlcd",
+     "status": 200,
+     "ms": 76.7,
+     "answers": {
+      "urgency": {
+       "label": "critical deadline or blocking issue",
+       "conf": 0.956
+      }
+     },
+     "misses": [],
+     "ok": true
+    },
+    {
+     "name": "score ordinal low",
+     "backend": "rlcd",
+     "status": 200,
+     "ms": 61.6,
+     "answers": {
+      "urgency": {
+       "label": "not urgent",
+       "conf": 0.948
+      }
+     },
+     "misses": [],
+     "ok": true
+    },
+    {
+     "name": "score 1-5 sentiment",
+     "backend": "rlcd",
+     "status": 200,
+     "ms": 71.2,
+     "answers": {
+      "stars": {
+       "label": "1 star",
+       "conf": 0.995
+      }
+     },
+     "misses": [],
+     "ok": true
+    },
+    {
+     "name": "4 mixed questions, JSON state",
+     "backend": "rlcd",
+     "status": 200,
+     "ms": 133.3,
+     "answers": {
+      "department": {
+       "label": "billing",
+       "conf": 0.981
+      },
+      "urgency": {
+       "label": "critical deadline or blocking issue",
+       "conf": 0.771
+      },
+      "churn_risk": {
+       "label": "yes",
+       "conf": 0.893
+      },
+      "refund_requested": {
+       "label": "yes",
+       "conf": 0.94
+      }
+     },
+     "misses": [],
+     "ok": true
+    },
+    {
+     "name": "string state",
+     "backend": "rlcd",
+     "status": 200,
+     "ms": 114.9,
+     "answers": {
+      "department": {
+       "label": "billing",
+       "conf": 0.979
+      },
+      "urgency": {
+       "label": "critical deadline or blocking issue",
+       "conf": 0.771
+      },
+      "churn_risk": {
+       "label": "yes",
+       "conf": 0.881
+      },
+      "refund_requested": {
+       "label": "yes",
+       "conf": 0.947
+      }
+     },
+     "misses": [],
+     "ok": true
+    },
+    {
+     "name": "conversation state",
+     "backend": "rlcd",
+     "status": 200,
+     "ms": 124.7,
+     "answers": {
+      "department": {
+       "label": "billing",
+       "conf": 0.976
+      },
+      "urgency": {
+       "label": "critical deadline or blocking issue",
+       "conf": 0.792
+      },
+      "churn_risk": {
+       "label": "yes",
+       "conf": 0.893
+      },
+      "refund_requested": {
+       "label": "yes",
+       "conf": 0.947
+      }
+     },
+     "misses": [],
+     "ok": true
+    },
+    {
+     "name": "multilingual hi",
+     "backend": "rlcd",
+     "status": 200,
+     "ms": 74.5,
+     "answers": {
+      "department": {
+       "label": "billing",
+       "conf": 0.978
+      },
+      "urgency": {
+       "label": "critical deadline or blocking issue",
+       "conf": 0.774
+      },
+      "churn_risk": {
+       "label": "yes",
+       "conf": 0.893
+      },
+      "refund_requested": {
+       "label": "yes",
+       "conf": 0.932
+      }
+     },
+     "misses": [],
+     "ok": true
+    },
+    {
+     "name": "multilingual de",
+     "backend": "rlcd",
+     "status": 200,
+     "ms": 115.7,
+     "answers": {
+      "department": {
+       "label": "billing",
+       "conf": 0.974
+      },
+      "urgency": {
+       "label": "critical deadline or blocking issue",
+       "conf": 0.774
+      },
+      "churn_risk": {
+       "label": "yes",
+       "conf": 0.881
+      },
+      "refund_requested": {
+       "label": "yes",
+       "conf": 0.94
+      }
+     },
+     "misses": [],
+     "ok": true
+    },
+    {
+     "name": "multilingual ja",
+     "backend": "rlcd",
+     "status": 200,
+     "ms": 112.7,
+     "answers": {
+      "department": {
+       "label": "billing",
+       "conf": 0.979
+      },
+      "urgency": {
+       "label": "critical deadline or blocking issue",
+       "conf": 0.795
+      },
+      "churn_risk": {
+       "label": "yes",
+       "conf": 0.881
+      },
+      "refund_requested": {
+       "label": "yes",
+       "conf": 0.947
+      }
+     },
+     "misses": [],
+     "ok": true
+    },
+    {
+     "name": "multilingual es",
+     "backend": "rlcd",
+     "status": 200,
+     "ms": 117.8,
+     "answers": {
+      "department": {
+       "label": "billing",
+       "conf": 0.979
+      },
+      "urgency": {
+       "label": "critical deadline or blocking issue",
+       "conf": 0.774
+      },
+      "churn_risk": {
+       "label": "yes",
+       "conf": 0.893
+      },
+      "refund_requested": {
+       "label": "yes",
+       "conf": 0.94
+      }
+     },
+     "misses": [],
+     "ok": true
+    },
+    {
+     "name": "multilingual ta",
+     "backend": "rlcd",
+     "status": 200,
+     "ms": 121.4,
+     "answers": {
+      "department": {
+       "label": "billing",
+       "conf": 0.977
+      },
+      "urgency": {
+       "label": "critical deadline or blocking issue",
+       "conf": 0.731
+      },
+      "churn_risk": {
+       "label": "yes",
+       "conf": 0.915
+      },
+      "refund_requested": {
+       "label": "yes",
+       "conf": 0.924
+      }
+     },
+     "misses": [],
+     "ok": true
+    },
+    {
+     "name": "multilingual ar",
+     "backend": "rlcd",
+     "status": 200,
+     "ms": 115.2,
+     "answers": {
+      "department": {
+       "label": "billing",
+       "conf": 0.977
+      },
+      "urgency": {
+       "label": "critical deadline or blocking issue",
+       "conf": 0.774
+      },
+      "churn_risk": {
+       "label": "yes",
+       "conf": 0.881
+      },
+      "refund_requested": {
+       "label": "yes",
+       "conf": 0.94
+      }
+     },
+     "misses": [],
+     "ok": true
+    },
+    {
+     "name": "depends_on",
+     "backend": "rlcd",
+     "status": 200,
+     "ms": 125.6,
+     "answers": {
+      "category": {
+       "label": "software",
+       "conf": 0.7
+      },
+      "escalate": {
+       "label": "yes",
+       "conf": 0.531
+      }
+     },
+     "misses": [],
+     "ok": true
+    },
+    {
+     "name": "ask_if (asked)",
+     "backend": "rlcd",
+     "status": 200,
+     "ms": 130.0,
+     "answers": {
+      "cancel": {
+       "label": "yes",
+       "conf": 0.915
+      },
+      "reason": {
+       "label": "price",
+       "conf": 0.991
+      }
+     },
+     "misses": [],
+     "ok": true
+    },
+    {
+     "name": "ask_if (skipped)",
+     "backend": "rlcd",
+     "status": 200,
+     "ms": 60.8,
+     "answers": {
+      "cancel": {
+       "label": "no",
+       "conf": 0.958
+      },
+      "reason": {
+       "label": null,
+       "conf": null
+      }
+     },
+     "misses": [],
+     "ok": true
+    },
+    {
+     "name": "mode=independent",
+     "backend": "rlcd",
+     "status": 200,
+     "ms": 117.2,
+     "answers": {
+      "tone": {
+       "label": "annoyed",
+       "conf": 0.613
+      },
+      "complaint": {
+       "label": "yes",
+       "conf": 0.731
+      }
+     },
+     "misses": [],
+     "ok": true
+    },
+    {
+     "name": "mode=joint",
+     "backend": "rlcd",
+     "status": 200,
+     "ms": 119.0,
+     "answers": {
+      "tone": {
+       "label": "annoyed",
+       "conf": 0.613
+      },
+      "complaint": {
+       "label": "yes",
+       "conf": 0.798
+      }
+     },
+     "misses": [],
+     "ok": true
+    },
+    {
+     "name": "ambiguous state",
+     "backend": "rlcd",
+     "status": 200,
+     "ms": 63.5,
+     "answers": {
+      "department": {
+       "label": "other",
+       "conf": 0.767
+      }
+     },
+     "misses": [],
+     "ok": true
+    },
+    {
+     "name": "think=256",
+     "backend": "rlcd",
+     "status": 200,
+     "ms": 8908.8,
+     "answers": {
+      "on_time": {
+       "label": "yes",
+       "conf": 0.958
+      }
+     },
+     "misses": [],
+     "ok": true
+    },
+    {
+     "name": "image color red",
+     "backend": "rlcd",
+     "status": 200,
+     "ms": 203.7,
+     "answers": {
+      "color": {
+       "label": "red",
+       "conf": 0.947
+      }
+     },
+     "misses": [],
+     "ok": true
+    },
+    {
+     "name": "image color green",
+     "backend": "rlcd",
+     "status": 200,
+     "ms": 178.5,
+     "answers": {
+      "color": {
+       "label": "green",
+       "conf": 0.94
+      }
+     },
+     "misses": [],
+     "ok": true
+    },
+    {
+     "name": "image color blue",
+     "backend": "rlcd",
+     "status": 200,
+     "ms": 171.8,
+     "answers": {
+      "color": {
+       "label": "blue",
+       "conf": 0.959
+      }
+     },
+     "misses": [],
+     "ok": true
+    },
+    {
+     "name": "bad type -> 422",
+     "backend": "rlcd",
+     "status": 422,
+     "ms": 1.7,
+     "ok": true
+    },
+    {
+     "name": "missing state -> 422",
+     "backend": "rlcd",
+     "status": 422,
+     "ms": 1.6,
+     "ok": true
+    },
+    {
+     "name": "27 options -> 422",
+     "backend": "rlcd",
+     "status": 422,
+     "ms": 0.9,
+     "ok": true
+    }
+   ],
+   "ce": [
+    {
+     "name": "noul yes",
+     "backend": "ce",
+     "status": 200,
+     "ms": 89.2,
+     "answers": {
+      "outage": {
+       "label": "yes",
+       "conf": 0.967
+      }
+     },
+     "misses": [],
+     "ok": true
+    },
+    {
+     "name": "noul no",
+     "backend": "ce",
+     "status": 200,
+     "ms": 60.7,
+     "answers": {
+      "outage": {
+       "label": "no",
+       "conf": 0.98
+      }
+     },
+     "misses": [],
+     "ok": true
+    },
+    {
+     "name": "noul with true/false criteria",
+     "backend": "ce",
+     "status": 200,
+     "ms": 66.2,
+     "answers": {
+      "spam": {
+       "label": "yes",
+       "conf": 0.947
+      }
+     },
+     "misses": [],
+     "ok": true
+    },
+    {
+     "name": "choice 4-way",
+     "backend": "ce",
+     "status": 200,
+     "ms": 111.8,
+     "answers": {
+      "department": {
+       "label": "billing",
+       "conf": 0.991
+      }
+     },
+     "misses": [],
+     "ok": true
+    },
+    {
+     "name": "choice null descriptions",
+     "backend": "ce",
+     "status": 200,
+     "ms": 69.7,
+     "answers": {
+      "lang": {
+       "label": "rust",
+       "conf": 0.975
+      }
+     },
+     "misses": [],
+     "ok": true
+    },
+    {
+     "name": "choice 12 options",
+     "backend": "ce",
+     "status": 200,
+     "ms": 110.9,
+     "answers": {
+      "intent": {
+       "label": "alarm_set",
+       "conf": 0.98
+      }
+     },
+     "misses": [],
+     "ok": true
+    },
+    {
+     "name": "score ordinal high",
+     "backend": "ce",
+     "status": 200,
+     "ms": 64.7,
+     "answers": {
+      "urgency": {
+       "label": "critical deadline or blocking issue",
+       "conf": 0.97
+      }
+     },
+     "misses": [],
+     "ok": true
+    },
+    {
+     "name": "score ordinal low",
+     "backend": "ce",
+     "status": 200,
+     "ms": 62.5,
+     "answers": {
+      "urgency": {
+       "label": "not urgent",
+       "conf": 0.944
+      }
+     },
+     "misses": [],
+     "ok": true
+    },
+    {
+     "name": "score 1-5 sentiment",
+     "backend": "ce",
+     "status": 200,
+     "ms": 72.3,
+     "answers": {
+      "stars": {
+       "label": "1 star",
+       "conf": 0.996
+      }
+     },
+     "misses": [],
+     "ok": true
+    },
+    {
+     "name": "4 mixed questions, JSON state",
+     "backend": "ce",
+     "status": 200,
+     "ms": 156.4,
+     "answers": {
+      "department": {
+       "label": "billing",
+       "conf": 0.977
+      },
+      "urgency": {
+       "label": "critical deadline or blocking issue",
+       "conf": 0.724
+      },
+      "churn_risk": {
+       "label": "yes",
+       "conf": 0.905
+      },
+      "refund_requested": {
+       "label": "yes",
+       "conf": 0.94
+      }
+     },
+     "misses": [],
+     "ok": true
+    },
+    {
+     "name": "string state",
+     "backend": "ce",
+     "status": 200,
+     "ms": 118.5,
+     "answers": {
+      "department": {
+       "label": "billing",
+       "conf": 0.976
+      },
+      "urgency": {
+       "label": "critical deadline or blocking issue",
+       "conf": 0.724
+      },
+      "churn_risk": {
+       "label": "yes",
+       "conf": 0.905
+      },
+      "refund_requested": {
+       "label": "yes",
+       "conf": 0.947
+      }
+     },
+     "misses": [],
+     "ok": true
+    },
+    {
+     "name": "conversation state",
+     "backend": "ce",
+     "status": 200,
+     "ms": 126.5,
+     "answers": {
+      "department": {
+       "label": "billing",
+       "conf": 0.976
+      },
+      "urgency": {
+       "label": "critical deadline or blocking issue",
+       "conf": 0.724
+      },
+      "churn_risk": {
+       "label": "yes",
+       "conf": 0.905
+      },
+      "refund_requested": {
+       "label": "yes",
+       "conf": 0.958
+      }
+     },
+     "misses": [],
+     "ok": true
+    },
+    {
+     "name": "multilingual hi",
+     "backend": "ce",
+     "status": 200,
+     "ms": 117.2,
+     "answers": {
+      "department": {
+       "label": "billing",
+       "conf": 0.97
+      },
+      "urgency": {
+       "label": "critical deadline or blocking issue",
+       "conf": 0.708
+      },
+      "churn_risk": {
+       "label": "yes",
+       "conf": 0.893
+      },
+      "refund_requested": {
+       "label": "yes",
+       "conf": 0.94
+      }
+     },
+     "misses": [],
+     "ok": true
+    },
+    {
+     "name": "multilingual de",
+     "backend": "ce",
+     "status": 200,
+     "ms": 117.5,
+     "answers": {
+      "department": {
+       "label": "billing",
+       "conf": 0.973
+      },
+      "urgency": {
+       "label": "critical deadline or blocking issue",
+       "conf": 0.708
+      },
+      "churn_risk": {
+       "label": "yes",
+       "conf": 0.905
+      },
+      "refund_requested": {
+       "label": "yes",
+       "conf": 0.94
+      }
+     },
+     "misses": [],
+     "ok": true
+    },
+    {
+     "name": "multilingual ja",
+     "backend": "ce",
+     "status": 200,
+     "ms": 114.5,
+     "answers": {
+      "department": {
+       "label": "billing",
+       "conf": 0.974
+      },
+      "urgency": {
+       "label": "critical deadline or blocking issue",
+       "conf": 0.748
+      },
+      "churn_risk": {
+       "label": "yes",
+       "conf": 0.905
+      },
+      "refund_requested": {
+       "label": "yes",
+       "conf": 0.947
+      }
+     },
+     "misses": [],
+     "ok": true
+    },
+    {
+     "name": "multilingual es",
+     "backend": "ce",
+     "status": 200,
+     "ms": 121.8,
+     "answers": {
+      "department": {
+       "label": "billing",
+       "conf": 0.976
+      },
+      "urgency": {
+       "label": "critical deadline or blocking issue",
+       "conf": 0.705
+      },
+      "churn_risk": {
+       "label": "yes",
+       "conf": 0.893
+      },
+      "refund_requested": {
+       "label": "yes",
+       "conf": 0.947
+      }
+     },
+     "misses": [],
+     "ok": true
+    },
+    {
+     "name": "multilingual ta",
+     "backend": "ce",
+     "status": 200,
+     "ms": 118.8,
+     "answers": {
+      "department": {
+       "label": "billing",
+       "conf": 0.976
+      },
+      "urgency": {
+       "label": "critical deadline or blocking issue",
+       "conf": 0.679
+      },
+      "churn_risk": {
+       "label": "yes",
+       "conf": 0.905
+      },
+      "refund_requested": {
+       "label": "yes",
+       "conf": 0.94
+      }
+     },
+     "misses": [],
+     "ok": true
+    },
+    {
+     "name": "multilingual ar",
+     "backend": "ce",
+     "status": 200,
+     "ms": 116.5,
+     "answers": {
+      "department": {
+       "label": "billing",
+       "conf": 0.977
+      },
+      "urgency": {
+       "label": "critical deadline or blocking issue",
+       "conf": 0.682
+      },
+      "churn_risk": {
+       "label": "yes",
+       "conf": 0.893
+      },
+      "refund_requested": {
+       "label": "yes",
+       "conf": 0.947
+      }
+     },
+     "misses": [],
+     "ok": true
+    },
+    {
+     "name": "depends_on",
+     "backend": "ce",
+     "status": 200,
+     "ms": 125.9,
+     "answers": {
+      "category": {
+       "label": "software",
+       "conf": 0.726
+      },
+      "escalate": {
+       "label": "yes",
+       "conf": 0.531
+      }
+     },
+     "misses": [],
+     "ok": true
+    },
+    {
+     "name": "ask_if (asked)",
+     "backend": "ce",
+     "status": 200,
+     "ms": 130.0,
+     "answers": {
+      "cancel": {
+       "label": "yes",
+       "conf": 0.953
+      },
+      "reason": {
+       "label": "price",
+       "conf": 0.993
+      }
+     },
+     "misses": [],
+     "ok": true
+    },
+    {
+     "name": "ask_if (skipped)",
+     "backend": "ce",
+     "status": 200,
+     "ms": 60.3,
+     "answers": {
+      "cancel": {
+       "label": "no",
+       "conf": 0.974
+      },
+      "reason": {
+       "label": null,
+       "conf": null
+      }
+     },
+     "misses": [],
+     "ok": true
+    },
+    {
+     "name": "mode=independent",
+     "backend": "ce",
+     "status": 200,
+     "ms": 115.7,
+     "answers": {
+      "tone": {
+       "label": "annoyed",
+       "conf": 0.637
+      },
+      "complaint": {
+       "label": "yes",
+       "conf": 0.755
+      }
+     },
+     "misses": [],
+     "ok": true
+    },
+    {
+     "name": "mode=joint",
+     "backend": "ce",
+     "status": 200,
+     "ms": 117.4,
+     "answers": {
+      "tone": {
+       "label": "annoyed",
+       "conf": 0.637
+      },
+      "complaint": {
+       "label": "yes",
+       "conf": 0.777
+      }
+     },
+     "misses": [],
+     "ok": true
+    },
+    {
+     "name": "ambiguous state",
+     "backend": "ce",
+     "status": 200,
+     "ms": 60.8,
+     "answers": {
+      "department": {
+       "label": "other",
+       "conf": 0.795
+      }
+     },
+     "misses": [],
+     "ok": true
+    },
+    {
+     "name": "think=256",
+     "backend": "ce",
+     "status": 200,
+     "ms": 7531.9,
+     "answers": {
+      "on_time": {
+       "label": "yes",
+       "conf": 0.98
+      }
+     },
+     "misses": [],
+     "ok": true
+    },
+    {
+     "name": "image color red",
+     "backend": "ce",
+     "status": 200,
+     "ms": 134.6,
+     "answers": {
+      "color": {
+       "label": "red",
+       "conf": 0.985
+      }
+     },
+     "misses": [],
+     "ok": true
+    },
+    {
+     "name": "image color green",
+     "backend": "ce",
+     "status": 200,
+     "ms": 129.3,
+     "answers": {
+      "color": {
+       "label": "green",
+       "conf": 0.975
+      }
+     },
+     "misses": [],
+     "ok": true
+    },
+    {
+     "name": "image color blue",
+     "backend": "ce",
+     "status": 200,
+     "ms": 121.6,
+     "answers": {
+      "color": {
+       "label": "blue",
+       "conf": 0.963
+      }
+     },
+     "misses": [],
+     "ok": true
+    },
+    {
+     "name": "bad type -> 422",
+     "backend": "ce",
+     "status": 422,
+     "ms": 1.4,
+     "ok": true
+    },
+    {
+     "name": "missing state -> 422",
+     "backend": "ce",
+     "status": 422,
+     "ms": 1.0,
+     "ok": true
+    },
+    {
+     "name": "27 options -> 422",
+     "backend": "ce",
+     "status": 422,
+     "ms": 1.4,
+     "ok": true
+    }
+   ]
+  },
+  "public": {
+   "ag_news/base": {
+    "acc": 0.86,
+    "n": 300,
+    "errors": 0,
+    "mean_conf": 0.994,
+    "ece": 0.135,
+    "wall_s": 8.3
+   },
+   "emotion/base": {
+    "acc": 0.603,
+    "n": 300,
+    "errors": 0,
+    "mean_conf": 0.985,
+    "ece": 0.382,
+    "wall_s": 4.3
+   },
+   "sst2/base": {
+    "acc": 0.95,
+    "n": 300,
+    "errors": 0,
+    "mean_conf": 0.999,
+    "ece": 0.05,
+    "wall_s": 5.3
+   },
+   "sst2_choice/base": {
+    "acc": 0.957,
+    "n": 300,
+    "errors": 0,
+    "mean_conf": 0.998,
+    "ece": 0.041,
+    "wall_s": 5.4
+   },
+   "ag_news/rlcd": {
+    "acc": 0.83,
+    "n": 300,
+    "errors": 0,
+    "mean_conf": 0.888,
+    "ece": 0.06,
+    "wall_s": 8.6
+   },
+   "emotion/rlcd": {
+    "acc": 0.59,
+    "n": 300,
+    "errors": 0,
+    "mean_conf": 0.771,
+    "ece": 0.185,
+    "wall_s": 4.8
+   },
+   "sst2/rlcd": {
+    "acc": 0.953,
+    "n": 300,
+    "errors": 0,
+    "mean_conf": 0.904,
+    "ece": 0.052,
+    "wall_s": 5.5
+   },
+   "sst2_choice/rlcd": {
+    "acc": 0.967,
+    "n": 300,
+    "errors": 0,
+    "mean_conf": 0.938,
+    "ece": 0.036,
+    "wall_s": 5.4
+   },
+   "ag_news/ce": {
+    "acc": 0.84,
+    "n": 300,
+    "errors": 0,
+    "mean_conf": 0.889,
+    "ece": 0.049,
+    "wall_s": 8.5
+   },
+   "emotion/ce": {
+    "acc": 0.587,
+    "n": 300,
+    "errors": 0,
+    "mean_conf": 0.754,
+    "ece": 0.169,
+    "wall_s": 4.5
+   },
+   "sst2/ce": {
+    "acc": 0.947,
+    "n": 300,
+    "errors": 0,
+    "mean_conf": 0.938,
+    "ece": 0.035,
+    "wall_s": 5.3
+   },
+   "sst2_choice/ce": {
+    "acc": 0.963,
+    "n": 300,
+    "errors": 0,
+    "mean_conf": 0.943,
+    "ece": 0.032,
+    "wall_s": 5.6
+   }
+  },
+  "typed": {
+   "base": {
+    "raw": {
+     "accuracy": 0.702,
+     "soft_accuracy": 0.6189,
+     "brier": 0.3488,
+     "ece": 0.2754,
+     "score_mae": 0.4911,
+     "mean_conf": 0.9769,
+     "decisions": 2000
+    },
+    "errors": 0,
+    "wall_s": 37.1,
+    "per_workflow": {
+     "agent_trace_observability": 0.566,
+     "customer_service": 0.758,
+     "invoice_processing": 0.748,
+     "security_incidents": 0.736
+    },
+    "temperatures": {
+     "noul:2": 14.5998,
+     "choice:4": 13.1467,
+     "score:5": 8.9459,
+     "score:4": 8.4787,
+     "choice:5": 7.0969
+    },
+    "calibrated": {
+     "accuracy": 0.702,
+     "soft_accuracy": 0.4972,
+     "brier": 0.1105,
+     "ece": 0.1001,
+     "score_mae": 0.2887,
+     "mean_conf": 0.6024,
+     "decisions": 2000
+    },
+    "calibration_file": "/workspace/dg/rlcd_exp/calibration/base.json"
+   },
+   "rlcd": {
+    "raw": {
+     "accuracy": 0.789,
+     "soft_accuracy": 0.5824,
+     "brier": 0.046,
+     "ece": 0.134,
+     "score_mae": 0.2048,
+     "mean_conf": 0.655,
+     "decisions": 2000
+    },
+    "errors": 0,
+    "wall_s": 38.6,
+    "per_workflow": {
+     "agent_trace_observability": 0.734,
+     "customer_service": 0.816,
+     "invoice_processing": 0.834,
+     "security_incidents": 0.772
+    },
+    "temperatures": {
+     "noul:2": 1.0767,
+     "choice:4": 1.1127,
+     "score:5": 0.941,
+     "score:4": 1.0741,
+     "choice:5": 1.114
+    },
+    "calibrated": {
+     "accuracy": 0.789,
+     "soft_accuracy": 0.5736,
+     "brier": 0.044,
+     "ece": 0.1499,
+     "score_mae": 0.2051,
+     "mean_conf": 0.6391,
+     "decisions": 2000
+    },
+    "calibration_file": "/workspace/dg/rlcd_exp/calibration/rlcd.json"
+   },
+   "ce": {
+    "raw": {
+     "accuracy": 0.797,
+     "soft_accuracy": 0.5807,
+     "brier": 0.0413,
+     "ece": 0.1514,
+     "score_mae": 0.1881,
+     "mean_conf": 0.6456,
+     "decisions": 2000
+    },
+    "errors": 0,
+    "wall_s": 38.6,
+    "per_workflow": {
+     "agent_trace_observability": 0.738,
+     "customer_service": 0.828,
+     "invoice_processing": 0.844,
+     "security_incidents": 0.778
+    },
+    "temperatures": {
+     "noul:2": 1.0656,
+     "choice:4": 1.0132,
+     "score:5": 1.0431,
+     "score:4": 1.0493,
+     "choice:5": 1.0478
+    },
+    "calibrated": {
+     "accuracy": 0.797,
+     "soft_accuracy": 0.5769,
+     "brier": 0.0409,
+     "ece": 0.1599,
+     "score_mae": 0.1878,
+     "mean_conf": 0.6371,
+     "decisions": 2000
+    },
+    "calibration_file": "/workspace/dg/rlcd_exp/calibration/ce.json"
+   }
+  },
+  "latency": {
+   "rlcd 1q": {
+    "p50_ms": 60.9,
+    "p90_ms": 64.1
+   },
+   "rlcd 4q": {
+    "p50_ms": 117.8,
+    "p90_ms": 120.5
+   },
+   "rlcd typed-case": {
+    "p50_ms": 178.3,
+    "p90_ms": 224.8
+   },
+   "rlcd 4q c=1": {
+    "req_per_s": 8.7,
+    "decisions_per_s": 34.7,
+    "p50_ms": 116,
+    "p90_ms": 118,
+    "errors": 0
+   },
+   "rlcd 4q c=8": {
+    "req_per_s": 23.8,
+    "decisions_per_s": 95.1,
+    "p50_ms": 335,
+    "p90_ms": 353,
+    "errors": 0
+   },
+   "rlcd 4q c=32": {
+    "req_per_s": 32.4,
+    "decisions_per_s": 129.6,
+    "p50_ms": 968,
+    "p90_ms": 987,
+    "errors": 0
+   },
+   "rlcd 4q c=64": {
+    "req_per_s": 31.8,
+    "decisions_per_s": 127.0,
+    "p50_ms": 1980,
+    "p90_ms": 2012,
+    "errors": 0
+   },
+   "base 1q": {
+    "p50_ms": 57.4,
+    "p90_ms": 62.2
+   },
+   "base 4q": {
+    "p50_ms": 109.4,
+    "p90_ms": 113.4
+   },
+   "base typed-case": {
+    "p50_ms": 163.4,
+    "p90_ms": 217.1
+   },
+   "base 4q c=1": {
+    "req_per_s": 9.5,
+    "decisions_per_s": 37.9,
+    "p50_ms": 107,
+    "p90_ms": 110,
+    "errors": 0
+   },
+   "base 4q c=8": {
+    "req_per_s": 30.8,
+    "decisions_per_s": 123.3,
+    "p50_ms": 253,
+    "p90_ms": 305,
+    "errors": 0
+   },
+   "base 4q c=32": {
+    "req_per_s": 32.6,
+    "decisions_per_s": 130.3,
+    "p50_ms": 961,
+    "p90_ms": 984,
+    "errors": 0
+   },
+   "base 4q c=64": {
+    "req_per_s": 35.1,
+    "decisions_per_s": 140.4,
+    "p50_ms": 1790,
+    "p90_ms": 1851,
+    "errors": 0
+   }
+  }
+ },
+ "nvfp4_serving": {
+  "typed": {
+   "nvfp4-rlcd": {
+    "raw": {
+     "accuracy": 0.7835,
+     "soft_accuracy": 0.5862,
+     "brier": 0.049,
+     "ece": 0.1245,
+     "score_mae": 0.2101,
+     "mean_conf": 0.659,
+     "decisions": 2000
+    },
+    "errors": 0,
+    "wall_s": 23.0,
+    "per_workflow": {
+     "agent_trace_observability": 0.718,
+     "customer_service": 0.824,
+     "invoice_processing": 0.826,
+     "security_incidents": 0.766
+    }
+   },
+   "nvfp4-ce": {
+    "raw": {
+     "accuracy": 0.791,
+     "soft_accuracy": 0.5835,
+     "brier": 0.0435,
+     "ece": 0.1487,
+     "score_mae": 0.1928,
+     "mean_conf": 0.6461,
+     "decisions": 2000
+    },
+    "errors": 0,
+    "wall_s": 22.3,
+    "per_workflow": {
+     "agent_trace_observability": 0.72,
+     "customer_service": 0.836,
+     "invoice_processing": 0.826,
+     "security_incidents": 0.782
+    }
+   },
+   "nvfp4-gemma4": {
+    "raw": {
+     "accuracy": 0.7075,
+     "soft_accuracy": 0.628,
+     "brier": 0.3231,
+     "ece": 0.2614,
+     "score_mae": 0.4847,
+     "mean_conf": 0.9688,
+     "decisions": 2000
+    },
+    "errors": 0,
+    "wall_s": 19.6,
+    "per_workflow": {
+     "agent_trace_observability": 0.586,
+     "customer_service": 0.776,
+     "invoice_processing": 0.736,
+     "security_incidents": 0.732
+    }
+   }
+  }
+ },
+ "training": {
+  "rlcd": {
+   "reward": [
+    {
+     "step": 0,
+     "reward": -3.181
+    },
+    {
+     "step": 10,
+     "reward": -1.4511
+    },
+    {
+     "step": 20,
+     "reward": -0.7349
+    },
+    {
+     "step": 30,
+     "reward": -0.4534
+    },
+    {
+     "step": 40,
+     "reward": -0.4706
+    },
+    {
+     "step": 50,
+     "reward": -0.6029
+    },
+    {
+     "step": 60,
+     "reward": -0.2089
+    },
+    {
+     "step": 70,
+     "reward": -0.2797
+    },
+    {
+     "step": 80,
+     "reward": -0.1672
+    },
+    {
+     "step": 90,
+     "reward": -0.3365
+    },
+    {
+     "step": 100,
+     "reward": -0.5321
+    },
+    {
+     "step": 110,
+     "reward": -0.5116
+    },
+    {
+     "step": 120,
+     "reward": -0.2048
+    },
+    {
+     "step": 130,
+     "reward": -0.2397
+    },
+    {
+     "step": 140,
+     "reward": -0.3225
+    },
+    {
+     "step": 150,
+     "reward": -0.4264
+    },
+    {
+     "step": 160,
+     "reward": -0.3158
+    },
+    {
+     "step": 170,
+     "reward": -0.3163
+    },
+    {
+     "step": 180,
+     "reward": -0.5014
+    },
+    {
+     "step": 191,
+     "reward": -0.3207
+    },
+    {
+     "step": 201,
+     "reward": -0.1357
+    },
+    {
+     "step": 211,
+     "reward": -0.2377
+    },
+    {
+     "step": 221,
+     "reward": -0.2271
+    },
+    {
+     "step": 231,
+     "reward": -0.355
+    },
+    {
+     "step": 241,
+     "reward": -0.0929
+    },
+    {
+     "step": 251,
+     "reward": -0.3034
+    },
+    {
+     "step": 261,
+     "reward": -0.2226
+    },
+    {
+     "step": 271,
+     "reward": -0.3735
+    },
+    {
+     "step": 281,
+     "reward": -0.2492
+    }
+   ],
+   "loss": [
+    {
+     "step": 10,
+     "loss": 4.204,
+     "grad_norm": 68.28
+    },
+    {
+     "step": 20,
+     "loss": 1.165,
+     "grad_norm": 18.2
+    },
+    {
+     "step": 30,
+     "loss": 0.6482,
+     "grad_norm": 102.8
+    },
+    {
+     "step": 40,
+     "loss": 0.7022,
+     "grad_norm": 23.01
+    },
+    {
+     "step": 50,
+     "loss": 0.786,
+     "grad_norm": 22.76
+    },
+    {
+     "step": 60,
+     "loss": 0.6526,
+     "grad_norm": 15.99
+    },
+    {
+     "step": 70,
+     "loss": 0.7499,
+     "grad_norm": 25.76
+    },
+    {
+     "step": 80,
+     "loss": 0.5115,
+     "grad_norm": 25.22
+    },
+    {
+     "step": 90,
+     "loss": 0.6569,
+     "grad_norm": 644.1
+    },
+    {
+     "step": 100,
+     "loss": 0.6842,
+     "grad_norm": 19.34
+    },
+    {
+     "step": 110,
+     "loss": 0.7768,
+     "grad_norm": 18.9
+    },
+    {
+     "step": 120,
+     "loss": 0.6717,
+     "grad_norm": 20.18
+    },
+    {
+     "step": 130,
+     "loss": 0.7218,
+     "grad_norm": 56.52
+    },
+    {
+     "step": 140,
+     "loss": 0.6102,
+     "grad_norm": 25.78
+    },
+    {
+     "step": 150,
+     "loss": 0.6156,
+     "grad_norm": 17.21
+    },
+    {
+     "step": 160,
+     "loss": 0.6778,
+     "grad_norm": 35.6
+    },
+    {
+     "step": 170,
+     "loss": 0.7766,
+     "grad_norm": 108.8
+    },
+    {
+     "step": 180,
+     "loss": 0.6298,
+     "grad_norm": 35.81
+    },
+    {
+     "step": 191,
+     "loss": 0.5858,
+     "grad_norm": 70.16
+    },
+    {
+     "step": 201,
+     "loss": 0.7016,
+     "grad_norm": 38.5
+    },
+    {
+     "step": 211,
+     "loss": 0.6287,
+     "grad_norm": 23.91
+    },
+    {
+     "step": 221,
+     "loss": 0.7648,
+     "grad_norm": 40.85
+    },
+    {
+     "step": 231,
+     "loss": 0.5057,
+     "grad_norm": 25.54
+    },
+    {
+     "step": 241,
+     "loss": 0.6274,
+     "grad_norm": 37.35
+    },
+    {
+     "step": 251,
+     "loss": 0.6555,
+     "grad_norm": 44.12
+    },
+    {
+     "step": 261,
+     "loss": 0.7027,
+     "grad_norm": 49.55
+    },
+    {
+     "step": 271,
+     "loss": 0.6839,
+     "grad_norm": 36.73
+    },
+    {
+     "step": 281,
+     "loss": 0.6849,
+     "grad_norm": 100.5
+    }
+   ]
+  },
+  "ce": {
+   "reward": [],
+   "loss": [
+    {
+     "step": 10,
+     "loss": 3.94,
+     "grad_norm": 20.56
+    },
+    {
+     "step": 20,
+     "loss": 1.065,
+     "grad_norm": 2.987
+    },
+    {
+     "step": 30,
+     "loss": 0.8641,
+     "grad_norm": 1.545
+    },
+    {
+     "step": 40,
+     "loss": 0.8862,
+     "grad_norm": 1.459
+    },
+    {
+     "step": 50,
+     "loss": 0.9518,
+     "grad_norm": 1.373
+    },
+    {
+     "step": 60,
+     "loss": 0.9283,
+     "grad_norm": 6.631
+    },
+    {
+     "step": 70,
+     "loss": 0.8591,
+     "grad_norm": 1.514
+    },
+    {
+     "step": 80,
+     "loss": 0.7831,
+     "grad_norm": 1.647
+    },
+    {
+     "step": 90,
+     "loss": 0.8487,
+     "grad_norm": 1.356
+    },
+    {
+     "step": 100,
+     "loss": 0.8486,
+     "grad_norm": 0.4841
+    },
+    {
+     "step": 110,
+     "loss": 0.884,
+     "grad_norm": 1.018
+    },
+    {
+     "step": 120,
+     "loss": 0.8444,
+     "grad_norm": 0.9317
+    },
+    {
+     "step": 130,
+     "loss": 0.8173,
+     "grad_norm": 1.055
+    },
+    {
+     "step": 140,
+     "loss": 0.8261,
+     "grad_norm": 1.31
+    },
+    {
+     "step": 150,
+     "loss": 0.8282,
+     "grad_norm": 0.5412
+    },
+    {
+     "step": 160,
+     "loss": 0.825,
+     "grad_norm": 2.655
+    },
+    {
+     "step": 170,
+     "loss": 0.8349,
+     "grad_norm": 0.8972
+    },
+    {
+     "step": 180,
+     "loss": 0.7864,
+     "grad_norm": 2.58
+    },
+    {
+     "step": 191,
+     "loss": 0.8325,
+     "grad_norm": 7.871
+    },
+    {
+     "step": 201,
+     "loss": 0.8003,
+     "grad_norm": 0.6283
+    },
+    {
+     "step": 211,
+     "loss": 0.7891,
+     "grad_norm": 0.6979
+    },
+    {
+     "step": 221,
+     "loss": 0.8345,
+     "grad_norm": 1.097
+    },
+    {
+     "step": 231,
+     "loss": 0.8093,
+     "grad_norm": 0.9455
+    },
+    {
+     "step": 241,
+     "loss": 0.8416,
+     "grad_norm": 0.7345
+    },
+    {
+     "step": 251,
+     "loss": 0.763,
+     "grad_norm": 0.6108
+    },
+    {
+     "step": 261,
+     "loss": 0.8106,
+     "grad_norm": 0.9369
+    },
+    {
+     "step": 271,
+     "loss": 0.7705,
+     "grad_norm": 0.7305
+    },
+    {
+     "step": 281,
+     "loss": 0.8507,
+     "grad_norm": 0.4871
+    }
+   ]
+  }
+ }
+}

@@ -1,0 +1,12 @@
+{
+ "model": "google/gemma-4-31B-it + systemone rlcd --objective ce LoRA",
+ "served_as": "gemma4-ce",
+ "fitted_on": "LocalLLaMA/typed-decisions train (300 cases)",
+ "temperatures": {
+  "noul:2": 1.0656,
+  "choice:4": 1.0132,
+  "score:5": 1.0431,
+  "score:4": 1.0493,
+  "choice:5": 1.0478
+ }
+}

@@ -1,0 +1,12 @@
+{
+ "model": "nvidia/diffusiongemma-26B-A4B-it-NVFP4 (vLLM PR 57250 interposer)",
+ "served_as": "dgemma",
+ "fitted_on": "LocalLLaMA/typed-decisions train (300 cases)",
+ "temperatures": {
+  "noul:2": 7.6041,
+  "choice:4": 5.232,
+  "score:5": 4.795,
+  "score:4": 4.499,
+  "choice:5": 4.6427
+ }
+}

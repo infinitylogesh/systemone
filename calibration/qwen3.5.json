@@ -1,0 +1,12 @@
+{
+ "model": "Qwen/Qwen3.5-35B-A3B-FP8",
+ "served_as": "qwen3.5",
+ "fitted_on": "LocalLLaMA/typed-decisions train (300 cases)",
+ "temperatures": {
+  "noul:2": 1.9054,
+  "choice:4": 1.6606,
+  "score:5": 1.5889,
+  "score:4": 1.8974,
+  "choice:5": 1.3485
+ }
+}

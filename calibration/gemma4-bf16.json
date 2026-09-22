@@ -1,0 +1,12 @@
+{
+ "model": "google/gemma-4-31B-it",
+ "served_as": "gemma4-bf16",
+ "fitted_on": "LocalLLaMA/typed-decisions train (300 cases)",
+ "temperatures": {
+  "noul:2": 14.5998,
+  "choice:4": 13.1467,
+  "score:5": 8.9459,
+  "score:4": 8.4787,
+  "choice:5": 7.0969
+ }
+}

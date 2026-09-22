@@ -1,0 +1,12 @@
+{
+ "model": "convaiinnovations/laya (Router)",
+ "served_as": "laya",
+ "fitted_on": "LocalLLaMA/typed-decisions train (300 cases)",
+ "temperatures": {
+  "noul:2": 20.0,
+  "choice:4": 20.0,
+  "score:5": 1.7792,
+  "score:4": 3.4613,
+  "choice:5": 2.0524
+ }
+}

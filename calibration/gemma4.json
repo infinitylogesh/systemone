@@ -1,0 +1,12 @@
+{
+ "model": "nvidia/Gemma-4-31B-IT-NVFP4",
+ "served_as": "gemma4",
+ "fitted_on": "LocalLLaMA/typed-decisions train (300 cases)",
+ "temperatures": {
+  "noul:2": 13.9754,
+  "choice:4": 12.3213,
+  "score:5": 7.805,
+  "score:4": 7.8318,
+  "choice:5": 6.4929
+ }
+}

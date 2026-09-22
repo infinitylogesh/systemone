@@ -1,0 +1,79 @@
+{
+ "date": "2026-09-21",
+ "where": "measured on the GPU box through systemone (no network); Gemma 4 31B NVFP4 at 0.45 GPU share, Gemma 4 E4B bf16 at 0.30",
+ "results": [
+  {
+   "model": "gemma4-e4b",
+   "suite": "image",
+   "n": 200,
+   "accuracy": 0.795,
+   "errors": 0,
+   "first_error": null,
+   "round_trip_ms_p50": 74,
+   "model_ms_p50": 73,
+   "items_per_s": 32.2,
+   "parallel": 16
+  },
+  {
+   "model": "gemma4",
+   "suite": "image",
+   "n": 200,
+   "accuracy": 0.955,
+   "errors": 0,
+   "first_error": null,
+   "round_trip_ms_p50": 149,
+   "model_ms_p50": 147,
+   "items_per_s": 12.5,
+   "parallel": 16
+  },
+  {
+   "model": "gemma4-e4b",
+   "suite": "video",
+   "n": 200,
+   "accuracy": 0.22,
+   "errors": 0,
+   "first_error": null,
+   "round_trip_ms_p50": 122,
+   "model_ms_p50": 120,
+   "items_per_s": 22.5,
+   "parallel": 16
+  },
+  {
+   "model": "gemma4",
+   "suite": "video",
+   "n": 200,
+   "accuracy": 1.0,
+   "errors": 0,
+   "first_error": null,
+   "round_trip_ms_p50": 201,
+   "model_ms_p50": 199,
+   "items_per_s": 7.0,
+   "parallel": 16
+  },
+  {
+   "model": "gemma4-e4b",
+   "suite": "audio",
+   "n": 200,
+   "accuracy": 0.36,
+   "errors": 0,
+   "first_error": null,
+   "round_trip_ms_p50": 200,
+   "model_ms_p50": 197,
+   "items_per_s": 26.1,
+   "parallel": 16
+  },
+  {
+   "model": "gemma4-e4b",
+   "suite": "speech_commands_10",
+   "n": 200,
+   "accuracy": 0.84,
+   "model_ms_p50": 72,
+   "items_per_s": 78.1,
+   "parallel": 16
+  }
+ ],
+ "diagnosis": {
+  "video_e4b": "E4B only ever answers left/right (30/10 of 40), never up/down: it doesn't read motion; Gemma 4 31B 40/40",
+  "audio_esc10_e4b": "strong on dog (1.00), crackling fire (1.00), crying baby (0.83); most noise-like sounds collapse to 'crackling fire'; describing the classes lowered accuracy (0.35 -> 0.27)"
+ }
+}

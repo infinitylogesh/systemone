@@ -1,0 +1,154 @@
+{
+ "date": "2026-09-21",
+ "model": "nvidia/Gemma-4-31B-IT-NVFP4 via systemone (GPU shared with DiffusionGemma, 0.45 each)",
+ "quality": {
+  "note": "10 games per row, run 10 at a time (latency inflated by that load); first prompt layout",
+  "maze_cells": 7,
+  "snake_board": 10,
+  "results": {
+   "maze random": {
+    "solved": "0/10",
+    "moves_when_solved": 0,
+    "model_calls": 0,
+    "ms_per_move_p50": null
+   },
+   "maze heuristic": {
+    "solved": "10/10",
+    "moves_when_solved": 55.0,
+    "model_calls": 0,
+    "ms_per_move_p50": null
+   },
+   "maze text:hints": {
+    "solved": "10/10",
+    "moves_when_solved": 48.0,
+    "model_calls": 503,
+    "ms_per_move_p50": 353
+   },
+   "maze text:plain": {
+    "solved": "0/10",
+    "moves_when_solved": 0,
+    "model_calls": 2926,
+    "ms_per_move_p50": 85
+   },
+   "maze both:hints": {
+    "solved": "10/10",
+    "moves_when_solved": 48.0,
+    "model_calls": 512,
+    "ms_per_move_p50": 1148
+   },
+   "maze image:hints": {
+    "solved": "10/10",
+    "moves_when_solved": 48.0,
+    "model_calls": 497,
+    "ms_per_move_p50": 950
+   },
+   "snake random": {
+    "score_mean": 3,
+    "score_max": 5,
+    "moves_mean": 334,
+    "model_calls": 0,
+    "ms_per_move_p50": null
+   },
+   "snake heuristic": {
+    "score_mean": 34.8,
+    "score_max": 43,
+    "moves_mean": 390,
+    "model_calls": 0,
+    "ms_per_move_p50": null
+   },
+   "snake text:hints": {
+    "score_mean": 30.8,
+    "score_max": 40,
+    "moves_mean": 311,
+    "model_calls": 2737,
+    "ms_per_move_p50": 336
+   },
+   "snake text:plain": {
+    "score_mean": 17.4,
+    "score_max": 27,
+    "moves_mean": 146,
+    "model_calls": 1366,
+    "ms_per_move_p50": 265
+   },
+   "snake both:hints": {
+    "score_mean": 26.5,
+    "score_max": 35,
+    "moves_mean": 253,
+    "model_calls": 2330,
+    "ms_per_move_p50": 1057
+   },
+   "snake image:hints": {
+    "score_mean": 31.8,
+    "score_max": 43,
+    "moves_mean": 352,
+    "model_calls": 3108,
+    "ms_per_move_p50": 924
+   }
+  }
+ },
+ "latency_ab": {
+  "note": "2 games per row, one at a time on an otherwise idle model; snake 8x8",
+  "results": {
+   "cached_both_hints": {
+    "maze both:hints": {
+     "solved": "2/2",
+     "moves_when_solved": 60.0,
+     "model_calls": 117,
+     "ms_per_move_p50": 148
+    },
+    "snake both:hints": {
+     "score_mean": 14.5,
+     "score_max": 22,
+     "moves_mean": 92,
+     "model_calls": 160,
+     "ms_per_move_p50": 143
+    }
+   },
+   "cached_text_hints": {
+    "maze text:hints": {
+     "solved": "2/2",
+     "moves_when_solved": 60.0,
+     "model_calls": 117,
+     "ms_per_move_p50": 82
+    },
+    "snake text:hints": {
+     "score_mean": 17.5,
+     "score_max": 28,
+     "moves_mean": 140,
+     "model_calls": 244,
+     "ms_per_move_p50": 82
+    }
+   },
+   "legacy_both_hints": {
+    "maze both:hints": {
+     "solved": "2/2",
+     "moves_when_solved": 99.0,
+     "model_calls": 177,
+     "ms_per_move_p50": 151
+    },
+    "snake both:hints": {
+     "score_mean": 13.5,
+     "score_max": 20,
+     "moves_mean": 104,
+     "model_calls": 187,
+     "ms_per_move_p50": 146
+    }
+   },
+   "legacy_text_hints": {
+    "maze text:hints": {
+     "solved": "2/2",
+     "moves_when_solved": 52.0,
+     "model_calls": 102,
+     "ms_per_move_p50": 84
+    },
+    "snake text:hints": {
+     "score_mean": 16.5,
+     "score_max": 26,
+     "moves_mean": 124,
+     "model_calls": 204,
+     "ms_per_move_p50": 84
+    }
+   }
+  }
+ }
+}
